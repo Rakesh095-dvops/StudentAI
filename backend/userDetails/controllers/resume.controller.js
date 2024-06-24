@@ -6,7 +6,7 @@ const generateCV = require('../utils/chatGPT'); // Assuming a utility to handle 
 // Function to create a CV based on a JD and user details
 const createCV = async (req, res) => {
     try {
-        const { userId, jobDescription } = req.body;
+        const { userId, jobDescription, companyName } = req.body;
         console.log('UserData: ', userId, jobDescription)
         
         // Fetch user details
@@ -22,6 +22,7 @@ const createCV = async (req, res) => {
         // Save the generated CV and improvements in the database
         const newResume = new Resume({
             userId,
+            companyName,
             jobDescription,
             generatedCV: cv,
             improvements
