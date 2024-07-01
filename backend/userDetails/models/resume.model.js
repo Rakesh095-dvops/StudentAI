@@ -8,6 +8,9 @@ const resumeSchema = new mongoose.Schema({
         ref: 'UserDetails', // Assuming UserDetails is the model where user data is stored
         required: true
     },
+    companyName: {
+        type: String
+    },
     jobDescription: {
         type: String,
         required: true

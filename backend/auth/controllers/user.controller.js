@@ -183,12 +183,16 @@ const registerUser = async (req, res) => {
 const verifyOTP = async (req, res) => {
   try {
     const { email, otp } = req.body;
-    const formattedOTP = parseInt(otp.join(""));
+    console.log('Email & OTP: ', email, otp)
+    const formattedOTP = parseInt(otp);
 
     const user = await User.findOne({ email });
 
     if (!user) {
-      return res.status(404).json({ message: "User not found" });
+      return res.status(404).json({ 
+        message: "User not found",
+        status: "failed"
+       });
     }
     console.log(formattedOTP);
     const auth = await Auth.findOne({ userId: user._id });
@@ -196,8 +200,9 @@ const verifyOTP = async (req, res) => {
     if (auth && auth.otp === formattedOTP && !auth.isVerified) {
       user.accountStatus = "active";
       auth.isVerified = true;
+      await auth.save();
       await user.save();
-      token = JWT.generateToken(user._id, user.userType);
+      let token = JWT.generateToken(user._id, user.userType);
       res.cookie("token", token, {
         httpOnly: true,
         secure: process.env.SECURE_TOKEN,
@@ -205,6 +210,7 @@ const verifyOTP = async (req, res) => {
       });
       return res.status(200).json({
         message: "OTP verified successfully.",
+        status: 'success',
         jwtToken: token,
       });
     } else {
@@ -285,10 +291,16 @@ const loginUser = async (req, res) => {
 
     return res
       .status(200)
-      .json({ message: "OTP Sent. Verify OTP. Login Again." });
+      .json({ 
+        message: "OTP Sent. Verify OTP. Login Again.",
+        status: "success"
+       });
   } catch (err) {
     console.error(err);
-    res.status(500).json({ message: "Internal Server Error" });
+    res.status(500).json({ 
+      message: "Internal Server Error",
+      status: "failed"
+     });
   }
 };
 

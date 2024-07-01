@@ -58,19 +58,82 @@
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link" href="cv_generator.html">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Generate Resume</span></a>
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                    aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Components</span>
+                </a>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Custom Components:</h6>
+                        <a class="collapse-item" href="buttons.html">Buttons</a>
+                        <a class="collapse-item" href="cards.html">Cards</a>
+                    </div>
+                </div>
             </li>
-            
-            
-            
+
+            <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link" href="view_cv.html">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>View Resume</span></a>
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+                    aria-expanded="true" aria-controls="collapseUtilities">
+                    <i class="fas fa-fw fa-wrench"></i>
+                    <span>Utilities</span>
+                </a>
+                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Custom Utilities:</h6>
+                        <a class="collapse-item" href="utilities-color.html">Colors</a>
+                        <a class="collapse-item" href="utilities-border.html">Borders</a>
+                        <a class="collapse-item" href="utilities-animation.html">Animations</a>
+                        <a class="collapse-item" href="utilities-other.html">Other</a>
+                    </div>
+                </div>
             </li>
-            
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Addons
+            </div>
+
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item active">
+                <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true"
+                    aria-controls="collapsePages">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Pages</span>
+                </a>
+                <div id="collapsePages" class="collapse show" aria-labelledby="headingPages"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Login Screens:</h6>
+                        <a class="collapse-item" href="login.html">Login</a>
+                        <a class="collapse-item" href="register.html">Register</a>
+                        <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
+                        <div class="collapse-divider"></div>
+                        <h6 class="collapse-header">Other Pages:</h6>
+                        <a class="collapse-item" href="404.html">404 Page</a>
+                        <a class="collapse-item active" href="blank.html">Blank Page</a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Nav Item - Charts -->
+            <li class="nav-item">
+                <a class="nav-link" href="charts.html">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Charts</span></a>
+            </li>
+
+            <!-- Nav Item - Tables -->
+            <li class="nav-item">
+                <a class="nav-link" href="tables.html">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Tables</span></a>
+            </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -278,7 +341,7 @@
                                 </a>
                                 <a class="dropdown-item" href="edit_profile_picture.html">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                     Edit Profile Picture
+                                    Edit Profile Picture
                                 </a>
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -306,526 +369,238 @@
 
                     <!-- Page Heading -->
                     <h1 class="h1 mb-4 text-gray-800" >Create/Edit Profile</h1>
+
+                   <br>
+                   <hr>
+                   <!-- <br>
+                   <br>
+                   <br> -->
                    
-                   <div class="mt-5" style="position: relative;bottom: 35px;">
-                    <ul class="nav nav-tabs" id="customFormTab" role="tablist" style="margin-bottom: 20px;">
-                        <li class="nav-item">
-                          <b style="color: black;">
+                   <div class="form">
 
-                              <a class="nav-link active" id="personal-tab" data-toggle="tab" href="#personal" role="tab">Personal Information</a>
-                            </b>
-                        </li>
-                        <li class="nav-item">
-                            <b style="color: black;">
+                    <div class="user&education" style="display: flex;justify-content: space-around;">
 
-                                <a class="nav-link" id="educational-tab" data-toggle="tab" href="#educational" role="tab">Educational Qualifications</a>
-                            </b>
-                        </li>
-                        <li class="nav-item">
-                            <b style="color: black;">
+                        <div class="user box" style="margin-right: 130px;">
+                            
+                            <form id="userDetailsForm">
+                                
+                                <h2>Personal Details</h2>
+                                <label for="name">Name:</label><br>
+                                <input type="text" id="name" name="name" required><br><br>
+                                
+                                <label for="email">Email:</label><br>
+                                <input type="email" id="email" name="email" required><br><br>
+                                
+                                <label for="phone">Phone:</label><br>
+                                <input type="text" id="phone" name="phone"><br><br>
+                                
+        <label for="address">Address:</label><br>
+        <textarea id="address" name="address"></textarea><br><br>
+        <a href="" class="btn btn-primary btn-user btn-block">
+           Submit
+        </a>
+    </div>
+        <div class="education box">
 
-                                <a class="nav-link" id="professional-tab" data-toggle="tab" href="#professional" role="tab">Professional Qualifications</a>
-                            </b>
-                        </li>
+            <h2>Educational Qualifications</h2>
+            <div id="educationQualifications">
+                <div class="education">
+                    <label for="collegeName">College Name:</label><br>
+                    <input type="text" name="collegeName"><br><br>
+                    
+                    <label for="degree">Degree:</label><br>
+                    <input type="text" name="degree"><br><br>
+                    
+                    <label for="years">Years:</label><br>
+                    <input type="text" name="years"><br><br>
+                    
+                    <label for="specialization">Specialization:</label><br>
+                    <input type="text" name="specialization"><br><br>
+                </div>
+            </div>
+            <button type="button" id="addEducation">Add Education</button><br><br>
+            <a href="" class="btn btn-primary btn-user btn width:150px">
+                Submit
+             </a>
+        </div>        
+    </div>
+    
+    <br>
+    <hr>
+<div class="professional&projects" style="display: flex;justify-content: space-around;">
 
-                        <li class="nav-item">
-                        <b style="color: black;">
-
-                            <a class="nav-link" id="projects-tab" data-toggle="tab" href="#projects" role="tab">Projects</a>
-                        </b>
-                        </li>
-                        
-                    </ul>
-                    <div class="tab-content" id="customFormTabContent" style="border: 1px solid #dee2e6; padding: 20px;">
-                        <!-- Personal Information -->
-                        <div class="tab-pane fade show active" id="personal" role="tabpanel">
-                            <form>
-                                <div class="form-group">
-                                    <label for="name">Name</label>
-                                    <input type="text" class="form-control" id="name" placeholder="Enter your name">
-                                </div>
-                                <div class="form-group">
-                                    <label for="email">Email</label>
-                                    <input type="email" class="form-control" id="email" placeholder="Enter your email">
-                                </div>
-                                <div class="form-group">
-                                    <label for="phone">Phone</label>
-                                    <input type="tel" class="form-control" id="phone" placeholder="Enter your phone number">
-                                </div>
-                                <div class="form-group">
-                                    <label for="address">Address</label>
-                                    <input type="text" class="form-control" id="address" placeholder="Enter your address">
-                                </div>
-                                <div class="form-group">
-                                    <label for="about">About</label>
-                                    <textarea class="form-control" id="about" rows="3" placeholder="Tell us about yourself"></textarea>
-                                </div>
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                            </form>
-                        </div>
-                        <!-- Educational Qualifications -->
-                        <div class="tab-pane fade" id="educational" role="tabpanel">
-                            <form id="educationForm">
-                                <div id="educationQualifications">
-                                    <div class="form-group">
-                                        <label for="collegeName">College Name</label>
-                                        <input type="text" class="form-control" name="collegeName" placeholder="Enter your college name">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="degree">Degree</label>
-                                        <input type="text" class="form-control" name="degree" placeholder="Enter your degree">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="years">Years</label>
-                                        <input type="text" class="form-control" name="years" placeholder="Enter the years attended">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="specialization">Specialization</label>
-                                        <input type="text" class="form-control" name="specialization" placeholder="Enter your specialization">
-                                    </div>
-                                </div>
-                                <button type="button" class="btn btn-primary" id="addEducation">Add More Education</button>
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                            </form>
-                        </div>
-                        <!-- Professional Qualifications -->
-                        <div class="tab-pane fade" id="professional" role="tabpanel">
-                            <form id="professionalForm">
-                                <div id="professionalQualifications">
-                                    <div class="form-group">
-                                        <label for="companyName">Company Name</label>
-                                        <input type="text" class="form-control" name="companyName" placeholder="Enter the company name">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="durationFrom">Duration From</label>
-                                        <input type="date" class="form-control" name="durationFrom">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="durationTo">Duration To</label>
-                                        <input type="date" class="form-control" name="durationTo">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="role">Role</label>
-                                        <input type="text" class="form-control" name="role" placeholder="Enter your role">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="description">Description</label>
-                                        <textarea class="form-control" name="description" rows="3" placeholder="Describe your responsibilities"></textarea>
-                                    </div>
-                                </div>
-                                <button type="button" class="btn btn-primary" id="addProfessional">Add More Professional Experience</button>
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                            </form>
-                        </div>
-                        <!-- Projects -->
-                        <div class="tab-pane fade" id="projects" role="tabpanel">
-                            <form id="projectsForm">
-                                <div id="projectsList">
-                                    <div class="form-group">
-                                        <label for="projectName">Project Name</label>
-                                        <input type="text" class="form-control" name="projectName" placeholder="Enter the project name">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="projectDescription">Project Description</label>
-                                        <textarea class="form-control" name="projectDescription" rows="3" placeholder="Describe the project"></textarea>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="skillsUsed">Skills Used</label>
-                                        <input type="text" class="form-control" id="skillsUsed" placeholder="Click to select skills">
-                                    </div>
-                                    <div id="skillsList" style="display: none;">
-                                        <label>Select languages:</label><br>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" id="skillC" value="C">
-                                            <label class="form-check-label" for="skillC">C</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" id="skillCpp" value="C++">
-                                            <label class="form-check-label" for="skillCpp">C++</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" id="skillJava" value="Java">
-                                            <label class="form-check-label" for="skillJava">Java</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" id="skillPython" value="Python">
-                                            <label class="form-check-label" for="skillPython">Python</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" id="skillJavaScript" value="JavaScript">
-                                            <label class="form-check-label" for="skillJavaScript">JavaScript</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" id="skillRuby" value="Ruby">
-                                            <label class="form-check-label" for="skillRuby">Ruby</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" id="skillPHP" value="PHP">
-                                            <label class="form-check-label" for="skillPHP">PHP</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" id="skillSwift" value="Swift">
-                                            <label class="form-check-label" for="skillSwift">Swift</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" id="skillKotlin" value="Kotlin">
-                                            <label class="form-check-label" for="skillKotlin">Kotlin</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" id="skillTypeScript" value="TypeScript">
-                                            <label class="form-check-label" for="skillTypeScript">TypeScript</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" id="skillGo" value="Go">
-                                            <label class="form-check-label" for="skillGo">Go</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" id="skillR" value="R">
-                                            <label class="form-check-label" for="skillR">R</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" id="skillSQL" value="SQL">
-                                            <label class="form-check-label" for="skillSQL">SQL</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" id="skillHTML" value="HTML">
-                                            <label class="form-check-label" for="skillHTML">HTML</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" id="skillCSS" value="CSS">
-                                            <label class="form-check-label" for="skillCSS">CSS</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" id="skillCSharp" value="C#">
-                                            <label class="form-check-label" for="skillCSharp">C#</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" id="skillPerl" value="Perl">
-                                            <label class="form-check-label" for="skillPerl">Perl</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" id="skillScala" value="Scala">
-                                            <label class="form-check-label" for="skillScala">Scala</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" id="skillRust" value="Rust">
-                                            <label class="form-check-label" for="skillRust">Rust</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" id="skillPerl" value="Perl">
-                                            <label class="form-check-label" for="skillPerl">Perl</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" id="skillSwift" value="Swift">
-                                            <label class="form-check-label" for="skillSwift">Swift</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" id="skillObjectiveC" value="Objective-C">
-                                            <label class="form-check-label" for="skillObjectiveC">Objective-C</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" id="skillVBNet" value="VB.NET">
-                                            <label class="form-check-label" for="skillVBNet">VB.NET</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" id="skillOther" value="Other">
-                                            <label class="form-check-label" for="skillOther">Other</label>
-                                        </div>
-                                    </div>
-                                  
-                                    
-                                    <div class="form-group">
-                                        <label for="projectLink">Project Link</label>
-                                        <input type="url" class="form-control" name="projectLink" placeholder="Enter the project link">
-                                    </div>
-                                </div>
-                                <button type="button" class="btn btn-primary" id="addProject">Add More Projects</button>
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                            </form>
+    <div class="qualification box">
+        
+        <h2>Professional Qualifications</h2>
+            <div id="professionalQualifications">
+                <div class="professional">
+                    <label for="companyName">Company Name:</label><br>
+                    <input type="text" name="companyName"><br><br>
+                    
+                    <label for="from">From:</label><br>
+                    <input type="date" name="from"><br><br>
+                    
+                    <label for="to">To:</label><br>
+                    <input type="date" name="to"><br><br>
+                    
+                    <label for="role">Role:</label><br>
+                    <input type="text" name="role"><br><br>
+                    
+                    <label for="description">Description:</label><br>
+                    <textarea name="description"></textarea><br><br>
+                </div>
+            </div>
+            <button type="button" id="addProfessional">Add Professional Qualification </button><br><br>
+            <a href="" class="btn btn-primary btn-user btn width:150px">
+                Submit
+             </a>
+        </div>
+        <div class="projects box" >
+            
+            <div id="projects" style="margin-right:170px;">
+                        <h2>Projects</h2>
+                        <div class="project">
+                            <label for="projectName">Project Name:</label><br>
+                            <input type="text" name="projectName"><br><br>
+                            
+                            
+                            <label for="projectLink">Project Link:</label><br>
+                            <input type="text" name="projectLink"><br><br>
+                            
+                            <label for="skillsUsed">Skills Used:</label><br>
+                            <input type="text" name="skillsUsed"><br><br>
+                            <label for="projectDescription">Project Description:</label><br>
+                            <textarea name="projectDescription"></textarea><br><br>
+                            <button type="button" id="addProject">Add Project</button><br><br>
                         </div>
                     </div>
+                    <a href="" class="btn btn-primary btn-user btn width:150px">
+                        Submit
+                     </a>
                 </div>
-            
+                    </div>
+                    <br>
+                    <hr>
+                    <div class="others box">
+<div class="part1" style="display: flex;justify-content:space-between;">
+
+    
+    <label for="about">About:</label><br>
+    <textarea id="about" name="about"></textarea><br><br>
+    
+    <label for="skills">Skills:</label><br>
+    <input type="text" id="skills" name="skills"><br><br>
+</div>
+                        <br>
+                        <hr>
+                        <div class="part2" style="display: flex;justify-content: space-between;">
+
+                            <label for="certifications">Certifications:</label><br>
+                            <input type="text" id="certifications" name="certifications"><br><br>
+                            
+                            <label for="achievements">Achievements:</label><br>
+                            <input type="text" id="achievements" name="achievements"><br><br>
+                            
+                        </div>
+                        <br>
+                        <br>
+                        <div style="display: flex;justify-content: center;">
+                            <a href="index.html" class="btn btn-primary btn-user" style="background-color: #28a745; border-color: #28a745; width: 150px; border-radius: 5px;">
+                                Finalize
+                            </a>
+                            
+                            
+                        </div>
+                        </div>
+                    </div>
+            </form>
+                
                 <script>
-
-
-
-const skillsField = document.getElementById('skillsUsed');
-                                    const skillsList = document.getElementById('skillsList');
-                                    const selectedSkills = [];
-                                
-                                    skillsField.addEventListener('click', function() {
-                                        skillsList.style.display = 'block';
-                                    });
-                                
-                                    document.addEventListener('click', function(event) {
-                                        if (!skillsField.contains(event.target) && !skillsList.contains(event.target)) {
-                                            skillsList.style.display = 'none';
-                                        }
-                                    });
-                                
-                                    document.querySelectorAll('input[type="checkbox"]').forEach(function(checkbox) {
-                                        checkbox.addEventListener('change', function() {
-                                            if (checkbox.checked) {
-                                                selectedSkills.push(checkbox.value);
-                                            } else {
-                                                const index = selectedSkills.indexOf(checkbox.value);
-                                                if (index !== -1) {
-                                                    selectedSkills.splice(index, 1);
-                                                }
-                                            }
-                                            skillsField.value = selectedSkills.join(', ');
-                                        });
-                                    });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-         document.addEventListener('DOMContentLoaded', function () {
-        const tabs = document.querySelectorAll('#customFormTab .nav-link');
-        const tabContents = document.querySelectorAll('#customFormTabContent .tab-pane');
-
-        tabs.forEach(tab => {
-            tab.addEventListener('click', function (event) {
-                event.preventDefault();
-
-                tabs.forEach(t => {
-                    t.classList.remove('active');
-                    t.style.backgroundColor = ''; // Reset background color
-                    t.style.color = 'black'; // Reset text color
-                });
-                tab.classList.add('active');
-                tab.style.backgroundColor = 'blue'; // Set background color to blue for active tab
-                tab.style.color = 'white'; // Set text color to white for active tab
-
-                tabContents.forEach(tc => tc.classList.remove('show', 'active'));
-                const target = document.querySelector(tab.getAttribute('href'));
-                target.classList.add('show', 'active');
-            });
-        });
-
-        // Add more education fields
-        document.getElementById('addEducation').addEventListener('click', function () {
-            const educationForm = document.getElementById('educationQualifications');
-            const newEducation = `
-                <div class="form-group">
-                    <label for="collegeName">College Name</label>
-                    <input type="text" class="form-control" name="collegeName" placeholder="Enter your college name">
-                </div>
-                <div class="form-group">
-                    <label for="degree">Degree</label>
-                    <input type="text" class="form-control" name="degree" placeholder="Enter your degree">
-                </div>
-                <div class="form-group">
-                    <label for="years">Years</label>
-                    <input type="text" class="form-control" name="years" placeholder="Enter the years attended">
-                </div>
-                <div class="form-group">
-                    <label for="specialization">Specialization</label>
-                    <input type="text" class="form-control" name="specialization" placeholder="Enter your specialization">
-                </div>
-            `;
-            educationForm.insertAdjacentHTML('beforeend', newEducation);
-        });
-
-        // Add more professional experience fields
-        document.getElementById('addProfessional').addEventListener('click', function () {
-            const professionalForm = document.getElementById('professionalQualifications');
-            const newProfessional = `
-                <div class="form-group">
-                    <label for="companyName">Company Name</label>
-                    <input type="text" class="form-control" name="companyName" placeholder="Enter the company name">
-                </div>
-                <div class="form-group">
-                    <label for="durationFrom">Duration From</label>
-                    <input type="date" class="form-control" name="durationFrom">
-                </div>
-                <div class="form-group">
-                    <label for="durationTo">Duration To</label>
-                    <input type="date" class="form-control" name="durationTo">
-                </div>
-                <div class="form-group">
-                    <label for="role">Role</label>
-                    <input type="text" class="form-control" name="role" placeholder="Enter your role">
-                </div>
-                <div class="form-group">
-                    <label for="description">Description</label>
-                    <textarea class="form-control" name="description" rows="3" placeholder="Describe your responsibilities"></textarea>
-                </div>
-            `;
-            professionalForm.insertAdjacentHTML('beforeend', newProfessional);
-        });
-
-        // Add more project fields
-        document.getElementById('addProject').addEventListener('click', function () {
-            const projectsForm = document.getElementById('projectsList');
-            const newProject = `
-                <div class="form-group">
-                    <label for="projectName">Project Name</label>
-                    <input type="text" class="form-control" name="projectName" placeholder="Enter the project name">
-                </div>
-                <div class="form-group">
-                    <label for="projectDescription">Project Description</label>
-                    <textarea class="form-control" name="projectDescription" rows="3" placeholder="Describe the project"></textarea>
-                </div>
-                 <div id="skillsList" style="display:none;">
-                                        <label>Select languages:</label><br>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" id="skillC" value="C">
-                                            <label class="form-check-label" for="skillC">C</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" id="skillCpp" value="C++">
-                                            <label class="form-check-label" for="skillCpp">C++</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" id="skillJava" value="Java">
-                                            <label class="form-check-label" for="skillJava">Java</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" id="skillPython" value="Python">
-                                            <label class="form-check-label" for="skillPython">Python</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" id="skillJavaScript" value="JavaScript">
-                                            <label class="form-check-label" for="skillJavaScript">JavaScript</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" id="skillRuby" value="Ruby">
-                                            <label class="form-check-label" for="skillRuby">Ruby</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" id="skillPHP" value="PHP">
-                                            <label class="form-check-label" for="skillPHP">PHP</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" id="skillSwift" value="Swift">
-                                            <label class="form-check-label" for="skillSwift">Swift</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" id="skillKotlin" value="Kotlin">
-                                            <label class="form-check-label" for="skillKotlin">Kotlin</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" id="skillTypeScript" value="TypeScript">
-                                            <label class="form-check-label" for="skillTypeScript">TypeScript</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" id="skillGo" value="Go">
-                                            <label class="form-check-label" for="skillGo">Go</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" id="skillR" value="R">
-                                            <label class="form-check-label" for="skillR">R</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" id="skillSQL" value="SQL">
-                                            <label class="form-check-label" for="skillSQL">SQL</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" id="skillHTML" value="HTML">
-                                            <label class="form-check-label" for="skillHTML">HTML</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" id="skillCSS" value="CSS">
-                                            <label class="form-check-label" for="skillCSS">CSS</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" id="skillCSharp" value="C#">
-                                            <label class="form-check-label" for="skillCSharp">C#</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" id="skillPerl" value="Perl">
-                                            <label class="form-check-label" for="skillPerl">Perl</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" id="skillScala" value="Scala">
-                                            <label class="form-check-label" for="skillScala">Scala</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" id="skillRust" value="Rust">
-                                            <label class="form-check-label" for="skillRust">Rust</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" id="skillPerl" value="Perl">
-                                            <label class="form-check-label" for="skillPerl">Perl</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" id="skillSwift" value="Swift">
-                                            <label class="form-check-label" for="skillSwift">Swift</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" id="skillObjectiveC" value="Objective-C">
-                                            <label class="form-check-label" for="skillObjectiveC">Objective-C</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" id="skillVBNet" value="VB.NET">
-                                            <label class="form-check-label" for="skillVBNet">VB.NET</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" id="skillOther" value="Other">
-                                            <label class="form-check-label" for="skillOther">Other</label>
-                                        </div>
-                                    </div>
-                                    
-                <div class="form-group">
-                    <label for="projectLink">Project Link</label>
-                    <input type="url" class="form-control" name="projectLink" placeholder="Enter the project link">
-                </div>
-            `;
-            projectsForm.insertAdjacentHTML('beforeend', newProject);
-        });
-
-        // Remove education field
-        document.getElementById('educationQualifications').addEventListener('click', function (event) {
-            if (event.target.classList.contains('removeField')) {
-                event.target.parentElement.remove();
-            }
-        });
-
-        // Remove professional experience field
-        document.getElementById('professionalQualifications').addEventListener('click', function (event) {
-            if (event.target.classList.contains('removeField')) {
-                event.target.parentElement.remove();
-            }
-        });
-
-        // Remove project field
-        document.getElementById('projectsList').addEventListener('click', function (event) {
-            if (event.target.classList.contains('removeField')) {
-                event.target.parentElement.remove();
-            }
-        });
-
-        // Confirm before removing field
-        document.querySelectorAll('.removeField').forEach(btn => {
-            btn.addEventListener('click', function () {
-                if (!confirm("Are you sure you want to remove this field?")) {
-                    return false;
-                }
-            });
-        });
-
-        // Confirmation before submitting
-        document.querySelectorAll('form').forEach(form => {
-            form.addEventListener('submit', function (event) {
-                if (!confirm("Are you sure you want to submit this form?")) {
-                    event.preventDefault();
-                    return false;
-                }
-            });
-        });
-    });
+                        document.getElementById('userDetailsForm').addEventListener('submit', async (e) => {
+                            e.preventDefault();
+                            
+                            const formData = new FormData(e.target);
+                            const userDetails = {};
+                
+                            for (let [key, value] of formData.entries()) {
+                                userDetails[key] = value;
+                            }
+                
+                            // Send the userDetails object to the server using fetch or another method
+                            const response = await fetch('/submit-user-details', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify(userDetails)
+                            });
+                
+                            if (response.ok) {
+                                alert('User details submitted successfully');
+                            } else {
+                                alert('Failed to submit user details');
+                            }
+                        });
+                
+                        document.getElementById('addEducation').addEventListener('click', () => {
+                            const educationDiv = document.createElement('div');
+                            educationDiv.classList.add('education');
+                            educationDiv.innerHTML = `
+                                <label for="collegeName">College Name:</label><br>
+                                <input type="text" name="collegeName"><br><br>
+                
+                                <label for="degree">Degree:</label><br>
+                                <input type="text" name="degree"><br><br>
+                
+                                <label for="years">Years:</label><br>
+                                <input type="text" name="years"><br><br>
+                
+                                <label for="specialization">Specialization:</label><br>
+                                <input type="text" name="specialization"><br><br>
+                            `;
+                            document.getElementById('educationQualifications').appendChild(educationDiv);
+                        });
+                
+                        document.getElementById('addProfessional').addEventListener('click', () => {
+                            const professionalDiv = document.createElement('div');
+                            professionalDiv.classList.add('professional');
+                            professionalDiv.innerHTML = `
+                                <label for="companyName">Company Name:</label><br>
+                                <input type="text" name="companyName"><br><br>
+                
+                                <label for="from">From:</label><br>
+                                <input type="date" name="from"><br><br>
+                
+                                <label for="to">To:</label><br>
+                                <input type="date" name="to"><br><br>
+                
+                                <label for="role">Role:</label><br>
+                                <input type="text" name="role"><br><br>
+                
+                                <label for="description">Description:</label><br>
+                                <textarea name="description"></textarea><br><br>
+                            `;
+                            document.getElementById('professionalQualifications').appendChild(professionalDiv);
+                        });
+                
+                        document.getElementById('addProject').addEventListener('click', () => {
+                            const projectDiv = document.createElement('div');
+                            projectDiv.classList.add('project');
+                            projectDiv.innerHTML = `
+                                <label for="projectName">Project Name:</label><br>
+                                <input type="text" name="projectName"><br><br>
+                
+                                <label for="projectDescription">Project Description:</label><br>
+                                <textarea name="projectDescription"></textarea><br><br>
+                
+                                <label for="skillsUsed">Skills Used:</label><br>
+                                <input type="text" name="skillsUsed"><br><br>
+                
+                                <label for="projectLink">Project Link:</label><br>
+                                <input type="text" name="projectLink"><br><br>
+                            `;
+                            document.getElementById('projects').appendChild(projectDiv);
+                        });
                     </script>
                 </body>
                 </html>
