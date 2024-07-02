@@ -1,7 +1,11 @@
 // Import necessary modules
 require('dotenv').config(); // Load environment variables from .env file
 const express = require('express');
+const cors = require('cors');
+
 const app = express();
+app.use(cors());
+
 
 // Import routes
 const userDetailsRoutes = require('./routes/userDetails.route');
@@ -10,9 +14,10 @@ const resumeRoutes = require('./routes/resume.route');
 
 // Middleware
 app.use(express.json()); // for parsing application/json
+const verifyToken = require('./utils/jwt.middleware')
 
 // Use routes
-app.use('/api/userDetails', userDetailsRoutes);
+app.use('/api/userDetails', verifyToken, userDetailsRoutes);
 app.use('/api/resume', resumeRoutes);
 
 

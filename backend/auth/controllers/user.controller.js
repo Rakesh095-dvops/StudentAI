@@ -201,7 +201,7 @@ const verifyOTP = async (req, res) => {
       user.accountStatus = "active";
       auth.isVerified = true;
       await auth.save();
-      await user.save();
+      let userAdded = await user.save();
       let token = JWT.generateToken(user._id, user.userType);
       res.cookie("token", token, {
         httpOnly: true,
@@ -212,6 +212,7 @@ const verifyOTP = async (req, res) => {
         message: "OTP verified successfully.",
         status: 'success',
         jwtToken: token,
+        uid: userAdded._id
       });
     } else {
       return res
@@ -363,6 +364,7 @@ const getUserDataById = async (req, res) => {
   try {
     const userId = req.params.id;
     const user = await User.findById(userId);
+    console.log('userId: ', userId)
 
     if (!user) {
       return res.status(404).json({ message: "User not found" });

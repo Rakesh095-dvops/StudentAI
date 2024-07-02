@@ -146,6 +146,7 @@
                 .then(data => {
                     if (data.status == "success") {
                         localStorage.setItem('token', data.jwtToken);
+                        localStorage.setItem('uid', data.uid)
                         messageDiv.innerHTML = '<div class="alert alert-success">OTP verified successfully!</div>';
                         window.location.href = 'dashboard.html';
                     } else {

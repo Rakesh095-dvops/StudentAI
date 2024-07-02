@@ -1,452 +1,865 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
 
     <title>Dashboard - Thrive Together</title>
 
     <!-- Custom fonts for this template-->
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+      href="vendor/fontawesome-free/css/all.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+      rel="stylesheet"
+    />
 
     <!-- Custom styles for this template-->
-    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="css/sb-admin-2.min.css" rel="stylesheet" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/tagify/4.0.0/tagify.css"
+      rel="stylesheet"
+    />
+  </head>
 
-</head>
-
-<body id="page-top">
-
+  <body id="page-top">
     <!-- Page Wrapper -->
     <div id="wrapper">
+      <!-- Sidebar -->
+      <ul
+        class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
+        id="accordionSidebar"
+      >
+        <!-- Sidebar - Brand -->
+        <a
+          class="sidebar-brand d-flex align-items-center justify-content-center"
+          href="dashboard.html"
+        >
+          <div class="sidebar-brand-icon rotate-n-15">
+            <i class="fas fa-laugh-wink"></i>
+          </div>
+          <div class="sidebar-brand-text mx-3">Thrive Together</div>
+        </a>
 
-        <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+        <!-- Divider -->
+        <hr class="sidebar-divider my-0" />
 
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="dashboard.html">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
-                </div>
-                <div class="sidebar-brand-text mx-3">Thrive Together</div>
-            </a>
+        <!-- Nav Item - Dashboard -->
+        <li class="nav-item active">
+          <a class="nav-link" href="dashboard.html">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Dashboard</span></a
+          >
+        </li>
 
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
+        <!-- Divider -->
+        <hr class="sidebar-divider" />
 
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
-                <a class="nav-link" href="dashboard.html">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
-            </li>
+        <!-- Heading -->
+        <div class="sidebar-heading">Student AI</div>
+        <li class="nav-item">
+          <a class="nav-link" href="cv_generator.html">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Resume AI</span></a
+          >
+        </li>
 
-            <!-- Divider -->
-            <hr class="sidebar-divider">
+        <hr class="sidebar-divider" />
 
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Student AI
-            </div>
-            <li class="nav-item">
-                <a class="nav-link" href="cv_generator.html">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Resume AI</span></a>
-            </li>     
+        <div class="sidebar-heading">Artifacts</div>
 
-            <hr class="sidebar-divider">
+        <li class="nav-item">
+          <a class="nav-link" href="view_cv.html">
+            <i class="fas fa-fw fa-table"></i>
+            <span>All Resumes</span></a
+          >
+        </li>
+        <!-- Nav Item - Charts -->
+        <li class="nav-item">
+          <a class="nav-link" href="charts.html">
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>Interviews</span></a
+          >
+        </li>
 
-            <div class="sidebar-heading">
-                Artifacts
-            </div>
-
-            <li class="nav-item">
-                <a class="nav-link" href="view_cv.html">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>All Resumes</span></a>
-            </li>
-            <!-- Nav Item - Charts -->
-            <li class="nav-item">
-                <a class="nav-link" href="charts.html">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Interviews</span></a>
-            </li>
-            
-            <hr class="sidebar-divider d-none d-md-block">
-            <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
-            </div>
-
-        </ul>        
-        <div id="content-wrapper" class="d-flex flex-column">
-
-            <div id="content">
-
-                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                        <i class="fa fa-bars"></i>
-                    </button>                    
-                    <form
-                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                                aria-label="Search" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item dropdown no-arrow d-sm-none">
-                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-search fa-fw"></i>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                                aria-labelledby="searchDropdown">
-                                <form class="form-inline mr-auto w-100 navbar-search">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control bg-light border-0 small"
-                                            placeholder="Search for..." aria-label="Search"
-                                            aria-describedby="basic-addon2">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-primary" type="button">
-                                                <i class="fas fa-search fa-sm"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </li>
-
-                    </ul>
-
-                </nav>
-               
-                <div class="container-fluid">                    
-                    <div class="row">
-                        
-
-                        <div class="container mt-5">
-                            <div class="row justify-content-center">
-                                <div class="col-lg-8">
-                                    <!-- Personal Information Card -->
-                                    <div class="card mb-4">
-                                        <div class="card-header bg-primary text-white">
-                                            <h4>Personal Information</h4>
-                                        </div>
-                                        <div class="card-body">
-                                            <form action="/submit-user-details" method="POST">
-                                                <div class="form-group">
-                                                    <label for="name">Name</label>
-                                                    <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name" required>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="email">Email</label>
-                                                    <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="phone">Phone Number</label>
-                                                    <input type="tel" class="form-control" id="phone" name="phone" placeholder="Enter your phone number">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="address">Address</label>
-                                                    <input type="text" class="form-control" id="address" name="address" placeholder="Enter your address">
-                                                </div>
-                                                <button type="submit" class="btn btn-primary">Submit</button>
-                                            </form>
-                                        </div>
-                                    </div>
-                    
-                                    <!-- Educational Information Card -->
-                                    <div class="card mb-4">
-                                        <div class="card-header bg-primary text-white">
-                                            <h4>Educational Qualifications</h4>
-                                        </div>
-                                        <div class="card-body">
-                                            <form action="/submit-education-details" method="POST" id="educationForm">
-                                                <div class="form-group">
-                                                    <label for="collegeName">College Name</label>
-                                                    <input type="text" class="form-control" id="collegeName" name="collegeName" placeholder="Enter the name of your college" required>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="degree">Degree</label>
-                                                    <input type="text" class="form-control" id="degree" name="degree" placeholder="Enter your degree" required>
-                                                </div>
-                                                <div class="form-row">
-                                                    <div class="form-group col-md-6">
-                                                        <label for="yearsFrom">From</label>
-                                                        <input type="date" class="form-control" id="yearsFrom" name="years.from" required>
-                                                    </div>
-                                                    <div class="form-group col-md-6">
-                                                        <label for="yearsTo">To</label>
-                                                        <input type="date" class="form-control" id="yearsTo" name="years.to" required>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="specialization">Specialization</label>
-                                                    <input type="text" class="form-control" id="specialization" name="specialization" placeholder="Enter your specialization">
-                                                </div>
-                                                <button type="submit" class="btn btn-primary">Submit</button>
-                                                <button type="button" class="btn btn-success ml-2" id="addMoreEducation">Add More</button>
-                                            </form>
-                                        </div>
-                                    </div>
-                    
-                                    <!-- Professional Information Card -->
-                                    <div class="card mb-4">
-                                        <div class="card-header bg-primary text-white">
-                                            <h4>Professional Qualifications</h4>
-                                        </div>
-                                        <div class="card-body">
-                                            <form action="/submit-professional-details" method="POST" id="professionalForm">
-                                                <div class="form-group">
-                                                    <label for="companyName">Company Name</label>
-                                                    <input type="text" class="form-control" id="companyName" name="companyName" placeholder="Enter the name of the company" required>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="jobTitle">Job Title</label>
-                                                    <input type="text" class="form-control" id="jobTitle" name="jobTitle" placeholder="Enter your job title" required>
-                                                </div>
-                                                <div class="form-row">
-                                                    <div class="form-group col-md-6">
-                                                        <label for="jobFrom">From</label>
-                                                        <input type="date" class="form-control" id="jobFrom" name="duration.from" required>
-                                                    </div>
-                                                    <div class="form-group col-md-6">
-                                                        <label for="jobTo">To</label>
-                                                        <input type="date" class="form-control" id="jobTo" name="duration.to" required>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="role">Role</label>
-                                                    <input type="text" class="form-control" id="role" name="role" placeholder="Enter your role" required>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="description">Description</label>
-                                                    <textarea class="form-control" id="description" name="description" rows="3" placeholder="Enter your job description"></textarea>
-                                                </div>
-                                                <button type="submit" class="btn btn-primary">Submit</button>
-                                                <button type="button" class="btn btn-success ml-2" id="addMoreProfessional">Add More</button>
-                                            </form>
-                                        </div>
-                                    </div>
-                    
-                                    <!-- Projects Information Card -->
-                                    <div class="card mb-4">
-                                        <div class="card-header bg-primary text-white">
-                                            <h4>Projects</h4>
-                                        </div>
-                                        <div class="card-body">
-                                            <form action="/submit-project-details" method="POST" id="projectForm">
-                                                <div class="form-group">
-                                                    <label for="projectName">Project Name</label>
-                                                    <input type="text" class="form-control" id="projectName" name="projectName" placeholder="Enter the name of the project" required>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="projectDescription">Project Description</label>
-                                                    <textarea class="form-control" id="projectDescription" name="projectDescription" rows="3" placeholder="Enter the project description"></textarea>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="skillsUsed">Skills Used (comma separated)</label>
-                                                    <input type="text" class="form-control" id="skillsUsed" name="skillsUsed" placeholder="Skills will appear here" readonly>
-                                                </div>
-                                                <div class="form-group" id="skillsCheckboxes">
-                                                    <label>Skills</label><br>
-                                                    <!-- Checkbox options -->
-                                                    <div class="form-check form-check-inline">
-                                                        <input class="form-check-input" type="checkbox" id="skill1" value="Python">
-                                                        <label class="form-check-label" for="skill1">Python</label>
-                                                    </div>
-                                                    <div class="form-check form-check-inline">
-                                                        <input class="form-check-input" type="checkbox" id="skill2" value="JavaScript">
-                                                        <label class="form-check-label" for="skill2">JavaScript</label>
-                                                    </div>
-                                                    <div class="form-check form-check-inline">
-                                                        <input class="form-check-input" type="checkbox" id="skill3" value="Java">
-                                                        <label class="form-check-label" for="skill3">Java</label>
-                                                    </div>
-                                                    <!-- Add more checkboxes as needed -->
-                                                    <div class="form-check form-check-inline">
-                                                        <input class="form-check-input" type="checkbox" id="skill4" value="HTML">
-                                                        <label class="form-check-label" for="skill4">HTML</label>
-                                                    </div>
-                                                    <div class="form-check form-check-inline">
-                                                        <input class="form-check-input" type="checkbox" id="skill5" value="CSS">
-                                                        <label class="form-check-label" for="skill5">CSS</label>
-                                                    </div>
-                                                    <div class="form-check form-check-inline">
-                                                        <input class="form-check-input" type="checkbox" id="skill6" value="PHP">
-                                                        <label class="form-check-label" for="skill6">PHP</label>
-                                                    </div>
-                                                    <div class="form-check form-check-inline">
-                                                        <input class="form-check-input" type="checkbox" id="skill7" value="Ruby">
-                                                        <label class="form-check-label" for="skill7">Ruby</label>
-                                                    </div>
-                                                    <div class="form-check form-check-inline">
-                                                        <input class="form-check-input" type="checkbox" id="skill8" value="C++">
-                                                        <label class="form-check-label" for="skill8">C++</label>
-                                                    </div>
-                                                    <div class="form-check form-check-inline">
-                                                        <input class="form-check-input" type="checkbox" id="skill9" value="C#">
-                                                        <label class="form-check-label" for="skill9">C#</label>
-                                                    </div>
-                                                    <div class="form-check form-check-inline">
-                                                        <input class="form-check-input" type="checkbox" id="skill10" value="Swift">
-                                                        <label class="form-check-label" for="skill10">Swift</label>
-                                                    </div>
-                                                    <div class="form-check form-check-inline">
-                                                        <input class="form-check-input" type="checkbox" id="skill11" value="SQL">
-                                                        <label class="form-check-label" for="skill11">SQL</label>
-                                                    </div>
-                                                    <div class="form-check form-check-inline">
-                                                        <input class="form-check-input" type="checkbox" id="skill12" value="React">
-                                                        <label class="form-check-label" for="skill12">React</label>
-                                                    </div>
-                                                    <div class="form-check form-check-inline">
-                                                        <input class="form-check-input" type="checkbox" id="skill13" value="Angular">
-                                                        <label class="form-check-label" for="skill13">Angular</label>
-                                                    </div>
-                                                    <div class="form-check form-check-inline">
-                                                        <input class="form-check-input" type="checkbox" id="skill14" value="Node.js">
-                                                        <label class="form-check-label" for="skill14">Node.js</label>
-                                                    </div>
-                                                    <div class="form-check form-check-inline">
-                                                        <input class="form-check-input" type="checkbox" id="skill15" value="Vue.js">
-                                                        <label class="form-check-label" for="skill15">Vue.js</label>
-                                                    </div>
-                                                    <div class="form-check form-check-inline">
-                                                        <input class="form-check-input" type="checkbox" id="skill16" value="TypeScript">
-                                                        <label class="form-check-label" for="skill16">TypeScript</label>
-                                                    </div>
-                                                    <div class="form-check form-check-inline">
-                                                        <input class="form-check-input" type="checkbox" id="skill17" value="MongoDB">
-                                                        <label class="form-check-label" for="skill17">MongoDB</label>
-                                                    </div>
-                                                    <div class="form-check form-check-inline">
-                                                        <input class="form-check-input" type="checkbox" id="skill18" value="MySQL">
-                                                        <label class="form-check-label" for="skill18">MySQL</label>
-                                                    </div>
-                                                    <div class="form-check form-check-inline">
-                                                        <input class="form-check-input" type="checkbox" id="skill19" value="Firebase">
-                                                        <label class="form-check-label" for="skill19">Firebase</label>
-                                                    </div>
-                                                    <div class="form-check form-check-inline">
-                                                        <input class="form-check-input" type="checkbox" id="skill20" value="AWS">
-                                                        <label class="form-check-label" for="skill20">AWS</label>
-                                                    </div>
-                                                </div>
-                                                <button type="submit" class="btn btn-primary">Submit</button>
-                                                <button type="button" class="btn btn-success ml-2" id="addMoreProjects">Add More</button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    
-                        <!-- Bootstrap JS and dependencies -->
-                        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-                        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
-                        <!-- Custom JavaScript -->
-                        <script src="app.js"></script>
-                    </body>
-                    </html>
-                    <script>
-                        document.addEventListener('DOMContentLoaded', function() {
-                        // Function to handle adding more projects
-                        document.getElementById('addMoreProjects').addEventListener('click', function(event) {
-                            event.preventDefault();
-                            let projectForm = document.getElementById('projectForm');
-                            let clone = projectForm.cloneNode(true);
-                            projectForm.parentNode.appendChild(clone);
-                        });
-                    
-                        // Function to handle adding skills to the input field separated by commas
-                        document.getElementById('skillsCheckboxes').addEventListener('change', function(event) {
-                            let skills = [];
-                            document.querySelectorAll('#skillsCheckboxes input[type="checkbox"]:checked').forEach(function(checkbox) {
-                                skills.push(checkbox.value);
-                            });
-                            document.getElementById('skillsUsed').value = skills.join(', ');
-                        });
-                    });
-                    
-                    </script> 
-                       
-
-                        <!-- Pending Requests Card Example -->
-                       
-                    </div>
-
-                   
-
-                    <!-- Content Row -->
-                    <div class="row">
-
-                        <!-- Content Column -->
-                        <div class="col-lg-6 mb-4">
-
-                           
-
-                        </div>
-                    </div>
-
-                </div>
-                <!-- /.container-fluid -->
-
-            </div>
-            <!-- End of Main Content -->
-
-            <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Thrive Together 2024</span>
-                    </div>
-                </div>
-            </footer>
-            <!-- End of Footer -->
-
+        <hr class="sidebar-divider d-none d-md-block" />
+        <div class="text-center d-none d-md-inline">
+          <button class="rounded-circle border-0" id="sidebarToggle"></button>
         </div>
-        <!-- End of Content Wrapper -->
+      </ul>
+      <div id="content-wrapper" class="d-flex flex-column">
+        <div id="content">
+          <nav
+            class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow"
+          >
+            <ul class="navbar-nav ml-auto">
+              <!-- Nav Item - User Information -->
+              <li class="nav-item dropdown no-arrow">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  id="userDropdown"
+                  role="button"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  <span class="mr-2 d-none d-lg-inline text-gray-600 small"
+                    >Prashant Dey</span
+                  >
+                  <img
+                    class="img-profile rounded-circle"
+                    src="img/undraw_profile.svg"
+                  />
+                </a>
+                <!-- Dropdown - User Information -->
+                <div
+                  class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                  aria-labelledby="userDropdown"
+                >
+                  <a class="dropdown-item" href="profile_page.html">
+                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Profile
+                  </a>
+                  <a class="dropdown-item" href="edit_profile_page.html">
+                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Edit Profile
+                  </a>
+                  <a class="dropdown-item" href="edit_profile_picture.html">
+                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Edit Profile Picture
+                  </a>
+                  <a class="dropdown-item" href="#">
+                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Settings
+                  </a>
+                  <div class="dropdown-divider"></div>
+                  <a
+                    class="dropdown-item"
+                    href="#"
+                    data-toggle="modal"
+                    data-target="#logoutModal"
+                  >
+                    <i
+                      class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"
+                    ></i>
+                    Logout
+                  </a>
+                </div>
+              </li>
+            </ul>
+          </nav>
 
+          <div class="container-fluid">
+            <div class="row">
+              <div class="container mt-5">
+                <div class="row justify-content-center">
+                  <div class="col-lg-8">
+                    <!-- Combined Information Card -->
+                    <div class="card mb-4">
+                      <div class="card-header bg-primary text-white">
+                        <h4>Complete Profile Information</h4>
+                      </div>
+                      <div class="card-body">
+                        <form id="profileForm">
+                          <!-- Personal Information Section -->
+                          <h5>Personal Information</h5>
+                          <div class="form-group">
+                            <label for="name">Name</label>
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="name"
+                              name="name"
+                              placeholder="Enter your name"
+                              required
+                            />
+                          </div>
+                          <div class="form-group">
+                            <label for="email">Email</label>
+                            <input
+                              type="email"
+                              class="form-control"
+                              id="email"
+                              name="email"
+                              placeholder="Enter your email"
+                              required
+                            />
+                          </div>
+                          <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input
+                              type="tel"
+                              class="form-control"
+                              id="phone"
+                              name="phone"
+                              placeholder="Enter your phone number"
+                            />
+                          </div>
+                          <div class="form-group">
+                            <label for="address">Address</label>
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="address"
+                              name="address"
+                              placeholder="Enter your address"
+                            />
+                          </div>
+                          <div class="form-group">
+                            <label for="about">About</label>
+                            <textarea
+                              class="form-control"
+                              id="about"
+                              name="about"
+                              rows="3"
+                              placeholder="Tell us about yourself"
+                            ></textarea>
+                          </div>
+                          <hr />
+
+                          <!-- Educational Information Section -->
+                          <h5>Educational Qualifications</h5>
+                          <div id="educationSection">
+                            <div class="education-item">
+                              <div class="form-group">
+                                <label for="collegeName">College Name</label>
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  id="collegeName"
+                                  name="collegeName"
+                                  placeholder="Enter the name of your college"
+                                  required
+                                />
+                              </div>
+                              <div class="form-group">
+                                <label for="degree">Degree</label>
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  id="degree"
+                                  name="degree"
+                                  placeholder="Enter your degree"
+                                  required
+                                />
+                              </div>
+                              <div class="form-group">
+                                <label for="years">Years</label>
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  id="years"
+                                  name="years"
+                                  placeholder="Enter the years"
+                                  required
+                                />
+                              </div>
+                              <div class="form-group">
+                                <label for="specialization"
+                                  >Specialization</label
+                                >
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  id="specialization"
+                                  name="specialization"
+                                  placeholder="Enter your specialization"
+                                />
+                              </div>
+                              <hr />
+                            </div>
+                          </div>
+                          <button
+                            type="button"
+                            class="btn btn-success mb-4"
+                            id="addMoreeducationSection"
+                          >
+                            Add More Education
+                          </button>
+                          <hr />
+
+                          <!-- Professional Information Section -->
+                          <h5>Professional Qualifications</h5>
+                          <div id="professionalSection">
+                            <div class="professional-item">
+                              <div class="form-group">
+                                <label for="companyName">Company Name</label>
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  id="companyName"
+                                  name="companyName"
+                                  placeholder="Enter the name of the company"
+                                  required
+                                />
+                              </div>
+                              <div class="form-row">
+                                <div class="form-group col-md-6">
+                                  <label for="jobFrom">From</label>
+                                  <input
+                                    type="date"
+                                    class="form-control"
+                                    id="jobFrom"
+                                    name="duration.from"
+                                    required
+                                  />
+                                </div>
+                                <div class="form-group col-md-6">
+                                  <label for="jobTo">To</label>
+                                  <input
+                                    type="date"
+                                    class="form-control"
+                                    id="jobTo"
+                                    name="duration.to"
+                                    required
+                                  />
+                                </div>
+                              </div>
+                              <div class="form-group">
+                                <label for="role">Role</label>
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  id="role"
+                                  name="role"
+                                  placeholder="Enter your role"
+                                  required
+                                />
+                              </div>
+                              <div class="form-group">
+                                <label for="description">Description</label>
+                                <textarea
+                                  class="form-control"
+                                  id="description"
+                                  name="description"
+                                  rows="3"
+                                  placeholder="Enter your job description"
+                                ></textarea>
+                              </div>
+                              <hr />
+                            </div>
+                          </div>
+                          <button
+                            type="button"
+                            class="btn btn-success mb-4"
+                            id="addMoreprofessionalSection"
+                          >
+                            Add More Professional
+                          </button>
+                          <hr />
+
+                          <!-- Projects Information Section -->
+                          <h5>Projects</h5>
+                          <div id="projectSection">
+                            <div class="project-item">
+                              <div class="form-group">
+                                <label for="projectName">Project Name</label>
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  id="projectName"
+                                  name="projectName"
+                                  placeholder="Enter the name of the project"
+                                  required
+                                />
+                              </div>
+                              <div class="form-group">
+                                <label for="projectDescription"
+                                  >Project Description</label
+                                >
+                                <textarea
+                                  class="form-control"
+                                  id="projectDescription"
+                                  name="projectDescription"
+                                  rows="3"
+                                  placeholder="Enter the project description"
+                                ></textarea>
+                              </div>
+                              <div class="form-group">
+                                <label for="skillsUsed">Skills Used</label>
+                                <input
+                                  type="text"
+                                  class="form-control tagify"
+                                  id="skillsUsed"
+                                  name="skillsUsed"
+                                  placeholder="Enter skills used"
+                                />
+                              </div>
+                              <div class="form-group">
+                                <label for="projectLink">Project Link</label>
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  id="projectLink"
+                                  name="projectLink"
+                                  placeholder="Enter project link (optional)"
+                                />
+                              </div>
+                              <hr />
+                            </div>
+                          </div>
+                          <button
+                            type="button"
+                            class="btn btn-success mb-4"
+                            id="addMoreprojectSection"
+                          >
+                            Add More Projects
+                          </button>
+                          <hr />
+
+                          <!-- Certifications and Achievements -->
+                          <h5>Certifications</h5>
+                          <div id="certificationsSection">
+                            <div class="certification-item">
+                              <div class="form-group">
+                                <label for="certification">Certification</label>
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  id="certification"
+                                  name="certification"
+                                  placeholder="Enter a certification"
+                                />
+                              </div>
+                              <hr />
+                            </div>
+                          </div>
+                          <button
+                            type="button"
+                            class="btn btn-success mb-4"
+                            id="addMorecertificationsSection"
+                          >
+                            Add More Certifications
+                          </button>
+                          <hr />
+
+                          <h5>Special Achievements</h5>
+                          <div id="achievementsSection">
+                            <div class="achievement-item">
+                              <div class="form-group">
+                                <label for="achievement">Achievement</label>
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  id="achievement"
+                                  name="achievement"
+                                  placeholder="Enter an achievement"
+                                />
+                              </div>
+                              <hr />
+                            </div>
+                          </div>
+                          <button
+                            type="button"
+                            class="btn btn-success mb-4"
+                            id="addMoreachievementsSection"
+                          >
+                            Add More Achievements
+                          </button>
+                          <hr />
+
+                          <!-- Skills Section -->
+                          <h5>Skills</h5>
+                          <div class="form-group">
+                            <label for="skills">Skills</label>
+                            <input
+                              type="text"
+                              class="form-control tagify"
+                              id="skills"
+                              name="skills"
+                              placeholder="Enter skills"
+                            />
+                          </div>
+
+                          <button type="submit" class="btn btn-primary">
+                            Submit
+                          </button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Bootstrap JS and dependencies -->
+              <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+              <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+              <script src="https://cdnjs.cloudflare.com/ajax/libs/tagify/4.0.0/tagify.min.js"></script>
+              <!-- Custom JavaScript -->
+              <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                  // Initialize Tagify on all inputs with the class "tagify"
+                  document
+                    .querySelectorAll(".tagify")
+                    .forEach((input) => new Tagify(input));
+
+                  // Function to handle adding more elements
+                  function addMore(containerId, itemClass) {
+    document.getElementById(containerId).addEventListener('click', function(event) {
+        event.preventDefault();
+        let container = document.getElementById(containerId.replace('addMore', ''));
+
+        if (container) {
+            let item = document.querySelector('.' + itemClass).cloneNode(true);
+            item.querySelectorAll('input, textarea').forEach(input => input.value = ''); // clear the inputs
+            container.appendChild(item);
+
+            if (item.querySelector('.tagify')) {
+                new Tagify(item.querySelector('.tagify'));
+            }
+        } else {
+            console.error(`Container with id "${containerId.replace('addMore', '')}" not found.`);
+        }
+    });
+}
+
+                  addMore("addMoreeducationSection", "education-item");
+                  addMore("addMoreprofessionalSection", "professional-item");
+                  addMore("addMoreprojectSection", "project-item");
+                  addMore("addMorecertificationsSection", "certification-item");
+                  addMore("addMoreachievementsSection", "achievement-item");
+
+                  // Fetch existing user data
+                  let uid = localStorage.getItem("uid");
+                  if (uid) {
+                    fetch(`http://localhost:3002/api/userDetails/${uid}`, {
+                      headers: {
+                        Authorization:
+                          "Bearer " + localStorage.getItem("token"),
+                      },
+                    })
+                      .then((response) => response.json())
+                      .then((data) => {
+                        console.log("Received data: ", data[0]);
+                        if (data) {
+                          populateForm(data[0]);
+                        }
+                      })
+                      .catch((error) =>
+                        console.error("Error fetching user data:", error)
+                      );
+                  }
+
+                  function populateForm(data) {
+                    document.getElementById("name").value = data.name;
+                    document.getElementById("email").value = data.email;
+                    document.getElementById("phone").value =
+                      data.contactDetails.phone;
+                    document.getElementById("address").value =
+                      data.contactDetails.address;
+                    document.getElementById("about").value = data.about;
+
+                    // Populate education data
+                    data.educationQualifications.forEach((education, index) => {
+                      if (index > 0)
+                        document.getElementById("addMoreeducationSection").click();
+                      let educationItems =
+                        document.querySelectorAll(".education-item");
+                      let educationItem = educationItems[index];
+                      educationItem.querySelector(
+                        '[name="collegeName"]'
+                      ).value = education.collegeName;
+                      educationItem.querySelector('[name="degree"]').value =
+                        education.degree;
+                      educationItem.querySelector('[name="years"]').value =
+                        education.years;
+                      educationItem.querySelector(
+                        '[name="specialization"]'
+                      ).value = education.specialization;
+                    });
+
+                    // Populate professional data
+                    data.professionalQualifications.forEach(
+                      (professional, index) => {
+                        if (index > 0)
+                          document
+                            .getElementById("addMoreprofessionalSection")
+                            .click();
+                        let professionalItems =
+                          document.querySelectorAll(".professional-item");
+                        let professionalItem = professionalItems[index];
+                        professionalItem.querySelector(
+                          '[name="companyName"]'
+                        ).value = professional.companyName;
+                        professionalItem.querySelector(
+                          '[name="duration.from"]'
+                        ).value = professional.duration.from.split("T")[0];
+                        professionalItem.querySelector(
+                          '[name="duration.to"]'
+                        ).value = professional.duration.to.split("T")[0];
+                        professionalItem.querySelector('[name="role"]').value =
+                          professional.role;
+                        professionalItem.querySelector(
+                          '[name="description"]'
+                        ).value = professional.description;
+                      }
+                    );
+
+                    // Populate project data
+                    data.projects.forEach((project, index) => {
+                        console.log('Project: ', project)
+                      if (index > 0)
+                        document.getElementById("addMoreprojectSection").click();
+                      let projectItems =
+                        document.querySelectorAll(".project-item");
+                      let projectItem = projectItems[index];
+                      projectItem.querySelector('[name="projectName"]').value =
+                        project.projectName;
+                      projectItem.querySelector(
+                        '[name="projectDescription"]'
+                      ).value = project.projectDescription;
+                      console.log('Project Skill: ', project.skillsUsed)
+                      const parsedSkills = project.skillsUsed.forEach(
+                        (skill) => {
+                            console.log('Skill: ', skill)
+                            // JSON.parse(skill).value
+                        }
+                      );
+                      new Tagify(
+                        projectItem.querySelector('[name="skillsUsed"]')
+                      ).addTags(parsedSkills);
+                      projectItem.querySelector('[name="projectLink"]').value =
+                        project.projectLink;
+                    });
+
+                    // Populate certifications
+                    data.certifications.forEach((certification, index) => {
+                      if (index > 0)
+                        document
+                          .getElementById("addMorecertificationsSection")
+                          .click();
+                      let certificationItems = document.querySelectorAll(
+                        ".certification-item"
+                      );
+                      let certificationItem = certificationItems[index];
+                      certificationItem.querySelector(
+                        '[name="certification"]'
+                      ).value = certification;
+                    });
+
+                    // Populate special achievements
+                    data.specialAchievements.forEach((achievement, index) => {
+                      if (index > 0)
+                        document.getElementById("addMoreachievementsSection").click();
+                      let achievementItems =
+                        document.querySelectorAll(".achievement-item");
+                      let achievementItem = achievementItems[index];
+                      achievementItem.querySelector(
+                        '[name="achievement"]'
+                      ).value = achievement;
+                    });
+
+                    // Populate skills
+                    let skillsInput = document.getElementById("skills");
+                    const parsedSkills = data.skills.map(
+                      (skill) => JSON.parse(skill).value
+                    );
+                    new Tagify(skillsInput).addTags(parsedSkills);
+                  }
+
+                  // Submit profile information
+                  document
+                    .getElementById("profileForm")
+                    .addEventListener("submit", function (event) {
+                      event.preventDefault();
+
+                      // Prepare data according to the model
+                      let formData = {
+                        name: document.getElementById("name").value,
+                        email: document.getElementById("email").value,
+                        contactDetails: {
+                          phone: document.getElementById("phone").value,
+                          address: document.getElementById("address").value,
+                        },
+                        about: document.getElementById("about").value,
+                        educationQualifications: [],
+                        professionalQualifications: [],
+                        projects: [],
+                        certifications: [],
+                        specialAchievements: [],
+                        skills: [],
+                      };
+
+                      // Collect education qualifications
+                      document
+                        .querySelectorAll(".education-item")
+                        .forEach((item) => {
+                          let education = {
+                            collegeName: item.querySelector(
+                              '[name="collegeName"]'
+                            ).value,
+                            degree: item.querySelector('[name="degree"]').value,
+                            years: item.querySelector('[name="years"]').value,
+                            specialization: item.querySelector(
+                              '[name="specialization"]'
+                            ).value,
+                          };
+                          formData.educationQualifications.push(education);
+                        });
+
+                      // Collect professional qualifications
+                      document
+                        .querySelectorAll(".professional-item")
+                        .forEach((item) => {
+                          let professional = {
+                            companyName: item.querySelector(
+                              '[name="companyName"]'
+                            ).value,
+                            duration: {
+                              from: item.querySelector('[name="duration.from"]')
+                                .value,
+                              to: item.querySelector('[name="duration.to"]')
+                                .value,
+                            },
+                            role: item.querySelector('[name="role"]').value,
+                            description: item.querySelector(
+                              '[name="description"]'
+                            ).value,
+                          };
+                          formData.professionalQualifications.push(
+                            professional
+                          );
+                        });
+
+                      // Collect projects
+                      document
+                        .querySelectorAll(".project-item")
+                        .forEach((item) => {
+                            console.log('Skill fetched:',item.querySelector('[name="skillsUsed"]')
+                              .value)
+                          let project = {
+                            projectName: item.querySelector(
+                              '[name="projectName"]'
+                            ).value,
+                            projectDescription: item.querySelector(
+                              '[name="projectDescription"]'
+                            ).value,
+                            skillsUsed: JSON.parse(item
+                              .querySelector('[name="skillsUsed"]')
+                              .value),
+                            projectLink: item.querySelector(
+                              '[name="projectLink"]'
+                            ).value,
+                          };
+                          console.log('Project: ', project)
+                          formData.projects.push(project);
+                        });
+
+                      // Collect certifications
+                      document
+                        .querySelectorAll(".certification-item")
+                        .forEach((item) => {
+                          formData.certifications.push(
+                            item.querySelector('[name="certification"]').value
+                          );
+                        });
+
+                      // Collect special achievements
+                      document
+                        .querySelectorAll(".achievement-item")
+                        .forEach((item) => {
+                          formData.specialAchievements.push(
+                            item.querySelector('[name="achievement"]').value
+                          );
+                        });
+
+                      // Collect skills
+                      formData.skills = JSON.parse(document
+                        .getElementById("skills")
+                        .value);
+
+                      // Send data to the server
+                      fetch(`http://localhost:3002/api/userDetails/`, {
+                        method: "POST",
+                        headers: {
+                          "Content-Type": "application/json",
+                          Authorization:
+                            "Bearer " + localStorage.getItem("token"),
+                        },
+                        body: JSON.stringify(formData),
+                      })
+                        .then((response) => response.json())
+                        .then((result) => {
+                          alert("Profile updated successfully!");
+                        })
+                        .catch((error) =>
+                          console.error("Error updating profile:", error)
+                        );
+                    });
+                });
+              </script>
+            </div>
+          </div>
+          <!-- /.container-fluid -->
+        </div>
+        <!-- End of Main Content -->
+
+        <!-- Footer -->
+        <footer class="sticky-footer bg-white">
+          <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+              <span>Copyright &copy; Thrive Together 2024</span>
+            </div>
+          </div>
+        </footer>
+        <!-- End of Footer -->
+      </div>
+      <!-- End of Content Wrapper -->
     </div>
     <!-- End of Page Wrapper -->
 
     <!-- Scroll to Top Button-->
     <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
+      <i class="fas fa-angle-up"></i>
     </a>
 
     <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
-                </div>
-            </div>
+    <div
+      class="modal fade"
+      id="logoutModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+            <button
+              class="close"
+              type="button"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            Select "Logout" below if you are ready to end your current session.
+          </div>
+          <div class="modal-footer">
+            <button
+              class="btn btn-secondary"
+              type="button"
+              data-dismiss="modal"
+            >
+              Cancel
+            </button>
+            <a class="btn btn-primary" href="login.html">Logout</a>
+          </div>
         </div>
+      </div>
     </div>
 
     <!-- Bootstrap core JavaScript-->
@@ -465,7 +878,5 @@
     <!-- Page level custom scripts -->
     <script src="js/demo/chart-area-demo.js"></script>
     <script src="js/demo/chart-pie-demo.js"></script>
-
-</body>
-
+  </body>
 </html>
