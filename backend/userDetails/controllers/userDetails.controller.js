@@ -4,25 +4,30 @@ const UserDetails = require('../models/userdetails.model');
 // Add a new user's details
 const addUserDetails = async (req, res) => {
     try {
-        console.log('Insidee the addUserDetails')
-        console.log('userId recev: ', req.user)
-        const filter = { userId: req.user.id };  // Filter to find the document
-        const update = { 
-            ...req.body,
-            userId: req.user.userId  // Ensure userId is included in the update or creation
-        };        
-        console.log('data: ', req.body)
-        const options = { new: true, upsert: true, runValidators: true };  // Options to return the new document and create if not exists
+        const { email, ...otherUpdates } = req.body;
+        const filter = { userId: req.user.userId };
+
+        // Check if the user details already exist
+        const existingUserDetails = await UserDetails.findOne(filter);
+
+        let update = { $set: otherUpdates };
+        let options = { new: true, runValidators: true };
+
+        if (!existingUserDetails) {
+            // If no existing details, prepare to set email and userId on insert
+            update.$setOnInsert = { email: email, userId: req.user.userId };
+            options.upsert = true;  // Enable upsert only if no document exists
+        }
 
         const userDetails = await UserDetails.findOneAndUpdate(filter, update, options);
-        res.status(201).send({
-            message: "Data Updated successfully",
-            status: "success"
-        });
+        res.status(201).send(userDetails);
     } catch (error) {
+        console.error('Update Error:', error);
         res.status(400).send(error);
     }
 };
+
+
 
 
 // Get all users' details
