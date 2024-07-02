@@ -18,7 +18,7 @@ const verifyToken = require('./utils/jwt.middleware')
 
 // Use routes
 app.use('/api/userDetails', verifyToken, userDetailsRoutes);
-app.use('/api/resume', resumeRoutes);
+app.use('/api/resume', verifyToken, resumeRoutes);
 
 
 // Set the port number from the environment variable or default to 3000
