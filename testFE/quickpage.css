@@ -1,0 +1,166 @@
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 20px;
+    background-color: #f4f4f4;
+}
+
+.container {
+    max-width: 800px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+header {
+    text-align: center;
+    border-bottom: 2px solid #333;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 32px;
+    font-weight: bold;
+}
+
+header h2 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: normal;
+    color: #666;
+}
+
+.contact-info {
+    margin: 10px 0;
+    font-size: 14px;
+    color: #666;
+}
+
+.contact-info a {
+    color: #666;
+    text-decoration: none;
+}
+
+.contact-info a:hover {
+    text-decoration: underline;
+}
+
+section {
+    margin-bottom: 20px;
+}
+
+section h3 {
+    margin: 0 0 10px;
+    font-size: 20px;
+    color: #333;
+    border-bottom: 2px solid #333;
+    padding-bottom: 5px;
+}
+
+.summary p {
+    margin: 0;
+    text-align: justify;
+}
+
+.skills p, .skills ul {
+    margin: 0;
+}
+
+.job {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+.job-details {
+    width: 75%;
+}
+
+.job h4 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.job .job-title, .job-location {
+    margin: 5px 0 10px;
+    font-size: 16px;
+    font-weight: normal;
+    color: #666;
+}
+
+.job ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.job ul li {
+    margin-bottom: 5px;
+}
+
+.job-date {
+    width: 20%;
+    text-align: right;
+    font-size: 14px;
+    color: #666;
+}
+
+.degree {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 10px;
+}
+
+.degree-details {
+    width: 75%;
+}
+
+.degree h4 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.degree .degree-name {
+    margin: 5px 0 10px;
+    font-size: 16px;
+    font-weight: normal;
+    color: #666;
+}
+
+.degree-date {
+    width: 20%;
+    text-align: right;
+    font-size: 14px;
+    color: #666;
+}
+
+.courses p {
+    margin: 5px 0;
+}
+
+.interests {
+    border-bottom: none;
+}
+
+.interests .interest {
+    margin-bottom: 20px;
+}
+
+.interests .interest h4 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.interests .interest p {
+    margin: 5px 0 0;
+    font-size: 14px;
+    color: #666;
+}

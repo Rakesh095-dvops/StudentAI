@@ -503,11 +503,7 @@
                 <div class="card-header">Personal Information</div>
                 <div class="card-body">
                   <div id="userInfo">
-                    <p><strong>
-
-                        Name: 
-                    </strong>
-                        <span id="name"></span></p>
+                    <p><strong> Name: </strong> <span id="name"></span></p>
                     <p>Email: <span id="email"></span></p>
                     <p>Phone: <span id="phone"></span></p>
                     <p>Address: <span id="address"></span></p>
@@ -519,13 +515,13 @@
               <!-- Educational Qualifications Section -->
               <div class="card mb-4">
                 <div class="card-header">Educational Qualifications</div>
-                <div class="card-body" id="viewEducationSection">
-                 
-                      <p>College Name:<span id="collegeName"></span></p>
-                      <p>Degree:<span id="degree"></span></p>
-                      <p>Years:<span id="years"></span></p>
-                      <p>Specialization:<span id="specialization"></span></p>
-                   
+                <div class="card-body" id="educationSection">
+                  <div class="education-item">
+                    <p>College Name:<span name="collegeName" id="collegeName"></span></p>
+                    <p>Degree:<span name="degree" id="degree"></span></p>
+                    <p>Years:<span name="years" id="years"></span></p>
+                    <p>Specialization:<span name="specialization" id="specialization"></span></p>
+                  </div>
                 </div>
               </div>
 
@@ -579,131 +575,167 @@
                 </div>
               </div>
               <script>
-                             document.addEventListener("DOMContentLoaded", function() {
-  let uid = localStorage.getItem("uid");
+                document.addEventListener("DOMContentLoaded", function () {
+                  let uid = localStorage.getItem("uid");
 
-  if (uid) {
-    fetch(`http://localhost:3002/api/userDetails/${uid}`, {
-      headers: {
-        Authorization: "Bearer " + localStorage.getItem("token"),
-      },
-    })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log("Received data: ", data[0]);
-      if (data && data.length > 0) {
-        populateContent(data[0]);
-      }
-    })
-    .catch((error) => console.error("Error fetching user data:", error));
-  } else {
-    console.error("No user ID found in local storage.");
-  }
-});
+                  if (uid) {
+                    fetch(`http://localhost:3002/api/userDetails/${uid}`, {
+                      headers: {
+                        Authorization:
+                          "Bearer " + localStorage.getItem("token"),
+                      },
+                    })
+                      .then((response) => response.json())
+                      .then((data) => {
+                        console.log("Received data: ", data[0]);
+                        if (data && data.length > 0) {
+                          populateContent(data[0]);
+                        }
+                      })
+                      .catch((error) =>
+                        console.error("Error fetching user data:", error)
+                      );
+                  } else {
+                    console.error("No user ID found in local storage.");
+                  }
+                });
 
-function populateContent(data) {
-  // Populate user information
-  if (data.name) {
-    document.getElementById("name").textContent = data.name;
-  }
-  if (data.email) {
-    document.getElementById("email").textContent = data.email;
-  }
-  if (data.contactDetails && data.contactDetails.phone) {
-    document.getElementById("phone").textContent = data.contactDetails.phone;
-  }
-  if (data.contactDetails && data.contactDetails.address) {
-    document.getElementById("address").textContent = data.contactDetails.address;
-  }
-  if (data.about) {
-    document.getElementById("about").textContent = data.about;
-  }
+                function populateContent(data) {
+                  // Populate user information
+                  if (data.name) {
+                    document.getElementById("name").textContent = data.name;
+                  }
+                  if (data.email) {
+                    document.getElementById("email").textContent = data.email;
+                  }
+                  if (data.contactDetails && data.contactDetails.phone) {
+                    document.getElementById("phone").textContent =
+                      data.contactDetails.phone;
+                  }
+                  if (data.contactDetails && data.contactDetails.address) {
+                    document.getElementById("address").textContent =
+                      data.contactDetails.address;
+                  }
+                  if (data.about) {
+                    document.getElementById("about").textContent = data.about;
+                  }
 
-  // Populate educational qualifications
-  if (data.educationalQualifications && data.educationalQualifications.length > 0) {
-    let educationSection = document.getElementById("viewEducationSection");
-    educationSection.innerHTML = ''; // Clear existing content
-
-    data.educationalQualifications.forEach((education) => {
-      let educationItem = document.createElement("div");
-      educationItem.classList.add("education-item");
-      educationItem.innerHTML = `
-        <p>College Name: <span name="collegeName">${education.collegeName}</span></p>
-        <p>Degree: <span name="degree">${education.degree}</span></p>
-        <p>Years: <span name="years">${education.years}</span></p>
-        <p>Specialization: <span name="specialization">${education.specialization}</span></p>
-      `;
-      educationSection.appendChild(educationItem);
-    });
-  }
-
-  // Populate professional qualifications
-  if (data.professionalQualifications && data.professionalQualifications.length > 0) {
-    let professionalSection = document.getElementById("viewProfessionalSection");
-    professionalSection.innerHTML = ''; // Clear existing content
-    data.professionalQualifications.forEach((professional) => {
-      let professionalItem = document.createElement("div");
-      professionalItem.classList.add("professional-item");
-      professionalItem.innerHTML = `
-        <p>Company Name: <span name="companyName">${professional.companyName}</span></p>
-        <p>From: <span name="duration.from">${professional.duration.from.split("T")[0]}</span></p>
-        <p>To: <span name="duration.to">${professional.duration.to.split("T")[0]}</span></p>
+                  // Populate educational qualifications
+                  
+                  // Populate professional qualifications
+                  if (
+                    data.professionalQualifications &&
+                    data.professionalQualifications.length > 0
+                  ) {
+                    let professionalSection = document.getElementById(
+                      "viewProfessionalSection"
+                    );
+                    professionalSection.innerHTML = ""; // Clear existing content
+                    data.professionalQualifications.forEach((professional) => {
+                      let professionalItem = document.createElement("div");
+                      professionalItem.classList.add("professional-item");
+                      professionalItem.innerHTML = `
+        <p>Company Name: <span name="companyName">${
+          professional.companyName
+        }</span></p>
+        <p>From: <span name="duration.from">${
+          professional.duration.from.split("T")[0]
+        }</span></p>
+        <p>To: <span name="duration.to">${
+          professional.duration.to.split("T")[0]
+        }</span></p>
         <p>Role: <span name="role">${professional.role}</span></p>
-        <p>Description: <span name="description">${professional.description}</span></p>
+        <p>Description: <span name="description">${
+          professional.description
+        }</span></p>
       `;
-      professionalSection.appendChild(professionalItem);
-    });
-  }
+                      professionalSection.appendChild(professionalItem);
+                    });
+                  }
 
-  // Populate projects
-  if (data.projects && data.projects.length > 0) {
-    let projectSection = document.getElementById("viewProjectSection");
-    projectSection.innerHTML = ''; // Clear existing content
-    data.projects.forEach((project) => {
-      let projectItem = document.createElement("div");
-      projectItem.classList.add("project-item");
-      projectItem.innerHTML = `
-        <p>Project Name: <span name="projectName">${project.projectName}</span></p>
-        <p>Project Description: <span name="projectDescription">${project.projectDescription}</span></p>
-        <p>Skills Used: <span name="skillsUsed">${project.skillsUsed.join(", ")}</span></p>
-        <p>Project Link: <span name="projectLink">${project.projectLink}</span></p>
-      `;
-      projectSection.appendChild(projectItem);
-    });
-  }
-
-  // Populate certifications
-  if (data.certifications && data.certifications.length > 0) {
-    data.certifications.forEach((certification, index) => {
-      if (index > 0) {
-        document.getElementById("addMorecertificationsSection").click();
-      }
-      let certificationItems = document.querySelectorAll(".certification-item");
-      let certificationItem = certificationItems[index];
-      certificationItem.querySelector('[name="certification"]').textContent = certification;
-    });
-  }
-
-  // Populate special achievements
-  if (data.specialAchievements && data.specialAchievements.length > 0) {
-    data.specialAchievements.forEach((achievement, index) => {
-      if (index > 0) {
-        document.getElementById("addMoreachievementsSection").click();
-      }
-      let achievementItems = document.querySelectorAll(".achievement-item");
-      let achievementItem = achievementItems[index];
-      achievementItem.querySelector('[name="achievement"]').textContent = achievement;
-    });
-  }
-
-  // Populate skills
-  if (data.skills && data.skills.length > 0) {
-    let skillsSpan = document.getElementById("skills");
-    let skills = data.skills.map((skill) => JSON.parse(skill).value);
-    skillsSpan.textContent = skills.join(", ");
-  }
-}
-
+                  // Populate projects
+                  if (data.projects && data.projects.length > 0) {
+                    let projectSection =
+                    document.getElementById("viewProjectSection");
+                    projectSection.innerHTML = ""; // Clear existing content
+                    data.projects.forEach((project) => {
+                      let projectItem = document.createElement("div");
+                      projectItem.classList.add("project-item");
+                      projectItem.innerHTML = `
+                      <p>Project Name: <span name="projectName">${
+                        project.projectName
+                        }</span></p>
+                        <p>Project Description: <span name="projectDescription">${
+                          project.projectDescription
+                          }</span></p>
+                          <p>Skills Used: <span name="skillsUsed">${project.skillsUsed.join(
+                            ", "
+                          )}</span></p>
+                          <p>Project Link: <span name="projectLink">${
+                            project.projectLink
+                            }</span></p>
+                            `;
+                            projectSection.appendChild(projectItem);
+                            let skillsUsedSpan = document.getElementById(
+                              `skillsUsed${index}`
+                            );
+                            if (project.skillsUsed && project.skillsUsed.length > 0) {
+                              let skills = project.skillsUsed.map(
+                                (skill) => JSON.parse(skill).value
+                              );
+                              new Tagify(skillsUsedSpan).addTags(skills);
+                            }
+                          });
+                        }
+                        
+                        // Populate certifications
+                        if (data.certifications && data.certifications.length > 0) {
+                          data.certifications.forEach((certification, index) => {
+                      if (index > 0) {
+                        document
+                          .getElementById("addMorecertificationsSection")
+                          .click();
+                      }
+                      let certificationItems = document.querySelectorAll(
+                        ".certification-item"
+                      );
+                      let certificationItem = certificationItems[index];
+                      certificationItem.querySelector(
+                        '[name="certification"]'
+                      ).textContent = certification;
+                    });
+                  }
+                  
+                  // Populate special achievements
+                  if (
+                    data.specialAchievements &&
+                    data.specialAchievements.length > 0
+                  ) {
+                    data.specialAchievements.forEach((achievement, index) => {
+                      if (index > 0) {
+                        document
+                          .getElementById("addMoreachievementsSection")
+                          .click();
+                        }
+                        let achievementItems =
+                        document.querySelectorAll(".achievement-item");
+                        let achievementItem = achievementItems[index];
+                        achievementItem.querySelector(
+                          '[name="achievement"]'
+                        ).textContent = achievement;
+                      });
+                    }
+                    
+                    // Populate skills
+                    if (data.skills && data.skills.length > 0) {
+                    let skillsSpan = document.getElementById("skills");
+                    let skills = data.skills.map(
+                      (skill) => JSON.parse(skill).value
+                    );
+                    skillsSpan.textContent = skills.join(", ");
+                  }
+                }
+                  
               </script>
               <!-- Projects Section -->
               <!-- Button to Delete Profile Data -->
