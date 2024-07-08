@@ -1,0 +1,21 @@
+services:
+  userDetails:
+    image: userdetails
+    build: ./backend/userDetails/
+    ports:
+      - "3002:3002"
+
+  auth:
+    image: auth
+    build: ./backend/auth/
+    ports:
+      - "3001:3001"
+
+  frontend:
+    image: testfe
+    build: ./testFE/
+    ports:
+      - "3000:80"
+    depends_on:
+      - userDetails
+      - auth
