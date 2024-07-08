@@ -148,24 +148,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <th scope="row">1</th>
-                                            <td>ABC</td>
-                                            <td>id_122334svdhd</td>
-                                            <td><button type="button" class="btn btn-primary">Download</button></td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">2</th>
-                                            <td>DEF</td>
-                                            <td>id_484930hdhdi</td>
-                                            <td><button type="button" class="btn btn-primary">Download</button></td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">3</th>
-                                            <td>GHI</td>
-                                            <td>id_382922webskt</td>
-                                            <td><button type="button" class="btn btn-primary">Download</button></td>
-                                        </tr>
+                                        <!-- content will go here -->
                                     </tbody>
                                 </table>
                             </div>
@@ -245,6 +228,43 @@
     <!-- Page level custom scripts -->
     <script src="js/demo/chart-area-demo.js"></script>
     <script src="js/demo/chart-pie-demo.js"></script>
+    <script>
+        fetch("http://localhost:3002/api/resume/company/name", {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: "Bearer " + localStorage.getItem("token"),
+            }
+        })
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error("Network response was not ok");
+            }
+            return response.json();
+        })
+        .then((data) => {
+            const tableBody = document.querySelector('table.table tbody');
+            data.forEach((item, index) => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <th scope="row">${index + 1}</th>
+                    <td>${item.companyName}</td>
+                    <td>${item._id}</td>
+                    <td><button type="button" class="btn btn-primary" onclick="viewCV('${item._id}')">View CV</button></td>
+                `;
+                tableBody.appendChild(row);
+            });
+        })
+        .catch((error) => {
+            console.error("Error:", error);
+        });
+    
+        function viewCV(cvId) {
+            // Redirect to cvtemplate1.html with the CV ID as a URL parameter
+            window.location.href = `cvtemplate1.html?cvId=${cvId}`;
+        }
+    </script>
+        
 
 </body>
 

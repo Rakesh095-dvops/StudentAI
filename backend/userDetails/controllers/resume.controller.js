@@ -18,14 +18,11 @@ const createCV = async (req, res) => {
         }
         console.log('User Found: ', userDetails)
 
-        // Generate CV using ChatGPT API (This is a placeholder for the actual API call)
+        
         const { parsedData, improvements } = await generateCV(userDetails, jobDescription);
         console.log('CV: ', parsedData)
         console.log('cv: ', parsedData.generatedCV)
         console.log('improvements: ', parsedData.suggestedImprovements)
-        // improvements = JSON.stringify(parsedData.suggestedImprovements)
-
-        // Save the generated CV and improvements in the database
         const newResume = new Resume({
             userId,
             companyName,
@@ -35,14 +32,52 @@ const createCV = async (req, res) => {
         });
         await newResume.save();
 
-        // Send the generated CV and improvements
+        
         res.status(201).send(newResume);
     } catch (error) {
         res.status(500).send({ message: "Error generating CV", error });
     }
 };
 
+
+const getResumeById = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const resume = await Resume.findById(id);
+        if (!resume) {
+            return res.status(404).send({ message: "Resume not found" });
+        }
+        res.status(200).send(resume);
+    } catch (error) {
+        res.status(500).send({ message: "Error fetching resume", error });
+    }
+};
+
+
+const getAllResumes = async (req, res) => {
+    try {
+        const resumes = await Resume.find();
+        res.status(200).send(resumes);
+    } catch (error) {
+        res.status(500).send({ message: "Error fetching resumes", error });
+    }
+};
+
+
+const getAllResumeCompanyNameAndId = async (req, res) => {
+    try {
+        console.log('All resume requested by userId: ', req.user.userId)
+    const resumes = await Resume.find({userId: req.user.userId}).select('companyName');
+        res.status(200).send(resumes);
+    } catch (error) {
+        res.status(500).send({ message: "Error fetching resumes", error });
+    }
+};
+
 // Export the controller function
 module.exports = {
-    createCV
+    createCV,
+    getResumeById,
+    getAllResumes,
+    getAllResumeCompanyNameAndId
 };
