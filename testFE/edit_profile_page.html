@@ -496,6 +496,7 @@
               <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
               <script src="https://cdnjs.cloudflare.com/ajax/libs/tagify/4.0.0/tagify.min.js"></script>
               <!-- Custom JavaScript -->
+              <script src="./url.js"></script>
               <script>
                 document.addEventListener("DOMContentLoaded", function () {
                   // Initialize Tagify on all inputs with the class "tagify"
@@ -779,7 +780,9 @@
                         .value);
 
                       // Send data to the server
-                      fetch(`http://localhost:3002/api/userDetails/`, {
+                      const apiUrl = config.userUrl + "/api/userDetails/"
+
+                      fetch(apiUrl, {
                         method: "POST",
                         headers: {
                           "Content-Type": "application/json",

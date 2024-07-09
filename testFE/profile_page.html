@@ -574,12 +574,14 @@
                   <p><strong>Skills:</strong> <span id="skills"></span></p>
                 </div>
               </div>
+              <script src="./url.js"></script>
               <script>
                 document.addEventListener("DOMContentLoaded", function () {
                   let uid = localStorage.getItem("uid");
 
                   if (uid) {
-                    fetch(`http://localhost:3002/api/userDetails/${uid}`, {
+                    const apiUrl = config.userUrl + `/api/userDetails/${uid}`
+                    fetch(apiUrl, {
                       headers: {
                         Authorization:
                           "Bearer " + localStorage.getItem("token"),

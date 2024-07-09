@@ -228,8 +228,10 @@
     <!-- Page level custom scripts -->
     <script src="js/demo/chart-area-demo.js"></script>
     <script src="js/demo/chart-pie-demo.js"></script>
+    <script src="./url.js"></script>
     <script>
-        fetch("http://localhost:3002/api/resume/company/name", {
+        const apiUrl = config.userUrl + "/api/resume/company/name"
+        fetch(apiUrl, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
