@@ -527,7 +527,9 @@
                   // Fetch existing user data
                   let uid = localStorage.getItem("uid");
                   if (uid) {
-                    fetch(`http://localhost:3002/api/userDetails/${uid}`, {
+                    const apiUrl = config.userUrl + `/api/userDetails/${uid}`
+
+                    fetch(apiUrl, {
                       headers: {
                         Authorization:
                           "Bearer " + localStorage.getItem("token"),
