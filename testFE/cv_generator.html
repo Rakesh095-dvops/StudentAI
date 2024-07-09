@@ -285,6 +285,7 @@
     <!-- Page level custom scripts -->
     <script src="js/demo/chart-area-demo.js"></script>
     <script src="js/demo/chart-pie-demo.js"></script>
+    <script src="./url.js"></script>
     <!-- Bottom of your HTML file, before the closing </body> tag -->
     <script>
       document.addEventListener("DOMContentLoaded", function () {
@@ -299,8 +300,9 @@
             jobDescription: jobDescription,
           };
           console.log("formData: ", formData)
+          const apiUrl = config.baseUrl + "/api/resume"
 
-          fetch("http://localhost:3002/api/resume", {
+          fetch(apiUrl, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",

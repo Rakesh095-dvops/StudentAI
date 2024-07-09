@@ -73,6 +73,7 @@
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
+    <script src="./url.js"></script>
     <!-- logic for otp timer -->
     <script>
         let timerElement = document.getElementById('timer');
@@ -134,8 +135,9 @@
                     messageDiv.innerHTML = '<div class="alert alert-danger">Email not found. Please go back and try again.</div>';
                     return;
                 }
+                const apiUrl = config.baseUrl + "/auth/user/verify"
 
-                fetch('http://localhost:3001/auth/user/verify', {
+                fetch(apiUrl, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'

@@ -111,12 +111,16 @@
             </div>
             </section>
     </div>
+    <div id="sections"></div>
+    <script src="./url.js"></script>
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const params = new URLSearchParams(window.location.search);
             const cvId = params.get('cvId'); // Retrieve the CV ID from the URL
+            const apiUrl = config.baseUrl + `/api/resume/${cvId}`
 
-            fetch(`http://localhost:3002/api/resume/${cvId}`, {
+            fetch(apiUrl, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",

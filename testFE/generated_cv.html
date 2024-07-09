@@ -90,77 +90,74 @@
             <div id="content">
 
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                        <i class="fa fa-bars"></i>
-                    </button>                    
-                    <form
-                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                                aria-label="Search" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+                    
 
+                    <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item dropdown no-arrow d-sm-none">
-                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
+                        <!-- Nav Item - User Information -->
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-search fa-fw"></i>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Prashant Dey</span>
+                                <img class="img-profile rounded-circle"
+                                    src="img/undraw_profile.svg">
                             </a>
-                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                                aria-labelledby="searchDropdown">
-                                <form class="form-inline mr-auto w-100 navbar-search">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control bg-light border-0 small"
-                                            placeholder="Search for..." aria-label="Search"
-                                            aria-describedby="basic-addon2">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-primary" type="button">
-                                                <i class="fas fa-search fa-sm"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
+                            <!-- Dropdown - User Information -->
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href="profile_page.html">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Profile
+                                </a>
+                                <a class="dropdown-item" href="edit_profile_page.html">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Edit Profile
+                                </a>
+                                <a class="dropdown-item" href="edit_profile_picture.html">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Edit Profile Picture
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Settings
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Logout
+                                </a>
                             </div>
                         </li>
 
                     </ul>
 
                 </nav>
-               <h2 style="margin-left:25px ;">All Resumes</h2>
+               
                 <div class="container-fluid">                    
-                    <div class="row">
-                        <div class="col-xl-12 col-md-12 mb-4">
-                           
-                            <div class="table-responsive">
-                                <table class="table table-striped" style="width: 100%;">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">S No.</th>
-                                            <th scope="col">Company Name</th>
-                                            <th scope="col">CV id</th>
-                                            <th scope="col">Download CV</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <!-- content will go here -->
-                                    </tbody>
-                                </table>
-                            </div>
-
+                  
+                    <div class="card mb-4">
+                        <div class="card-header">Generated CV</div>
+                        <div class="card-body">
+                          <div id="userInfo">
+                            <p><strong>Company Name: </strong> <span id="company-name"></span></p>
+                            <p><strong>Job Description </strong> <span id="job-description"></span></p>
+                          </div>
                         </div>
-                    </div>
+                      </div>
+        
+
+
+
+
+                   
 
                     <!-- Content Row -->
                     <div class="row">
 
                         <!-- Content Column -->
                         <div class="col-lg-6 mb-4">
+
+                           
 
                         </div>
                     </div>
@@ -228,45 +225,20 @@
     <!-- Page level custom scripts -->
     <script src="js/demo/chart-area-demo.js"></script>
     <script src="js/demo/chart-pie-demo.js"></script>
-    <script src="./url.js"></script>
     <script>
-        const apiUrl = config.userUrl + "/api/resume/company/name"
-        fetch(apiUrl, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: "Bearer " + localStorage.getItem("token"),
-            }
-        })
-        .then((response) => {
-            if (!response.ok) {
-                throw new Error("Network response was not ok");
-            }
-            return response.json();
-        })
-        .then((data) => {
-            const tableBody = document.querySelector('table.table tbody');
-            data.forEach((item, index) => {
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <th scope="row">${index + 1}</th>
-                    <td>${item.companyName}</td>
-                    <td>${item._id}</td>
-                    <td><button type="button" class="btn btn-primary" onclick="viewCV('${item._id}')">View CV</button></td>
-                `;
-                tableBody.appendChild(row);
-            });
-        })
-        .catch((error) => {
-            console.error("Error:", error);
-        });
-    
-        function viewCV(cvId) {
-            // Redirect to cvtemplate1.html with the CV ID as a URL parameter
-            window.location.href = `cvtemplate1.html?cvId=${cvId}`;
-        }
-    </script>
+   document.addEventListener("DOMContentLoaded", function () {
+    let received_companyName=localStorage.getItem("received_companyName")
+    let received_jobDescription=localStorage.getItem("received_jobDescription")
+    console.log(received_companyName)
+    document.getElementById("company-name").textContent=received_companyName
+    document.getElementById("job-description").textContent=received_jobDescription
+});
+
+
+
         
+      
+    </script>
 
 </body>
 

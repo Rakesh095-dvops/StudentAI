@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Resume of Prashant Kumar Dey</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .header, .section { margin-bottom: 20px; }
+        .section-title { font-size: 20px; color: #333; text-decoration: underline; }
+        ul { list-style: none; padding: 0; }
+        li { margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1 id="name"></h1>
+        <p>Email: <a id="email" href=""></a></p>
+        <p>About: <span id="about"></span></p>
+    </div>
+    <!-- <div id="sections"></div> -->
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const params = new URLSearchParams(window.location.search);
+            const cvId = params.get('cvId'); // Retrieve the CV ID from the URL
+
+            fetch(`http://localhost:3002/api/resume/${cvId}`, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: "Bearer " + localStorage.getItem("token"),
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Data obtained: ', data)
+                populateResume(JSON.parse(data.generatedCV)); // Parsing the nested JSON string
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+                alert('Failed to load resume data.');
+            });
+        });
+
+        function populateResume(generatedCV) {
+            document.getElementById('name').textContent = generatedCV.name;
+            document.getElementById('email').textContent = generatedCV.email;
+            document.getElementById('about').textContent = generatedCV.about;
+            document.getElementById('email').href = 'mailto:' + generatedCV.Email;
+
+            // const sections = document.getElementById('sections');
+            // const aboutSection = document.createElement('div');
+            // aboutSection.innerHTML = `<h2 class="section-title">About</h2><p>${generatedCV.About}</p>`;
+            // sections.appendChild(aboutSection);
+
+            // Populate Education
+            const eduSection = document.createElement('div');
+            eduSection.innerHTML = `<h2 class="section-title">Education</h2><ul><li>${generatedCV.education.degree} in ${generatedCV.education.institution}, ${generatedCV.education.year}</li></ul>`;
+            sections.appendChild(eduSection);
+
+            // Populate Professional Experience
+            const expSection = document.createElement('div');
+            expSection.innerHTML = `<h2 class="section-title">Professional Experience</h2>`;
+            const expList = document.createElement('ul');
+            generatedCV.professionalExperience.forEach(exp => {
+                const expDetails = document.createElement('li');
+                expDetails.innerHTML = `<strong>${exp.position} at ${exp.company}, ${exp.location}</strong><ul>${exp.responsibilities.map(resp => `<li>${resp}</li>`).join('')}</ul>`;
+                expList.appendChild(expDetails);
+            });
+            expSection.appendChild(expList);
+            sections.appendChild(expSection);
+
+            // Populate Skills
+            const skillsSection = document.createElement('div');
+            skillsSection.innerHTML = `<h2 class="section-title">Skills</h2><ul><li>${generatedCV.skills.join(', ')}</li></ul>`;
+            sections.appendChild(skillsSection);
+
+            // Populate Certifications
+            const certsSection = document.createElement('div');
+            certsSection.innerHTML = `<h2 class="section-title">Certifications</h2><ul>${generatedCV.certifications.map(cert => `<li>${cert.name} - ${cert.issuer}</li>`).join('')}</ul>`;
+            sections.appendChild(certsSection);
+
+            // Populate Projects
+            const projSection = document.createElement('div');
+            projSection.innerHTML = `<h2 class="section-title">Projects</h2>`;
+            const projList = document.createElement('ul');
+            generatedCV.projects.forEach(proj => {
+                const projDetails = document.createElement('li');
+                projDetails.innerHTML = `<strong>${proj.title}</strong><p>${proj.description}</p><p>${proj.details}</p>`;
+                projList.appendChild(projDetails);
+            });
+            projSection.appendChild(projList);
+            sections.appendChild(projSection);
+        }
+    </script>
+</body>
+</html>
