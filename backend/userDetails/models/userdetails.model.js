@@ -47,7 +47,10 @@ const userDetailsSchema = new mongoose.Schema({
     skills: [{
         value: {type: String}
     }],
-    certifications: [String],
+    certifications: [{
+        certificationName: {type: String},
+        certificationIssuer: {type: String}
+    }],
     specialAchievements: [String],
     projects: [projectSchema]
 });

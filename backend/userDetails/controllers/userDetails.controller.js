@@ -6,6 +6,7 @@ const addUserDetails = async (req, res) => {
     try {
         const { email, ...otherUpdates } = req.body;
         const filter = { userId: req.user.userId };
+        console.log('User Details Data: ', req.body)
 
         // Check if the user details already exist
         const existingUserDetails = await UserDetails.findOne(filter);
@@ -44,6 +45,7 @@ const getAllUserDetails = async (req, res) => {
 const getUserDetailsById = async (req, res) => {
     try {
         const user = await UserDetails.find({userId: req.params.id});
+        console.log('User Data Fetched: ', user[0].professionalQualifications)
         if (!user) {
             return res.status(404).send({ message: "User not found" });
         }

@@ -331,6 +331,17 @@
                                 />
                               </div>
                               <div class="form-group">
+                                <label for="role">Location</label>
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  id="location"
+                                  name="location"
+                                  placeholder="Enter your Location"
+                                  required
+                                />
+                              </div>
+                              <div class="form-group">
                                 <label for="description">Description</label>
                                 <textarea
                                   class="form-control"
@@ -423,6 +434,16 @@
                                   id="certification"
                                   name="certification"
                                   placeholder="Enter a certification"
+                                />
+                              </div>
+                              <div class="form-group">
+                                <label for="certification">Issuer</label>
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  id="certification-issuer"
+                                  name="certification-issuer"
+                                  placeholder="Enter the Issuer Name"
                                 />
                               </div>
                               <hr />
@@ -589,6 +610,9 @@
                           '[name="companyName"]'
                         ).value = professional.companyName;
                         professionalItem.querySelector(
+                          '[name="location"]'
+                        ).value = professional.location;
+                        professionalItem.querySelector(
                           '[name="duration.from"]'
                         ).value = professional.duration.from.split("T")[0];
                         professionalItem.querySelector(
@@ -615,6 +639,8 @@
                       projectItem.querySelector(
                         '[name="projectDescription"]'
                       ).value = project.projectDescription;
+                      let projectSkillsFormatted = project.skillsUsed.map(sk =>sk.value).join(', ')
+                      console.log('projectSkillsFormatted: ',[projectSkillsFormatted])
                       console.log('Project Skill: ', project.skillsUsed)
                       const parsedSkills = project.skillsUsed.forEach(
                         (skill) => {
@@ -622,9 +648,11 @@
                             // JSON.parse(skill).value
                         }
                       );
-                      new Tagify(
-                        projectItem.querySelector('[name="skillsUsed"]')
-                      ).addTags(parsedSkills);
+                      // new Tagify(
+                      //   projectItem.querySelector('[name="skillsUsed"]')
+                      // ).addTags([projectSkillsFormatted]);
+                      // console.log('projectselector: ',projectItem.querySelector('[name="skillsUsed"]').value)
+                      // projectItem.querySelector('[name="skillsUsed"]').value=projectSkillsFormatted;
                       projectItem.querySelector('[name="projectLink"]').value =
                         project.projectLink;
                     });
@@ -639,9 +667,13 @@
                         ".certification-item"
                       );
                       let certificationItem = certificationItems[index];
+                      console.log('certificationItem: ',certification)
                       certificationItem.querySelector(
                         '[name="certification"]'
-                      ).value = certification;
+                      ).value = certification.certificationName;
+                      certificationItem.querySelector(
+                        '[name="certification-issuer"]'
+                      ).value = certification.certificationIssuer;
                     });
 
                     // Populate special achievements
@@ -659,9 +691,10 @@
                     // Populate skills
                     let skillsInput = document.getElementById("skills");
                     const parsedSkills = data.skills.map(
-                      (skill) => JSON.parse(skill).value
-                    );
-                    new Tagify(skillsInput).addTags(parsedSkills);
+                      skill => skill.value
+                    ).join(',');
+                    console.log('parsedMainSkill: ',parsedSkills)
+                    // new Tagify(skillsInput).addTags(parsedSkills);
                   }
 
                   // Submit profile information
@@ -712,6 +745,9 @@
                             companyName: item.querySelector(
                               '[name="companyName"]'
                             ).value,
+                            location: item.querySelector(
+                              '[name="location"]'
+                            ).value,
                             duration: {
                               from: item.querySelector('[name="duration.from"]')
                                 .value,
@@ -756,9 +792,11 @@
                       document
                         .querySelectorAll(".certification-item")
                         .forEach((item) => {
-                          formData.certifications.push(
-                            item.querySelector('[name="certification"]').value
-                          );
+                          let certificationData = {
+                            certificationName: item.querySelector('[name="certification"]').value,
+                            certificationIssuer: item.querySelector('[name="certification-issuer"]').value
+                          }
+                          formData.certifications.push(certificationData);
                         });
 
                       // Collect special achievements
