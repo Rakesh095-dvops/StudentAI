@@ -44,7 +44,7 @@ async function generateCV(userDetails, jobDescription) {
     You also need to generate the about section by yourself.\n\n
     Make sure the about, skills are all aligned with the skills required in job description.\n\n
     In the suggestion you can specify the suggested project the person can work on in order to improve. The project details can consist of skills required in job description aligned with the project. (In other words, try to stuff the skills required in job description along with the actual skill to be included in project)\n\n
-    You will also have to generate a coverletter to be sent under the coverletter tag. Coverletter should clearly highlight the skill possessed.\n\n
+    You will also have to generate a coverletter to be sent under the coverletter tag. Coverletter should clearly highlight the skill possessed. At the bottom it should clearly highlight the name, email and phone no.\n\n
     Match the existing data which I am providing against the Job Description and tell me in how much you are ready out of 10. and put that inside the value currentPrep\n\n
     If the currentPrep score is less than 7 then put the value of isEligibleForJob as false.\n\n
     While checking the validity also check the eligibility criteria about years of experience or education if specified in job description. Put these recommendations in improvements.\n\n

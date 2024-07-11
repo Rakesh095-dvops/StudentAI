@@ -141,7 +141,8 @@
                                             <th scope="col">S No.</th>
                                             <th scope="col">Company Name</th>
                                             <th scope="col">CV id</th>
-                                            <th scope="col">Download CV</th>
+                                            <th scope="col">CV</th>
+                                            <th scope="col">Cover Letter</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -250,6 +251,7 @@
                     <td>${item.companyName}</td>
                     <td>${item._id}</td>
                     <td><button type="button" class="btn btn-primary" onclick="viewCV('${item._id}')">View CV</button></td>
+                    <td><button type="button" class="btn btn-primary" onclick="viewCL('${item._id}')">View CL</button></td>
                 `;
                 tableBody.appendChild(row);
             });
@@ -261,6 +263,10 @@
         function viewCV(cvId) {
             // Redirect to cvtemplate1.html with the CV ID as a URL parameter
             window.location.href = `cvtemplate1.html?cvId=${cvId}`;
+        }
+        function viewCL(cvId) {
+            // Redirect to cvtemplate1.html with the CV ID as a URL parameter
+            window.location.href = `coverletter.html?clId=${cvId}`;
         }
     </script>
         
