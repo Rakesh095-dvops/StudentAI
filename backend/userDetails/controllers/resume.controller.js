@@ -22,13 +22,13 @@ const createCV = async (req, res) => {
         const { parsedData, improvements } = await generateCV(userDetails, jobDescription);
         console.log('CV: ', parsedData)
         console.log('cv: ', parsedData.generatedCV)
-        console.log('improvements: ', parsedData.suggestedImprovements)
+        console.log('improvements: ', parsedData.improvements)
         const newResume = new Resume({
             userId,
             companyName,
             jobDescription,
-            generatedCV: JSON.stringify(parsedData.generatedCV),
-            improvements: JSON.stringify(parsedData.suggestedImprovements)
+            generatedCV: JSON.stringify(parsedData),
+            improvements: JSON.stringify(parsedData.improvements)
         });
         await newResume.save();
 

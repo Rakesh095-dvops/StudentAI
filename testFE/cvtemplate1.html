@@ -11,7 +11,7 @@
     <div class="container">
         <header>
             <h1 id="name">JONATHAN WRIGHT</h1>
-            <!-- <h2 id="job-role">Lead Business Analyst</h2> -->
+            <h2 id="job-role">Lead Business Analyst</h2>
             <p class="contact-info">
                 <a id="phone-number">+1-921-389-0182</a> | <a id="email">name@gmail.com</a> |
                 <a id="lives-in">
@@ -27,7 +27,7 @@
         </section>
         <section class="skills">
             <h3 style="text-align: center;">Skills</h3>
-            <p><strong>Technology:</strong><span id="skills"></span></p>
+            <p><i id="skills"></i></p>
         </section>
         <section class="experience">
             <h3 style="text-align: center;">Experience</h3>
@@ -38,13 +38,17 @@
             
             <section class="education">
                 <h3 style="text-align: center;">Education</h3>
-                <div class="degree">
-                    <div class="degree-details">
-                        <h4 id="institution">University of Wisconsin</h4>
-                        <p id="degree">M.Sc. in Finance</p>
-                    </div>
-                    <div id="degree-date">Wisconsin<br>2012 - 2013</div>
+                <div id="education">
+                    <!-- <div class="degree">
+                        <div class="degree-details">
+                            <h4 id="institution">University of Wisconsin</h4>
+                            <p id="degree">M.Sc. in Finance</p>
+                        </div>
+                        <div id="degree-date">Wisconsin<br>2012 - 2013</div>
+                    </div> -->
+
                 </div>
+                
             </section>
             <section class="courses">
                 <h3 style="text-align: center;">Courses & Certificates</h3>
@@ -122,12 +126,49 @@
             document.getElementById('email').textContent = generatedCV.email;
 
             document.getElementById('email').href = 'mailto:' + generatedCV.email;
-            document.getElementById('about').textContent = generatedCV.about
-            document.getElementById('skills').textContent = generatedCV.skills
+            document.getElementById('about').textContent = generatedCV.about;
+            document.getElementById('job-role').textContent = generatedCV.currentJobTitle;
+            const formattedSkills = generatedCV.skills.map(skill => skill).join(', ');
+            console.log('formattedSkills:', formattedSkills)
+            document.getElementById('skills').textContent = formattedSkills
 
-            document.getElementById('institution').textContent = generatedCV.education.institution
-            document.getElementById('degree').textContent = generatedCV.education.degree
-            document.getElementById('degree-date').innerHTML = `<br>${generatedCV.education.year}`
+            const edexp = generatedCV['education']
+            let j = 0
+            edexp.map(ed => {
+                console.log('Education: ', ed)
+                j=j+1
+                let educationId = document.getElementById('education')
+                let superMainJobDiv = document.createElement('div')
+                const superMainAtt = document.createAttribute('class')
+                superMainAtt.value = "degree"
+                superMainJobDiv.setAttributeNode(superMainAtt)
+
+                let mainDiv = document.createElement('div');
+                let att = document.createAttribute("class")
+                att.value="degree-details"
+                mainDiv.setAttributeNode(att)
+
+                let institutionHeading = document.createElement('h4')
+                institutionHeading.innerHTML = ed.institution
+                mainDiv.appendChild(institutionHeading)
+
+                let degreeDetails = document.createElement('p')
+                degreeDetails.innerHTML = ed.degree
+                mainDiv.appendChild(degreeDetails)
+
+                let degreeDate = document.createElement('div')
+                degreeDate.innerHTML = ed.year
+
+                superMainJobDiv.appendChild(mainDiv)
+                superMainJobDiv.appendChild(degreeDate) 
+                educationId.appendChild(superMainJobDiv)               
+
+            })
+
+
+            // document.getElementById('institution').textContent = generatedCV.education.institution
+            // document.getElementById('degree').textContent = generatedCV.education.degree
+            // document.getElementById('degree-date').innerHTML = `<br>${generatedCV.education.year}`
 
             const profexp = generatedCV['professionalExperience']
             console.log('profexp: ', profexp)
@@ -174,7 +215,7 @@
                 superMainJobDiv.appendChild(mainDiv)
                 
                 let jobDateDiv = document.createElement('div')
-                jobDateDiv.innerHTML = exp.location
+                jobDateDiv.innerHTML = exp.duration + ' | ' + exp.location
 
                 superMainJobDiv.appendChild(jobDateDiv)
                 experienceId.appendChild(superMainJobDiv);

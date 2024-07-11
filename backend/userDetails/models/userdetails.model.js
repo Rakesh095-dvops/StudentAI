@@ -12,6 +12,7 @@ const educationSchema = new mongoose.Schema({
 // Define the schema for a user's professional qualification
 const professionalSchema = new mongoose.Schema({
     companyName: String,
+    location: String,
     duration: {
         from: Date,
         to: Date
@@ -39,6 +40,7 @@ const userDetailsSchema = new mongoose.Schema({
         phone: String,
         address: String
     },
+    currentJobTitle: {type: String},
     educationQualifications: [educationSchema],
     about: {type: String},
     professionalQualifications: [professionalSchema],

@@ -243,6 +243,18 @@
         </div>
       </div>
     </div>
+    <div class="modal fade" id="loaderModal" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-body text-center">
+            <div class="spinner-border text-primary" role="status">
+              <span class="sr-only">Loading...</span>
+            </div>
+            <p>Loading, please wait...</p>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
@@ -265,9 +277,9 @@
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         const form = document.getElementById("cvgeneratorForm");
-
         form.addEventListener("submit", function (event) {
           event.preventDefault()
+          $('#loaderModal').modal('show');
           const companyName = document.getElementById("companyName").value;
           const jobDescription = document.getElementById("description").value;
           const formData = {
@@ -293,10 +305,19 @@
               return response.json();
             })
             .then((data) => {
+              $('#loaderModal').modal('hide'); // Hide loader modal
               console.log("Success:", data);
+              setTimeout(3000);
+              alert("CV has been generated successfully!");
+              console.log("Data Done:");
+              // setTimeout(3000);
+              // window.location.href = "dashboard.html";
+              
             })
             .catch((error) => {
-              console.error("Error:", error);
+              $('#loaderModal').modal('hide'); // Hide loader modal
+            console.error("Error:", error);
+            alert("An error occurred while generating the CV.");
             });
         });
       });
