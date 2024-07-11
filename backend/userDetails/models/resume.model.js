@@ -11,6 +11,12 @@ const resumeSchema = new mongoose.Schema({
     companyName: {
         type: String
     },
+    profileName: {
+        type: String
+    },
+    applicationLink: {
+        type: String
+    },
     jobDescription: {
         type: String,
         required: true
@@ -19,9 +25,17 @@ const resumeSchema = new mongoose.Schema({
         type: Object,
         required: true
     },
-    improvements: {
+    coverletter: {
         type: String,
         required: true
+    },
+    improvements: {
+        technicalImprovements: {
+            type: String
+        },
+        generalImprovements: {
+            type: String
+        }
     }
 });
 

@@ -7,7 +7,7 @@ const generateCV = require('../utils/chatGPT');
 const createCV = async (req, res) => {
     try {
         
-        const { jobDescription, companyName } = req.body;
+        const { jobDescription, companyName, profileName, applicationLink } = req.body;
         console.log('Data received for generatingCV: ', req.body)
         let userId = req.user.userId
         console.log('UserData: ', userId)
@@ -27,8 +27,14 @@ const createCV = async (req, res) => {
             userId,
             companyName,
             jobDescription,
+            profileName,
+            applicationLink,
             generatedCV: JSON.stringify(parsedData),
-            improvements: JSON.stringify(parsedData.improvements)
+            coverletter: JSON.stringify(parsedData.coverletter),
+            improvements: {
+                technicalImprovements: JSON.stringify(parsedData.improvements.technicalImprovements),
+                generalImprovements: JSON.stringify(parsedData.improvements.generalImprovements)
+            }
         });
         await newResume.save();
 

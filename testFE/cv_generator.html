@@ -157,6 +157,24 @@
                             />
                           </div>
                           <div class="form-group">
+                            <label for="profileName">Job Profile/Title</label>
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="profileName"
+                              placeholder="Enter the Job profile applying for"
+                            />
+                          </div>
+                          <div class="form-group">
+                            <label for="applicationLink">Application Link</label>
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="applicationLink"
+                              placeholder="Enter the Application Link"
+                            />
+                          </div>
+                          <div class="form-group">
                             <label for="description">Job Description</label>
                             <textarea
                               class="form-control"
@@ -282,9 +300,13 @@
           $('#loaderModal').modal('show');
           const companyName = document.getElementById("companyName").value;
           const jobDescription = document.getElementById("description").value;
+          const profileName = document.getElementById("profileName").value;
+          const applicationLink = document.getElementById("applicationLink").value;
           const formData = {
             companyName: companyName,
             jobDescription: jobDescription,
+            profileName: profileName,
+            applicationLink: applicationLink
           };
           console.log("formData: ", formData)
           const apiUrl = config.baseUrl + "/api/resume"
