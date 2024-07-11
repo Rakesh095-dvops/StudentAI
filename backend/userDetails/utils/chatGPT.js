@@ -24,14 +24,14 @@ async function generateCV(userDetails, jobDescription) {
     const professionalExperience = Array.isArray(userDetails.professionalQualifications) ? userDetails.professionalQualifications.map(pro => ({
       position: pro.role,
       company: pro.companyName,
-      location: pro.description || 'N/A',
+      location: pro.location || 'N/A',
       duration: `${pro.duration.from}-${pro.duration.to}`,
       responsibilities: pro.description ? pro.description.split('\n') : []
     })) : [];
     const skills = Array.isArray(userDetails.skills) ? userDetails.skills.map(skill => skill.value) : [];
     const certifications = Array.isArray(userDetails.certifications) ? userDetails.certifications.map(cert => ({
-      name: cert,
-      issuer: 'N/A'
+      name: cert.certificationName,
+      issuer: cert.certificationIssuer
     })) : [];
     const projects = Array.isArray(userDetails.projects) ? userDetails.projects.map(proj => ({
       title: proj.projectName,
