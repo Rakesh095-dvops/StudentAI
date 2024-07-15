@@ -19,7 +19,8 @@ async function generateCV(userDetails, jobDescription) {
     const education = Array.isArray(userDetails.educationQualifications) ? userDetails.educationQualifications.map(edu => ({
       degree: edu.degree,
       institution: edu.collegeName,
-      year: edu.years
+      year: edu.years,
+      specialization: edu.specialization
     })) : [];
     const professionalExperience = Array.isArray(userDetails.professionalQualifications) ? userDetails.professionalQualifications.map(pro => ({
       position: pro.role,
@@ -63,7 +64,8 @@ async function generateCV(userDetails, jobDescription) {
   "education": [{
     "degree": "",
     "institution": "",
-    "year": ''
+    "year": '',
+    specialization: ""
   }],
   "professionalExperience": [
     {
@@ -72,14 +74,14 @@ async function generateCV(userDetails, jobDescription) {
       "location": "",
       "duration": "",
       "responsibilities": [
-        "Managed AWS services and day-to-day cloud operations.",
-        "Collaborated with development and QA teams to streamline deployment processes.",
-        "Implemented automation tools and technologies.",
-        "Enhanced infrastructure reliability, security, and scalability.",
-        "Configured high availability (HA) systems, cloud network management, VPCs, clusters, and load balancers.",
-        "Expertly managed DB replication, sharding (mySQL DB Systems), HA clusters, failovers, and recovery mechanisms.",
-        "Built and maintained CI-CD workflows.",
-        "Installed and managed software systems to support the development team, including DB administration, web servers, and caching systems."
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
       ]
     }
   ],
