@@ -109,7 +109,7 @@
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Prashant Dey</span>
+               
                 <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
               </a>
               <!-- Dropdown - User Information -->
@@ -202,22 +202,19 @@
             </div>
 
             <!-- Certifications Section -->
-            <h5>Certifications</h5>
-            <div id="certificationsSection">
-              <div class="certification-item">
-                <div class="form-group">
-                  <label for="certification">Certification</label>
-                 
+           <div>
+
+             <div class="card mb-4">
+               <div class="card-header">Projects</div>
+               <div class="card-body" id="viewProjectSection">
+                 <p>Certification of: <span id="certificationName"></span></p>
+                 <p>
+                   issued by: <span id="certificationIssuer" ></span>
+                  </p>
                 </div>
-                <div class="form-group">
-                  <label for="certification">Issuer</label>
-                  
-                </div>
-                <hr />
               </div>
             </div>
-          
-            
+                      
 
             <!-- Special Achievements Section -->
             <div class="card mb-4">
@@ -447,12 +444,9 @@
                       );
                       let certificationItem = certificationItems[index];
                       console.log('certificationItem: ',certification)
-                      certificationItem.querySelector(
-                        '[name="certification"]'
-                      ).textContent = certification.certificationName;
-                      certificationItem.querySelector(
-                        '[name="certification-issuer"]'
-                      ).textContent = certification.certificationIssuer;
+                      document.getElementById("certificationName")
+                      .textContent = certification.certificationName;
+                      document.getElementById("certificationIssuer").textContent = certification.certificationIssuer;
                     });
 
 

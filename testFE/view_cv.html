@@ -95,7 +95,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Prashant Dey</span>
+                                
                                 <img class="img-profile rounded-circle"
                                     src="img/undraw_profile.svg">
                             </a>
@@ -140,9 +140,10 @@
                                         <tr>
                                             <th scope="col">S No.</th>
                                             <th scope="col">Company Name</th>
-                                            <th scope="col">CV id</th>
+                                            
                                             <th scope="col">CV</th>
                                             <th scope="col">Cover Letter</th>
+                                            <th scope="col">Recommendation</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -243,15 +244,17 @@
             return response.json();
         })
         .then((data) => {
+            console.log('Data received: ', data)
             const tableBody = document.querySelector('table.table tbody');
             data.forEach((item, index) => {
                 const row = document.createElement('tr');
                 row.innerHTML = `
                     <th scope="row">${index + 1}</th>
                     <td>${item.companyName}</td>
-                    <td>${item._id}</td>
+                    
                     <td><button type="button" class="btn btn-primary" onclick="viewCV('${item._id}')">View CV</button></td>
                     <td><button type="button" class="btn btn-primary" onclick="viewCL('${item._id}')">View CL</button></td>
+                    <td><button type="button" class="btn btn-primary" onclick="viewRecomm('${item._id}')">View Recom.</button></td>
                 `;
                 tableBody.appendChild(row);
             });
@@ -267,6 +270,10 @@
         function viewCL(cvId) {
             // Redirect to cvtemplate1.html with the CV ID as a URL parameter
             window.location.href = `coverletter.html?clId=${cvId}`;
+        }
+        function viewRecomm(cvId) {
+            // Redirect to cvtemplate1.html with the CV ID as a URL parameter
+            window.location.href = `recommendation.html?reId=${cvId}`;
         }
     </script>
         
