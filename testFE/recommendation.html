@@ -88,7 +88,7 @@
         function populateResume(generatedCV) {
             console.log('CRP: ', JSON.parse(generatedCV.generatedCV))
             let generalImprovements = JSON.parse(generatedCV.improvements.generalImprovements)
-        
+        console.log(generalImprovements)
             let technicalImprovements = JSON.parse(generatedCV.improvements.technicalImprovements)
             let gi = document.getElementById('generalImprovements')
             generalImprovements.map(giel => {

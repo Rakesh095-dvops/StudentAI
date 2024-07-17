@@ -133,7 +133,12 @@
 
                 </nav>
                
-                <div class="container-fluid">                    
+                <div class="container-fluid"> 
+                    <div class="row">
+                        <h1 style="margin-left: 10px;color: #4e73df;font-weight: bold;" id="welcomeMsg"> </h1>
+                    </div>
+                    <br>
+                    
                     <div class="row">
                         <div class="col-xl-3 col-md-6 mb-4">
                             <div class="card border-left-primary shadow h-100 py-2">
@@ -142,7 +147,7 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                                 Total Resumes</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">20</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800" id="resumeNum">20</div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -157,9 +162,9 @@
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1" class="resume-cover">
                                                 Total Cover Letter</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">20</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800" id="coverNum">20</div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -169,7 +174,7 @@
                             </div>
                         </div>
 
-                        <div class="col-xl-3 col-md-6 mb-4">
+                        <!-- <div class="col-xl-3 col-md-6 mb-4">
                             <div class="card border-left-info shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
@@ -178,7 +183,7 @@
                                             </div>
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col-auto">
-                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
+                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">-%</div>
                                                 </div>
                                                 <div class="col">
                                                     <div class="progress progress-sm mr-2">
@@ -195,17 +200,17 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
 
                         <!-- Pending Requests Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
+                        <!-- <div class="col-xl-3 col-md-6 mb-4">
                             <div class="card border-left-warning shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                                                 Total Interviews</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">0</div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-comments fa-2x text-gray-300"></i>
@@ -213,7 +218,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
 
                    
@@ -287,11 +292,60 @@
     <script src="js/sb-admin-2.min.js"></script>
 
     <!-- Page level plugins -->
-    <script src="vendor/chart.js/Chart.min.js"></script>
+    <!-- <script src="vendor/chart.js/Chart.min.js"></script> -->
 
     <!-- Page level custom scripts -->
-    <script src="js/demo/chart-area-demo.js"></script>
-    <script src="js/demo/chart-pie-demo.js"></script>
+    <!-- <script src="js/demo/chart-area-demo.js"></script>
+    <script src="js/demo/chart-pie-demo.js"></script> -->
+    <script src="./url.js"></script>
+    <script>
+        const apiUrl = config.userUrl + `/api/resume/company/name`
+                  fetch(apiUrl, {
+                    headers: {
+                      Authorization:
+                        "Bearer " + localStorage.getItem("token"),
+                    },
+                  })
+                    .then((response) => response.json())
+                    .then((data) => {
+
+                    document.getElementById("coverNum").innerHTML=data.length
+                    document.getElementById("resumeNum").innerHTML=data.length
+                    // console.log(data.length)
+                    })
+                    .catch((error) =>
+                      console.error("Error fetching user data:", error)
+                    );
+                    function populateContent(data){
+                        console.log(data)
+
+                    }
+                    
+    </script>
+    <script>
+        const apiNameUrl = config.userUrl + `/api/userDetails/${localStorage.getItem("uid")}`
+                  fetch(apiNameUrl, {
+                    headers: {
+                      Authorization:
+                        "Bearer " + localStorage.getItem("token"),
+                    },
+                  })
+                    .then((response) => response.json())
+                    .then((data) => {
+                        console.log('Data about user: ', data[0].name)
+                    document.getElementById("welcomeMsg").innerHTML="Hi, "+data[0].name+ " !"
+                    // document.getElementById("resumeNum").innerHTML=data.length
+                    // console.log(data.length)
+                    })
+                    .catch((error) =>
+                      console.error("Error fetching user data:", error)
+                    );
+                    function populateContent(data){
+                        console.log(data)
+
+                    }
+                    
+    </script>
 
 </body>
 
