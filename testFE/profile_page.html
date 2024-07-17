@@ -8,7 +8,7 @@
   <meta name="description" content="" />
   <meta name="author" content="" />
 
-  <title>SB Admin 2 - Blank</title>
+  <title>Profile - Thrive Together</title>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" />
@@ -221,7 +221,9 @@
               <div class="card-header">Special Achievements</div>
               <div class="card-body" id="viewAchievementsSection">
                 <p>
-                  Special Achievement<span id="special-achievement"></span>
+                  <ul id="special-achievement">
+                    
+                  </ul>
                 </p>
               </div>
             </div>
@@ -454,32 +456,30 @@
 
 
                 // Populate special achievements
+                let spel=document.getElementById("special-achievement")
                 if (
-                  data.specialAchievements &&
-                  data.specialAchievements.length > 0
+                  data.specialAchievements 
                 ) {
                   data.specialAchievements.forEach((achievement, index) => {
-                    if (index > 0) {
-                      document
-                        .getElementById("addMoreachievementsSection")
-                        .click();
-                    }
-                    let achievementItems =
-                      document.querySelectorAll(".achievement-item");
-                    let achievementItem = achievementItems[index];
-                    achievementItem.querySelector(
-                      '[name="achievement"]'
-                    ).textContent = achievement;
+                   
+                      let liel=document.createElement('li')
+                      liel.innerHTML=achievement
+                      spel.appendChild(liel)
+                
+                    
                   });
                 }
 
                 // Populate skills
                 if (data.skills && data.skills.length > 0) {
                   let skillsSpan = document.getElementById("skills");
+                  let skillStr = ""
                   let skills = data.skills.map(
-                    (skill) => JSON.parse(skill).value
+                    (skill) => {
+                      skillStr = skillStr +skill.value + " | "}
                   );
-                  skillsSpan.textContent = skills.join(", ");
+                  console.log('Skill: ', skillStr)
+                  skillsSpan.innerHTML = skillStr;
                 }
               }
 
