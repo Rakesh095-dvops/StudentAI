@@ -201,13 +201,10 @@
                   justify-content: center;
                   align-items: center;
                 "
-              >
-                <b> Drag and drop your cv here </b>
-              </div>
+              ></div>
             </div>
           </form>
 
-          <!-- <br> -->
           <h2 style="text-align: center; margin-top: 20px">OR</h2>
           <div class="container-fluid">
             <div class="row">
@@ -358,48 +355,36 @@
                                   "education-item"
                                 );
                                 newEducationItem.innerHTML = `
-                                <div class="form-group">
-                                  <label for="collegeName">College Name</label>
-                                  <input
-                                    type="text"
-                                    class="form-control"
-                                    name="collegeName"
-                                    placeholder="Enter the name of your college"
-                                    required
-                                  />
-                                </div>
-                                <div class="form-group">
-                                  <label for="degree">Degree</label>
-                                  <input
-                                    type="text"
-                                    class="form-control"
-                                    name="degree"
-                                    placeholder="Enter your degree"
-                                    required
-                                  />
-                                </div>
-                                <div class="form-group">
-                                  <label for="years">Years</label>
-                                  <input
-                                    type="text"
-                                    class="form-control"
-                                    name="years"
-                                    placeholder="Enter the years"
-                                    required
-                                  />
-                                </div>
-                                <div class="form-group">
-                                  <label for="specialization">Specialization</label>
-                                  <input
-                                    type="text"
-                                    class="form-control"
-                                    name="specialization"
-                                    placeholder="Enter your specialization"
-                                  />
-                                </div>
-                                <hr />
+                               
                               `;
                                 educationSection.appendChild(newEducationItem);
+
+                                // Show delete button when a new section is added
+                                document.getElementById(
+                                  "deleteEducationSection"
+                                ).style.display = "inline-block";
+                                document.getElementById(
+                                  "deleteEducationSection"
+                                ).style.visibility = visible;
+                              });
+
+                            document
+                              .getElementById("deleteEducationSection")
+                              .addEventListener("click", function () {
+                                const educationSection =
+                                  document.getElementById("educationSection");
+                                const educationItems =
+                                  educationSection.getElementsByClassName(
+                                    "education-item"
+                                  );
+                                if (educationItems.length > 1) {
+                                  educationSection.removeChild(
+                                    educationItems[educationItems.length - 1]
+                                  );
+                                }
+
+                                // Hide delete button if only one section is left
+                                
                               });
                           </script>
 
@@ -506,70 +491,39 @@
                                   "professional-item"
                                 );
                                 newProfessionalItem.innerHTML = `
-      <div class="form-group">
-        <label for="companyName">Company Name</label>
-        <input
-          type="text"
-          class="form-control"
-          name="companyName"
-          placeholder="Enter the name of the company"
-          required
-        />
-      </div>
-      <div class="form-row">
-        <div class="form-group col-md-6">
-          <label for="jobFrom">From</label>
-          <input
-            type="date"
-            class="form-control"
-            name="duration.from"
-            required
-          />
-        </div>
-        <div class="form-group col-md-6">
-          <label for="jobTo">To</label>
-          <input
-            type="date"
-            class="form-control"
-            name="duration.to"
-            required
-          />
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="role">Role</label>
-        <input
-          type="text"
-          class="form-control"
-          name="role"
-          placeholder="Enter your role"
-          required
-        />
-      </div>
-      <div class="form-group">
-        <label for="location">Location</label>
-        <input
-          type="text"
-          class="form-control"
-          name="location"
-          placeholder="Enter your location"
-          required
-        />
-      </div>
-      <div class="form-group">
-        <label for="description">Description</label>
-        <textarea
-          class="form-control"
-          name="description"
-          rows="3"
-          placeholder="Enter your job description"
-        ></textarea>
-      </div>
-      <hr />
+      
     `;
                                 professionalSection.appendChild(
                                   newProfessionalItem
                                 );
+
+                                // Show delete button when a new section is added
+                                document.getElementById(
+                                  "deleteProfessionalSection"
+                                ).style.display = "inline-block";
+                              });
+
+                            document
+                              .getElementById("deleteProfessionalSection")
+                              .addEventListener("click", function () {
+                                const professionalSection =
+                                  document.getElementById(
+                                    "professionalSection"
+                                  );
+                                const professionalItems =
+                                  professionalSection.getElementsByClassName(
+                                    "professional-item"
+                                  );
+                                if (professionalItems.length > 1) {
+                                  professionalSection.removeChild(
+                                    professionalItems[
+                                      professionalItems.length - 1
+                                    ]
+                                  );
+                                }
+
+                                // Hide delete button if only one section is left
+                               
                               });
                           </script>
 
@@ -642,60 +596,8 @@
                           </button>
                           <hr />
 
-                          <script>
-                            document
-                              .getElementById("addMoreprojectSection")
-                              .addEventListener("click", function () {
-                                const projectSection =
-                                  document.getElementById("projectSection");
-                                const newProjectItem =
-                                  document.createElement("div");
-                                newProjectItem.classList.add("project-item");
-                                newProjectItem.innerHTML = `
-                                <div class="form-group">
-                                  <label for="projectName">Project Name</label>
-                                  <input
-                                    type="text"
-                                    class="form-control"
-                                    name="projectName"
-                                    placeholder="Enter the name of the project"
-                                    required
-                                  />
-                                </div>
-                                <div class="form-group">
-                                  <label for="projectDescription">Project Description</label>
-                                  <textarea
-                                    class="form-control"
-                                    name="projectDescription"
-                                    rows="3"
-                                    placeholder="Enter the project description"
-                                  ></textarea>
-                                </div>
-                                <div class="form-group">
-                                  <label for="skillsUsed">Skills Used</label>
-                                  <input
-                                    type="text"
-                                    class="form-control tagify"
-                                    name="skillsUsed"
-                                    placeholder="Enter skills used"
-                                  />
-                                </div>
-                                <div class="form-group">
-                                  <label for="projectLink">Project Link</label>
-                                  <input
-                                    type="text"
-                                    class="form-control"
-                                    name="projectLink"
-                                    placeholder="Enter project link (optional)"
-                                  />
-                                </div>
-                                <hr />
-                              `;
-                                projectSection.appendChild(newProjectItem);
-
-                                // Show delete button when a new section is added
-                              });
-                          </script>
+                        
+                           
 
                           <script>
                             document
@@ -707,44 +609,7 @@
                                   document.createElement("div");
                                 newProjectItem.classList.add("project-item");
                                 newProjectItem.innerHTML = `
-      <div class="form-group">
-        <label for="projectName">Project Name</label>
-        <input
-          type="text"
-          class="form-control"
-          name="projectName"
-          placeholder="Enter the name of the project"
-          required
-        />
-      </div>
-      <div class="form-group">
-        <label for="projectDescription">Project Description</label>
-        <textarea
-          class="form-control"
-          name="projectDescription"
-          rows="3"
-          placeholder="Enter the project description"
-        ></textarea>
-      </div>
-      <div class="form-group">
-        <label for="skillsUsed">Skills Used</label>
-        <input
-          type="text"
-          class="form-control tagify"
-          name="skillsUsed"
-          placeholder="Enter skills used"
-        />
-      </div>
-      <div class="form-group">
-        <label for="projectLink">Project Link</label>
-        <input
-          type="text"
-          class="form-control"
-          name="projectLink"
-          placeholder="Enter project link (optional)"
-        />
-      </div>
-      <hr />
+      
     `;
                                 projectSection.appendChild(newProjectItem);
 
@@ -770,11 +635,7 @@
                                 }
 
                                 // Hide delete button if only one section is left
-                                if (projectItems.length === 1) {
-                                  document.getElementById(
-                                    "deleteProjectSection"
-                                  ).style.display = "none";
-                                }
+                               
                               });
                           </script>
 
@@ -859,6 +720,38 @@
                                 certificationsSection.appendChild(
                                   newCertificationItem
                                 );
+
+                                // Show delete button when a new section is added
+                                document.getElementById(
+                                  "deleteCertificationsSection"
+                                ).style.display = "inline-block";
+                              });
+
+                            document
+                              .getElementById("deleteCertificationsSection")
+                              .addEventListener("click", function () {
+                                const certificationsSection =
+                                  document.getElementById(
+                                    "certificationsSection"
+                                  );
+                                const certificationItems =
+                                  certificationsSection.getElementsByClassName(
+                                    "certification-item"
+                                  );
+                                if (certificationItems.length > 1) {
+                                  certificationsSection.removeChild(
+                                    certificationItems[
+                                      certificationItems.length - 1
+                                    ]
+                                  );
+                                }
+
+                                // Hide delete button if only one section is left
+                                if (certificationItems.length === 1) {
+                                  document.getElementById(
+                                    "deleteCertificationsSection"
+                                  ).style.display = "none";
+                                }
                               });
                           </script>
 
@@ -925,6 +818,36 @@
                                 );
 
                                 // Show delete button when a new section is added
+                                document.getElementById(
+                                  "deleteAchievementsSection"
+                                ).style.display = "inline-block";
+                              });
+
+                            document
+                              .getElementById("deleteAchievementsSection")
+                              .addEventListener("click", function () {
+                                const achievementsSection =
+                                  document.getElementById(
+                                    "achievementsSection"
+                                  );
+                                const achievementItems =
+                                  achievementsSection.getElementsByClassName(
+                                    "achievement-item"
+                                  );
+                                if (achievementItems.length > 1) {
+                                  achievementsSection.removeChild(
+                                    achievementItems[
+                                      achievementItems.length - 1
+                                    ]
+                                  );
+                                }
+
+                                // Hide delete button if only one section is left
+                                if (achievementItems.length === 1) {
+                                  document.getElementById(
+                                    "deleteAchievementsSection"
+                                  ).style.display = "none";
+                                }
                               });
                           </script>
 
