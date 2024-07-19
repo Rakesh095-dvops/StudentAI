@@ -135,7 +135,7 @@
                     messageDiv.innerHTML = '<div class="alert alert-danger">Email not found. Please go back and try again.</div>';
                     return;
                 }
-                const apiUrl = config.baseUrl + "/auth/user/verify"
+                const apiUrl = config.authUrl + "/auth/user/verify"
 
                 fetch(apiUrl, {
                     method: 'POST',

@@ -43,9 +43,9 @@ async function generateCV(userDetails, jobDescription) {
     const prompt = `Generate a detailed CV in the JSON format based on the following user details and job description:\n\nUser Details:\nName: ${name}\nEmail: ${email}\nPhone No: ${phoneNo}\nCurrent Job Title: ${currentJobTitle}\nEducation: ${JSON.stringify(education, null, 2)}\nProfessional Experience: ${JSON.stringify(professionalExperience, null, 2)}\nSkills: ${JSON.stringify(skills, null, 2)}\nCertifications: ${JSON.stringify(certifications, null, 2)}\nProjects: ${JSON.stringify(projects, null, 2)}\n\nJob Description:\n${jobDescription}\n\nPlease create a CV in the following JSON format, ensuring the keys and structure match exactly as described in the below example json format. You can tweak the details of professional qualification, projects to align more with the job description. You can add few things from your side. Also, suggest what skills to improve under the key "suggestedImprovements", only include suggestion in the suggestedImprovements field.\n\n
     While creating the CV make sure you highlight the important key skills in various places in the project details, professional experience, etc. In the duration for professional experience only specify the month and year, also arrange them in descending order when its the professional experience and education.\n\n
     You also need to generate the about section by yourself.\n\n
-    Make sure the about, skills are all aligned with the skills required in job description.\n\n
+    Make sure the about, skills, responsibilites in the professional experience, descriptions and details in projects are all aligned with the skills required in job description. Modify the professional experience which should include the blend of current knowledge entered by the learner and the expected experience which he knows.\n\n
     In the suggestion you can specify the suggested project the person can work on in order to improve. The project details can consist of skills required in job description aligned with the project. (In other words, try to stuff the skills required in job description along with the actual skill to be included in project)\n\n
-    You will also have to generate a coverletter to be sent under the coverletter tag. Coverletter should clearly highlight the skill possessed. At the bottom it should clearly highlight the name, email and phone no.\n\n
+    You will also have to generate a coverletter to be sent under the coverletter tag. Coverletter should clearly highlight the skill possessed, it should also mention the name of the company for which it is applying which is specified under companyNameApplyingFor. At the bottom it should clearly highlight the name, email and phone no.\n\n
     Match the existing data which I am providing against the Job Description and tell me in how much you are ready out of 10. and put that inside the value currentPrep\n\n
     If the currentPrep score is less than 7 then put the value of isEligibleForJob as false.\n\n
     While checking the validity also check the eligibility criteria about years of experience or education if specified in job description. Put these recommendations in improvements.\n\n
@@ -102,6 +102,10 @@ async function generateCV(userDetails, jobDescription) {
       "details": ""
     }
   ],
+  "specialAchievements": [
+  "",
+  ""
+  ]
   "coverletter": "",
   "improvements": {
     "technicalImprovements": "",
@@ -129,5 +133,10 @@ console.log('Prompts: ', prompt)
     throw new Error('Failed to generate CV from OpenAI API.');
   }
 }
+
+async function processResume (file, res){
+
+}
+
 
 module.exports = generateCV;

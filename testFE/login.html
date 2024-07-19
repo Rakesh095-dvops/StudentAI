@@ -72,7 +72,7 @@
 
                 var email = document.getElementById('exampleInputEmail').value;
                 var messageDiv = document.getElementById('message');
-                const apiUrl = config.baseUrl + "/auth/user/login"
+                const apiUrl = config.authUrl + "/auth/user/login"
 
                 fetch(apiUrl, {
                     method: 'POST',
