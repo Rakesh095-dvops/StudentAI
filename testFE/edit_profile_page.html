@@ -349,63 +349,6 @@
                           </button>
                           <hr />
 
-                          <script>
-                            document
-                              .getElementById("addMoreeducationSection")
-                              .addEventListener("click", function () {
-                                const educationSection =
-                                  document.getElementById("educationSection");
-                                const newEducationItem =
-                                  document.createElement("div");
-                                newEducationItem.classList.add(
-                                  "education-item"
-                                );
-                                newEducationItem.innerHTML = `
-                                <div class="form-group">
-                                  <label for="collegeName">College Name</label>
-                                  <input
-                                    type="text"
-                                    class="form-control"
-                                    name="collegeName"
-                                    placeholder="Enter the name of your college"
-                                    required
-                                  />
-                                </div>
-                                <div class="form-group">
-                                  <label for="degree">Degree</label>
-                                  <input
-                                    type="text"
-                                    class="form-control"
-                                    name="degree"
-                                    placeholder="Enter your degree"
-                                    required
-                                  />
-                                </div>
-                                <div class="form-group">
-                                  <label for="years">Years</label>
-                                  <input
-                                    type="text"
-                                    class="form-control"
-                                    name="years"
-                                    placeholder="Enter the years"
-                                    required
-                                  />
-                                </div>
-                                <div class="form-group">
-                                  <label for="specialization">Specialization</label>
-                                  <input
-                                    type="text"
-                                    class="form-control"
-                                    name="specialization"
-                                    placeholder="Enter your specialization"
-                                  />
-                                </div>
-                                <hr />
-                              `;
-                                educationSection.appendChild(newEducationItem);
-                              });
-                          </script>
-
                           <!-- Professional Information Section -->
                           <h5>Professional Qualifications</h5>
                           <div id="professionalSection">
@@ -493,90 +436,8 @@
                           >
                             <i class="fas fa-trash"></i>
                           </button>
-                          <!-- <hr /> -->
 
-                          <script>
-                            document
-                              .getElementById("addMoreprofessionalSection")
-                              .addEventListener("click", function () {
-                                const professionalSection =
-                                  document.getElementById(
-                                    "professionalSection"
-                                  );
-                                const newProfessionalItem =
-                                  document.createElement("div");
-                                newProfessionalItem.classList.add(
-                                  "professional-item"
-                                );
-                                newProfessionalItem.innerHTML = `
-      <div class="form-group">
-        <label for="companyName">Company Name</label>
-        <input
-          type="text"
-          class="form-control"
-          name="companyName"
-          placeholder="Enter the name of the company"
-          required
-        />
-      </div>
-      <div class="form-row">
-        <div class="form-group col-md-6">
-          <label for="jobFrom">From</label>
-          <input
-            type="date"
-            class="form-control"
-            name="duration.from"
-            required
-          />
-        </div>
-        <div class="form-group col-md-6">
-          <label for="jobTo">To</label>
-          <input
-            type="date"
-            class="form-control"
-            name="duration.to"
-            required
-          />
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="role">Role</label>
-        <input
-          type="text"
-          class="form-control"
-          name="role"
-          placeholder="Enter your role"
-          required
-        />
-      </div>
-      <div class="form-group">
-        <label for="location">Location</label>
-        <input
-          type="text"
-          class="form-control"
-          name="location"
-          placeholder="Enter your location"
-          required
-        />
-      </div>
-      <div class="form-group">
-        <label for="description">Description</label>
-        <textarea
-          class="form-control"
-          name="description"
-          rows="3"
-          placeholder="Enter your job description"
-        ></textarea>
-      </div>
-      <hr />
-    `;
-                                professionalSection.appendChild(
-                                  newProfessionalItem
-                                );
-                              });
-                          </script>
-
-                          <hr />
+                        <hr />
 
                           <!-- Projects Information Section -->
                           <h5>Projects</h5>
@@ -837,47 +698,7 @@
                             </div>
                           </div>
 
-                          <script>
-                            document
-                              .getElementById("addMorecertificationsSection")
-                              .addEventListener("click", function () {
-                                const certificationsSection =
-                                  document.getElementById(
-                                    "certificationsSection"
-                                  );
-                                const newCertificationItem =
-                                  document.createElement("div");
-                                newCertificationItem.classList.add(
-                                  "certification-item"
-                                );
-                                newCertificationItem.innerHTML = `
-                                  <div class="form-group">
-                                    <label for="certification">Certification</label>
-                                    <input
-                                      type="text"
-                                      class="form-control"
-                                      name="certification"
-                                      placeholder="Enter a certification"
-                                    />
-                                  </div>
-                                  <div class="form-group">
-                                    <label for="certification-issuer">Issuer</label>
-                                    <input
-                                      type="text"
-                                      class="form-control"
-                                      name="certification-issuer"
-                                      placeholder="Enter the Issuer Name"
-                                    />
-                                  </div>
-                                  <hr />
-                                `;
-                                certificationsSection.appendChild(
-                                  newCertificationItem
-                                );
-                              });
-                          </script>
-
-                          <h5>Special Achievements</h5>
+                        <h5>Special Achievements</h5>
                           <div id="achievementsSection">
                             <div class="achievement-item">
                               <div class="form-group">
@@ -910,38 +731,7 @@
                           </button>
                           <hr />
 
-                          <script>
-                            document
-                              .getElementById("addMoreachievementsSection")
-                              .addEventListener("click", function () {
-                                const achievementsSection =
-                                  document.getElementById(
-                                    "achievementsSection"
-                                  );
-                                const newAchievementItem =
-                                  document.createElement("div");
-                                newAchievementItem.classList.add(
-                                  "achievement-item"
-                                );
-                                newAchievementItem.innerHTML = `
-                                  <div class="form-group">
-                                    <label for="achievement">Achievement</label>
-                                    <input
-                                      type="text"
-                                      class="form-control"
-                                      name="achievement"
-                                      placeholder="Enter an achievement"
-                                    />
-                                  </div>
-                                  <hr />
-                                `;
-                                achievementsSection.appendChild(
-                                  newAchievementItem
-                                );
-
-                                // Show delete button when a new section is added
-                              });
-                          </script>
+                         
 
                           <!-- Skills Section -->
                           <h5>Skills</h5>
