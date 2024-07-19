@@ -183,6 +183,32 @@
             </ul>
           </nav>
 
+          <form action="/upload" method="post" enctype="multipart/form-data">
+            <div class="picture1"></div>
+
+            <div style="display: flex; justify-content: center">
+              <div
+                class="picture2"
+                ondrop="drop(event)"
+                ondragover="allowDrop(event)"
+                style="
+                  margin-top: 60px;
+                  width: 40vw;
+                  height: 20vh;
+                  border: 5px dotted black;
+                  text-align: center;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                "
+              >
+                <b> Drag and drop your cv here </b>
+              </div>
+            </div>
+          </form>
+
+          <!-- <br> -->
+          <h2 style="text-align: center; margin-top: 20px">OR</h2>
           <div class="container-fluid">
             <div class="row">
               <div class="container mt-5">
@@ -289,7 +315,9 @@
                                 />
                               </div>
                               <div class="form-group">
-                                <label for="specialization">Specialization</label>
+                                <label for="specialization"
+                                  >Specialization</label
+                                >
                                 <input
                                   type="text"
                                   class="form-control"
@@ -304,7 +332,7 @@
                           <button
                             type="button"
                             class="btn btn-success mb-4"
-                            id="addMoreEducationSection"
+                            id="addMoreeducationSection"
                           >
                             Add More Education
                           </button>
@@ -317,10 +345,10 @@
                             <i class="fas fa-trash"></i>
                           </button>
                           <hr />
-                          
+
                           <script>
                             document
-                              .getElementById("addMoreEducationSection")
+                              .getElementById("addMoreeducationSection")
                               .addEventListener("click", function () {
                                 const educationSection =
                                   document.getElementById("educationSection");
@@ -372,138 +400,112 @@
                                 <hr />
                               `;
                                 educationSection.appendChild(newEducationItem);
-                          
-                                // Show delete button when a new section is added
-                                document.getElementById(
-                                  "deleteEducationSection"
-                                ).style.display = "inline-block";
-                              });
-                          
-                            document
-                              .getElementById("deleteEducationSection")
-                              .addEventListener("click", function () {
-                                const educationSection =
-                                  document.getElementById("educationSection");
-                                const educationItems =
-                                  educationSection.getElementsByClassName(
-                                    "education-item"
-                                  );
-                                if (educationItems.length > 1) {
-                                  educationSection.removeChild(
-                                    educationItems[educationItems.length - 1]
-                                  );
-                                }
-                          
-                                // Hide delete button if only one section is left
-                                if (educationItems.length === 1) {
-                                  document.getElementById(
-                                    "deleteEducationSection"
-                                  ).style.display = "none";
-                                }
                               });
                           </script>
-                          
-                          <!-- Professional Information Section -->
-                        <h5>Professional Qualifications</h5>
-<div id="professionalSection">
-  <div class="professional-item">
-    <div class="form-group">
-      <label for="companyName">Company Name</label>
-      <input
-        type="text"
-        class="form-control"
-        id="companyName"
-        name="companyName"
-        placeholder="Enter the name of the company"
-        required
-      />
-    </div>
-    <div class="form-row">
-      <div class="form-group col-md-6">
-        <label for="jobFrom">From</label>
-        <input
-          type="date"
-          class="form-control"
-          id="jobFrom"
-          name="duration.from"
-          required
-        />
-      </div>
-      <div class="form-group col-md-6">
-        <label for="jobTo">To</label>
-        <input
-          type="date"
-          class="form-control"
-          id="jobTo"
-          name="duration.to"
-          required
-        />
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="role">Role</label>
-      <input
-        type="text"
-        class="form-control"
-        id="role"
-        name="role"
-        placeholder="Enter your role"
-        required
-      />
-    </div>
-    <div class="form-group">
-      <label for="location">Location</label>
-      <input
-        type="text"
-        class="form-control"
-        id="location"
-        name="location"
-        placeholder="Enter your location"
-        required
-      />
-    </div>
-    <div class="form-group">
-      <label for="description">Description</label>
-      <textarea
-        class="form-control"
-        id="description"
-        name="description"
-        rows="3"
-        placeholder="Enter your job description"
-      ></textarea>
-    </div>
-    <hr />
-  </div>
-</div>
-<button
-  type="button"
-  class="btn btn-success mb-4"
-  id="addMoreProfessionalSection"
->
-  Add More Professional
-</button>
-<button
-  type="button"
-  class="btn btn-danger mb-4"
-  id="deleteProfessionalSection"
-  style="display: none"
->
-  <i class="fas fa-trash"></i>
-</button>
-<!-- <hr /> -->
 
-<script>
-  document
-    .getElementById("addMoreProfessionalSection")
-    .addEventListener("click", function () {
-      const professionalSection =
-        document.getElementById("professionalSection");
-      const newProfessionalItem =
-        document.createElement("div");
-      newProfessionalItem.classList.add(
-        "professional-item"
-      );
-      newProfessionalItem.innerHTML = `
+                          <!-- Professional Information Section -->
+                          <h5>Professional Qualifications</h5>
+                          <div id="professionalSection">
+                            <div class="professional-item">
+                              <div class="form-group">
+                                <label for="companyName">Company Name</label>
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  id="companyName"
+                                  name="companyName"
+                                  placeholder="Enter the name of the company"
+                                  required
+                                />
+                              </div>
+                              <div class="form-row">
+                                <div class="form-group col-md-6">
+                                  <label for="jobFrom">From</label>
+                                  <input
+                                    type="date"
+                                    class="form-control"
+                                    id="jobFrom"
+                                    name="duration.from"
+                                    required
+                                  />
+                                </div>
+                                <div class="form-group col-md-6">
+                                  <label for="jobTo">To</label>
+                                  <input
+                                    type="date"
+                                    class="form-control"
+                                    id="jobTo"
+                                    name="duration.to"
+                                    required
+                                  />
+                                </div>
+                              </div>
+                              <div class="form-group">
+                                <label for="role">Role</label>
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  id="role"
+                                  name="role"
+                                  placeholder="Enter your role"
+                                  required
+                                />
+                              </div>
+                              <div class="form-group">
+                                <label for="location">Location</label>
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  id="location"
+                                  name="location"
+                                  placeholder="Enter your location"
+                                  required
+                                />
+                              </div>
+                              <div class="form-group">
+                                <label for="description">Description</label>
+                                <textarea
+                                  class="form-control"
+                                  id="description"
+                                  name="description"
+                                  rows="3"
+                                  placeholder="Enter your job description"
+                                ></textarea>
+                              </div>
+                              <hr />
+                            </div>
+                          </div>
+                          <button
+                            type="button"
+                            class="btn btn-success mb-4"
+                            id="addMoreprofessionalSection"
+                          >
+                            Add More Professional
+                          </button>
+                          <button
+                            type="button"
+                            class="btn btn-danger mb-4"
+                            id="deleteProfessionalSection"
+                            style="display: none"
+                          >
+                            <i class="fas fa-trash"></i>
+                          </button>
+                          <!-- <hr /> -->
+
+                          <script>
+                            document
+                              .getElementById("addMoreprofessionalSection")
+                              .addEventListener("click", function () {
+                                const professionalSection =
+                                  document.getElementById(
+                                    "professionalSection"
+                                  );
+                                const newProfessionalItem =
+                                  document.createElement("div");
+                                newProfessionalItem.classList.add(
+                                  "professional-item"
+                                );
+                                newProfessionalItem.innerHTML = `
       <div class="form-group">
         <label for="companyName">Company Name</label>
         <input
@@ -565,39 +567,11 @@
       </div>
       <hr />
     `;
-      professionalSection.appendChild(newProfessionalItem);
-
-      // Show delete button when a new section is added
-      document.getElementById(
-        "deleteProfessionalSection"
-      ).style.display = "inline-block";
-    });
-
-  document
-    .getElementById("deleteProfessionalSection")
-    .addEventListener("click", function () {
-      const professionalSection =
-        document.getElementById("professionalSection");
-      const professionalItems =
-        professionalSection.getElementsByClassName(
-          "professional-item"
-        );
-      if (professionalItems.length > 1) {
-        professionalSection.removeChild(
-          professionalItems[
-            professionalItems.length - 1
-          ]
-        );
-      }
-
-      // Hide delete button if only one section is left
-      if (professionalItems.length === 1) {
-        document.getElementById(
-          "deleteProfessionalSection"
-        ).style.display = "none";
-      }
-    });
-</script>
+                                professionalSection.appendChild(
+                                  newProfessionalItem
+                                );
+                              });
+                          </script>
 
                           <hr />
 
@@ -617,7 +591,9 @@
                                 />
                               </div>
                               <div class="form-group">
-                                <label for="projectDescription">Project Description</label>
+                                <label for="projectDescription"
+                                  >Project Description</label
+                                >
                                 <textarea
                                   class="form-control"
                                   id="projectDescription"
@@ -652,7 +628,7 @@
                           <button
                             type="button"
                             class="btn btn-success mb-4"
-                            id="addMoreProjectSection"
+                            id="addMoreprojectSection"
                           >
                             Add More Projects
                           </button>
@@ -665,10 +641,10 @@
                             <i class="fas fa-trash"></i>
                           </button>
                           <hr />
-                          
+
                           <script>
                             document
-                              .getElementById("addMoreProjectSection")
+                              .getElementById("addMoreprojectSection")
                               .addEventListener("click", function () {
                                 const projectSection =
                                   document.getElementById("projectSection");
@@ -716,44 +692,14 @@
                                 <hr />
                               `;
                                 projectSection.appendChild(newProjectItem);
-                          
+
                                 // Show delete button when a new section is added
-                                document.getElementById(
-                                  "deleteProjectSection"
-                                ).style.display = "inline-block";
-                              });
-                          
-                            document
-                              .getElementById("deleteProjectSection")
-                              .addEventListener("click", function () {
-                                const projectSection =
-                                  document.getElementById("projectSection");
-                                const projectItems =
-                                  projectSection.getElementsByClassName(
-                                    "project-item"
-                                  );
-                                if (projectItems.length > 1) {
-                                  projectSection.removeChild(
-                                    projectItems[
-                                      projectItems.length - 1
-                                    ]
-                                  );
-                                }
-                          
-                                // Hide delete button if only one section is left
-                                if (projectItems.length === 1) {
-                                  document.getElementById(
-                                    "deleteProjectSection"
-                                  ).style.display = "none";
-                                }
                               });
                           </script>
-                          
-                         
 
                           <script>
                             document
-                              .getElementById("addMoreProjectSection")
+                              .getElementById("addMoreprojectSection")
                               .addEventListener("click", function () {
                                 const projectSection =
                                   document.getElementById("projectSection");
@@ -862,7 +808,7 @@
                           <button
                             type="button"
                             class="btn btn-success mb-4"
-                            id="addMoreCertificationsSection"
+                            id="addMorecertificationsSection"
                           >
                             Add More Certifications
                           </button>
@@ -875,16 +821,20 @@
                             <i class="fas fa-trash"></i>
                           </button>
                           <hr />
-                          
+
                           <script>
                             document
-                              .getElementById("addMoreCertificationsSection")
+                              .getElementById("addMorecertificationsSection")
                               .addEventListener("click", function () {
                                 const certificationsSection =
-                                  document.getElementById("certificationsSection");
+                                  document.getElementById(
+                                    "certificationsSection"
+                                  );
                                 const newCertificationItem =
                                   document.createElement("div");
-                                newCertificationItem.classList.add("certification-item");
+                                newCertificationItem.classList.add(
+                                  "certification-item"
+                                );
                                 newCertificationItem.innerHTML = `
                                   <div class="form-group">
                                     <label for="certification">Certification</label>
@@ -906,30 +856,11 @@
                                   </div>
                                   <hr />
                                 `;
-                                certificationsSection.appendChild(newCertificationItem);
-                          
-                                // Show delete button when a new section is added
-                                document.getElementById("deleteCertificationsSection").style.display = "inline-block";
-                              });
-                          
-                            document
-                              .getElementById("deleteCertificationsSection")
-                              .addEventListener("click", function () {
-                                const certificationsSection =
-                                  document.getElementById("certificationsSection");
-                                const certificationItems =
-                                  certificationsSection.getElementsByClassName("certification-item");
-                                if (certificationItems.length > 1) {
-                                  certificationsSection.removeChild(certificationItems[certificationItems.length - 1]);
-                                }
-                          
-                                // Hide delete button if only one section is left
-                                if (certificationItems.length === 1) {
-                                  document.getElementById("deleteCertificationsSection").style.display = "none";
-                                }
+                                certificationsSection.appendChild(
+                                  newCertificationItem
+                                );
                               });
                           </script>
-                          
 
                           <h5>Special Achievements</h5>
                           <div id="achievementsSection">
@@ -950,7 +881,7 @@
                           <button
                             type="button"
                             class="btn btn-success mb-4"
-                            id="addMoreAchievementsSection"
+                            id="addMoreachievementsSection"
                           >
                             Add More Achievements
                           </button>
@@ -963,16 +894,20 @@
                             <i class="fas fa-trash"></i>
                           </button>
                           <hr />
-                          
+
                           <script>
                             document
-                              .getElementById("addMoreAchievementsSection")
+                              .getElementById("addMoreachievementsSection")
                               .addEventListener("click", function () {
                                 const achievementsSection =
-                                  document.getElementById("achievementsSection");
+                                  document.getElementById(
+                                    "achievementsSection"
+                                  );
                                 const newAchievementItem =
                                   document.createElement("div");
-                                newAchievementItem.classList.add("achievement-item");
+                                newAchievementItem.classList.add(
+                                  "achievement-item"
+                                );
                                 newAchievementItem.innerHTML = `
                                   <div class="form-group">
                                     <label for="achievement">Achievement</label>
@@ -985,30 +920,14 @@
                                   </div>
                                   <hr />
                                 `;
-                                achievementsSection.appendChild(newAchievementItem);
-                          
+                                achievementsSection.appendChild(
+                                  newAchievementItem
+                                );
+
                                 // Show delete button when a new section is added
-                                document.getElementById("deleteAchievementsSection").style.display = "inline-block";
-                              });
-                          
-                            document
-                              .getElementById("deleteAchievementsSection")
-                              .addEventListener("click", function () {
-                                const achievementsSection =
-                                  document.getElementById("achievementsSection");
-                                const achievementItems =
-                                  achievementsSection.getElementsByClassName("achievement-item");
-                                if (achievementItems.length > 1) {
-                                  achievementsSection.removeChild(achievementItems[achievementItems.length - 1]);
-                                }
-                          
-                                // Hide delete button if only one section is left
-                                if (achievementItems.length === 1) {
-                                  document.getElementById("deleteAchievementsSection").style.display = "none";
-                                }
                               });
                           </script>
-                          
+
                           <!-- Skills Section -->
                           <h5>Skills</h5>
                           <div class="form-group">

@@ -4,102 +4,316 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-<style>
-    *{
-        margin: 0px;
-        padding: 0px;
-        max-width: 100vw;
-        max-height: 100vh;
-    }
-    .height{
-        height: 10vh;
-        background-color: rgb(63, 60, 60);
-        
-    }
-  .header>.second{
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-  }
-   
-.main{
-    height: 80vh;
-    background-color: black;
-    display: flex;
-    
-}
-.container{
-    width: 50vw;
-    background-color: beige;
-    margin: 10px;
-    border: 2px;
-    border-radius: 10px;
-}
-.footer{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-}
-
-</style>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .height {
+            height: 10vh;
+            background-color: rgb(63, 60, 60);
+        }
+        .header .second {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            height: 100%;
+        }
+        .main {
+            height: 80vh;
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative; /* Added to position captions absolutely */
+        }
+        .container {
+            width: 100%;
+            height: 100%;
+            background-color: rgb(9, 9, 0);
+            margin: 10px;
+            border: 2px solid;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .footer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 10vh;
+            background-color: rgb(63, 60, 60);
+        }
+        .icon {
+            border: 3px solid;
+            border-radius: 50%;
+            padding: 10px;
+            margin: 0 10px;
+            background-color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .icon:hover {
+            background-color: #ddd;
+        }
+        .icon img {
+            display: block;
+        }
+        .icon-red {
+            background-color: red;
+        }
+        .icon-green {
+            background-color: rgb(84, 94, 235);
+        }
+        .icon-blue {
+            background-color: rgb(84, 94, 235);
+        }
+        .user {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+        }
+        .user img {
+            border: 3px solid;
+            border-radius: 50%;
+            background-color: black;
+        }
+        video {
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+        }
+        .chat-sidebar {
+            position: fixed;
+            right: -300px;
+            top: 0;
+            width: 300px;
+            height: 100%;
+            background-color: white;
+            box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+            transition: right 0.3s;
+            z-index: 1000;
+            padding: 10px;
+            overflow-y: auto;
+        }
+        .chat-sidebar.open {
+            right: 0;
+        }
+        .header {
+            display: flex;
+            justify-content: flex-end;
+        }
+        .timer {
+            color: white;
+            margin-right: 50px;
+            margin-top: 30px;
+            font-size: 25px;
+        }
+        .captions {
+            color: white;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 10px;
+            position: absolute;
+            bottom: 10px;
+            width: 90%;
+            left: 5%;
+            text-align: center;
+            display: none; /* Initially hidden */
+        }
+    </style>
 </head>
 <body>
-    <div class="header height" > 
-        <div class="second">
-            <img src="../images/more.png" width="40px" height="40px" alt="">
-        </div>
-        
-           
-        </div>
-    
+    <div class="header height">
+        <div class="timer" id="timer">00:00:00</div>
+    </div>
+
     <div class="main">
         <div class="container">
-            <div class="user1" style="display: flex;justify-content: center;align-items: center;">
-                <img src="../images/user.png" width="200px" height="200px" style="border: 3px solid;border-radius: 100px;background-color: black; "alt="">
+            <div class="user">
+                <img src="../images/user.png" id="userImage" width="200" height="200" alt="">
+                <video id="video" autoplay style="display:none;"></video>
             </div>
-            
         </div>
-        <div class="container">
-            <div class="user2" style="display: flex;justify-content: center;align-items: center;">
-                 <img src="../images/user.png" width="200px" height="200px" style="border: 3px solid;border-radius: 100px;background-color: black; "alt="">
-            </div>
+        <div id="captions" class="captions"></div> <!-- Captions element -->
+    </div>
+
+    <div class="footer height">
+        <div class="icon" id="micButton">
+            <img src="../images/mic-off.png" id="micIcon" alt="" width="20" height="20">
+        </div>
+        <div class="icon" id="cameraButton">
+            <img src="../images/no-video.png" id="cameraIcon" alt="" width="20" height="20">
+        </div>
+        <div class="icon" id="chatButton">
+            <img src="../images/comment.png" width="20" height="20" alt="">
+        </div>
+        <div class="icon" id="captionsButton">
+            <img src="../images/closed-caption-logo.png" width="20" height="20" alt="">
+        </div>
+        <div class="icon icon-red">
+            <img src="../images/phone.png" alt="" width="20" height="20">
         </div>
     </div>
-    <div class="footer height">
-        
-        <!-- ***************mic************************* -->
-        <img src="../images/mic.png" id="mic" alt="" width="40px" height="40px" style="border: 3px solid;border-radius: 30px;padding: 5px;margin-right: 40px;background-color: white;color: white;">
-        <!-- ************************************************* -->
 
+    <div class="chat-sidebar" id="chatSidebar">
+        <h3>Chat</h3>
+        <div id="chatMessages"></div>
+        <input type="text" id="chatInput" placeholder="Type a message" style="width: 100%; padding: 10px; margin-top: 10px;">
+        <button id="sendMessageButton" style="width: 100%; padding: 10px; margin-top: 5px;">Send</button>
+    </div>
 
-        <!-- *****************video camera*************************** -->
-        <img src="../images/video-camera.png" id="video" alt="" width="40px" height="40px" style="border: 3px solid;border-radius: 30px;padding: 5px;
-        background-color: white;color: white;">
-        <!-- ******************************************************* -->
+    <script>
+        let cameraActive = false;
+        let micActive = false;
+        let micStream = null;
+        let captionsActive = false;
+        let recognition = null;
 
+        let startTime = Date.now();
 
+        function formatTime(ms) {
+            const seconds = Math.floor((ms / 1000) % 60);
+            const minutes = Math.floor((ms / (1000 * 60)) % 60);
+            const hours = Math.floor((ms / (1000 * 60 * 60)) % 24);
+            return [
+                hours.toString().padStart(2, '0'),
+                minutes.toString().padStart(2, '0'),
+                seconds.toString().padStart(2, '0')
+            ].join(':');
+        }
 
-        <!-- ****************hangup********************************* -->
-        <img src="../images/phone.png" width="40px " height="40px" style="border: 3px solid;border-radius: 30px;padding: 5px;margin-left: 40px;background-color: red;color: red;" alt="">
+        function updateTimer() {
+            const elapsedTime = Date.now() - startTime;
+            document.getElementById("timer").textContent = formatTime(elapsedTime);
+        }
 
-<!-- ********************************************************************* -->
+        setInterval(updateTimer, 1000);
 
+        document.getElementById("cameraButton").addEventListener("click", function () {
+            const video = document.getElementById("video");
+            const userImage = document.getElementById("userImage");
+            const cameraIcon = document.getElementById("cameraIcon");
 
+            if (!cameraActive) {
+                navigator.mediaDevices.getUserMedia({ video: true })
+                    .then(function (stream) {
+                        video.srcObject = stream;
+                        video.style.display = "block";
+                        userImage.style.display = "none";
+                        cameraIcon.src = "../images/video-camera-on.png";
+                        cameraButton.classList.add("icon-blue");
+                        cameraActive = true;
+                    })
+                    .catch(function (err) {
+                        console.error("Error accessing camera: ", err);
+                        alert("Error accessing camera: " + err.message);
+                    });
+            } else {
+                const tracks = video.srcObject.getTracks();
+                tracks.forEach(track => track.stop());
+                video.style.display = "none";
+                userImage.style.display = "block";
+                cameraIcon.src = "../images/video-camera.png";
+                cameraButton.classList.remove("icon-blue");
+                cameraActive = false;
+            }
+        });
 
+        document.getElementById("micButton").addEventListener("click", function () {
+            const micIcon = document.getElementById("micIcon");
 
-<!-- **********************Share screen************************************ -->
+            if (!micActive) {
+                navigator.mediaDevices.getUserMedia({ audio: true })
+                    .then(function (stream) {
+                        micStream = stream;
+                        micActive = true;
+                        micIcon.src = "../images/mic.png";
+                        micButton.classList.add("icon-green");
+                        alert("Microphone access granted");
+                    })
+                    .catch(function (err) {
+                        console.error("Error accessing microphone: ", err);
+                        alert("Error accessing microphone: " + err.message);
+                    });
+            } else {
+                if (micStream) {
+                    micStream.getTracks().forEach(track => track.stop());
+                }
+                micActive = false;
+                micIcon.src = "../images/mic-off.png";
+                micButton.classList.remove("icon-green");
+                alert("Microphone muted");
+            }
+        });
 
+        document.getElementById("chatButton").addEventListener("click", function () {
+            const chatSidebar = document.getElementById("chatSidebar");
+            chatSidebar.classList.toggle("open");
+        });
 
-<img src="../images/share.png" alt="" width="40px" height="40px" style="border: 3px solid;border-radius: 30px;padding: 5px;margin-left:40px ;background-color: rgb(84, 94, 235);color:rgb(84, 94, 235) ;">
-<!-- ********************************************************************* -->
+        document.getElementById("sendMessageButton").addEventListener("click", function () {
+            const chatInput = document.getElementById("chatInput");
+            const chatMessages = document.getElementById("chatMessages");
 
+            if (chatInput.value.trim() !== "") {
+                const message = document.createElement("div");
+                message.textContent = chatInput.value;
+                chatMessages.appendChild(message);
+                chatInput.value = "";
+            }
+        });
 
-                
-    <img src="../images/comment.png" width="40px" height="40px" style="border: 0.1px ;border-radius: 100px;padding: 5px ;margin-right: 40px;background-color: white;color: white;margin-left: 40px;"  alt="">
-</div>
+        document.getElementById("chatInput").addEventListener("keypress", function (event) {
+            if (event.key === "Enter") {
+                document.getElementById("sendMessageButton").click();
+            }
+        });
 
-</div>
+        document.getElementById("captionsButton").addEventListener("click", function () {
+            const captions = document.getElementById("captions");
+            captionsActive = !captionsActive;
+            captions.style.display = captionsActive ? 'block' : 'none';
+
+            if (captionsActive) {
+                startCaptions();
+            } else {
+                if (recognition) {
+                    recognition.stop();
+                }
+            }
+        });
+
+        function startCaptions() {
+            if (!('webkitSpeechRecognition' in window)) {
+                alert("Your browser does not support Speech Recognition.");
+                return;
+            }
+
+            recognition = new webkitSpeechRecognition();
+            recognition.continuous = true;
+            recognition.interimResults = true;
+
+            recognition.onresult = function (event) {
+                const results = event.results;
+                const lastResult = results[results.length - 1];
+                if (lastResult.isFinal) {
+                    document.getElementById("captions").textContent = lastResult[0].transcript;
+                }
+            };
+
+            recognition.onerror = function (event) {
+                console.error("Speech recognition error: ", event.error);
+            };
+
+            recognition.start();
+        }
+    </script>
 </body>
-
 </html>
