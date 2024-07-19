@@ -183,12 +183,13 @@
             </ul>
           </nav>
 
-          <form action="/upload" method="post" enctype="multipart/form-data">
+          <form id="uploadForm" action="http://localhost:3002/api/userDetails/upload" method="post" enctype="multipart/form-data">
             <div class="picture1"></div>
-
+        
             <div style="display: flex; justify-content: center">
               <div
                 class="picture2"
+                id="dropZone"
                 ondrop="drop(event)"
                 ondragover="allowDrop(event)"
                 style="
@@ -202,9 +203,11 @@
                   align-items: center;
                 "
               >
-                <b> Drag and drop your cv here </b>
+                <b id="fileName">Drag and drop your CV here</b>
               </div>
             </div>
+            <input type="file" id="fileInput" name="file" style="display: none;" onchange="fileSelected(event)">
+            <button type="submit"  style="margin-top: 20px; display: flex; justify-content: center">Upload</button>
           </form>
 
           <!-- <br> -->
@@ -821,6 +824,18 @@
                             <i class="fas fa-trash"></i>
                           </button>
                           <hr />
+                          <div class="modal fade" id="loaderModal" tabindex="-1" role="dialog" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                              <div class="modal-content">
+                                <div class="modal-body text-center">
+                                  <div class="spinner-border text-primary" role="status">
+                                    <span class="sr-only">Loading...</span>
+                                  </div>
+                                  <p>Loading, please wait...</p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
 
                           <script>
                             document
@@ -1019,13 +1034,16 @@
                     })
                       .then((response) => response.json())
                       .then((data) => {
+                        $('#loaderModal').modal('hide'); // Hide loader modal
                         console.log("Received data: ", data[0]);
                         if (data) {
                           populateForm(data[0]);
                         }
                       })
-                      .catch((error) =>
+                      .catch((error) =>{
+                        $('#loaderModal').modal('hide'); // Hide loader modal
                         console.error("Error fetching user data:", error)
+                      }
                       );
                   }
 
@@ -1173,7 +1191,7 @@
                     .getElementById("profileForm")
                     .addEventListener("submit", function (event) {
                       event.preventDefault();
-
+                      $('#loaderModal').modal('show');
                       // Prepare data according to the model
                       let formData = {
                         name: document.getElementById("name").value,
@@ -1303,10 +1321,13 @@
                       })
                         .then((response) => response.json())
                         .then((result) => {
+                          $('#loaderModal').modal('hide'); // Hide loader modal
                           alert("Profile updated successfully!");
                         })
-                        .catch((error) =>
+                        .catch((error) =>{
+                          $('#loaderModal').modal('hide'); // Hide loader modal
                           console.error("Error updating profile:", error)
+                        }
                         );
                     });
                 });
@@ -1384,5 +1405,56 @@
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
+    <script>
+      function allowDrop(event) {
+      event.preventDefault();
+    }
+
+    function drop(event) {
+      event.preventDefault();
+      const files = event.dataTransfer.files;
+      if (files.length > 0) {
+        console.log('file received: ',files[0].name)
+        document.getElementById('fileInput').files = files;
+        document.getElementById('fileName').innerHTML = `File: ${files[0].name}`;
+      }
+    }
+
+    function fileSelected(event) {
+      const files = event.target.files;
+      if (files.length > 0) {
+        document.getElementById('fileName').innerHTML = `File: ${files[0].name}`;
+        console.log('File selected:', files[0].name);
+      }
+    }
+
+    document.getElementById('uploadForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      $('#loaderModal').modal('show');
+      const formData = new FormData(this);
+      const apiUploadUrl = config.userUrl + '/api/userDetails/upload'
+      fetch(apiUploadUrl, {
+        method: 'POST',
+        headers: {
+              // "Content-Type": "application/json",
+              Authorization: "Bearer " + localStorage.getItem("token"),
+            },
+        body: formData
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log('Success:', data);
+        $('#loaderModal').modal('hide'); // Hide loader modal
+      })
+      .catch(error => {
+        $('#loaderModal').modal('hide'); // Hide loader modal
+        console.error('Error:', error);
+      });
+    });
+
+    document.getElementById('dropZone').addEventListener('click', function() {
+      document.getElementById('fileInput').click();
+    });
+    </script>
   </body>
 </html>
