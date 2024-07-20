@@ -205,12 +205,12 @@
               >
                 <b id="fileName">Drag and drop your CV here</b>
               </div>
-              ></div>
             </div>
             <input type="file" id="fileInput" name="file" style="display: none;" onchange="fileSelected(event)">
             <button type="submit"  style="margin-top: 20px; display: flex; justify-content: center">Upload</button>
           </form>
 
+          <!-- <br> -->
           <h2 style="text-align: center; margin-top: 20px">OR</h2>
           <div class="container-fluid">
             <div class="row">
@@ -281,156 +281,73 @@
                           <hr />
 
                           <!-- Educational Information Section -->
-                   
-
-  
-    <h5>Educational Qualifications</h5>
-    <div id="educationSection">
-      <div class="education-item">
-        <div class="form-group">
-          <label for="collegeName">College Name</label>
-          <input
-            type="text"
-            class="form-control"
-            id="collegeName"
-            name="collegeName"
-            placeholder="Enter the name of your college"
-            required
-          />
-        </div>
-        <div class="form-group">
-          <label for="degree">Degree</label>
-          <input
-            type="text"
-            class="form-control"
-            id="degree"
-            name="degree"
-            placeholder="Enter your degree"
-            required
-          />
-        </div>
-        <div class="form-group">
-          <label for="years">Years</label>
-          <input
-            type="text"
-            class="form-control"
-            id="years"
-            name="years"
-            placeholder="Enter the years"
-            required
-          />
-        </div>
-        <div class="form-group">
-          <label for="specialization">Specialization</label>
-          <input
-            type="text"
-            class="form-control"
-            id="specialization"
-            name="specialization"
-            placeholder="Enter your specialization"
-          />
-        </div>
-        <hr />
-      </div>
-    </div>
-    <button
-      type="button"
-      class="btn btn-success mb-4"
-      id="addMoreeducationSection"
-    >
-      Add More Education
-    </button>
-    <button
-      type="button"
-      class="btn btn-danger mb-4"
-      id="deleteEducationSection"
-      style="display: none"
-    >
-      <i class="fas fa-trash"></i>
-    </button>
-    <hr />
-
-
-  <script>
-    document
-      .getElementById("addMoreeducationSection")
-      .addEventListener("click", function () {
-        const educationSection = document.getElementById("educationSection");
-        const newEducationItem = document.createElement("div");
-        newEducationItem.classList.add("education-item");
-        newEducationItem.innerHTML = `
-          <div class="form-group">
-            <label for="collegeName">College Name</label>
-            <input
-              type="text"
-              class="form-control"
-              name="collegeName"
-              placeholder="Enter the name of your college"
-              required
-            />
-          </div>
-          <div class="form-group">
-            <label for="degree">Degree</label>
-            <input
-              type="text"
-              class="form-control"
-              name="degree"
-              placeholder="Enter your degree"
-              required
-            />
-          </div>
-          <div class="form-group">
-            <label for="years">Years</label>
-            <input
-              type="text"
-              class="form-control"
-              name="years"
-              placeholder="Enter the years"
-              required
-            />
-          </div>
-          <div class="form-group">
-            <label for="specialization">Specialization</label>
-            <input
-              type="text"
-              class="form-control"
-              name="specialization"
-              placeholder="Enter your specialization"
-            />
-          </div>
-          <hr />
-        `;
-        educationSection.appendChild(newEducationItem);
-        toggleDeleteButtonVisibility();
-      });
-
-    document
-      .getElementById("deleteEducationSection")
-      .addEventListener("click", function () {
-        const educationSection = document.getElementById("educationSection");
-        const educationItems = educationSection.getElementsByClassName("education-item");
-        if (educationItems.length > 1) {
-          educationSection.removeChild(educationItems[educationItems.length - 1]);
-          toggleDeleteButtonVisibility();
-        }
-      });
-
-    function toggleDeleteButtonVisibility() {
-      const educationSection = document.getElementById("educationSection");
-      const educationItems = educationSection.getElementsByClassName("education-item");
-      const deleteButton = document.getElementById("deleteEducationSection");
-      if (educationItems.length > 1) {
-        deleteButton.style.display = "inline-block";
-      } else {
-        deleteButton.style.display = "none";
-      }
-    }
-
-    // Initial call to ensure the delete button visibility is correct on page load
-    toggleDeleteButtonVisibility();
-  </script>
-</body>
-</html>
+                          <h5>Educational Qualifications</h5>
+                          <div id="educationSection">
+                            <div class="education-item">
+                              <div class="form-group">
+                                <label for="collegeName">College Name</label>
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  id="collegeName"
+                                  name="collegeName"
+                                  placeholder="Enter the name of your college"
+                                  required
+                                />
+                              </div>
+                              <div class="form-group">
+                                <label for="degree">Degree</label>
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  id="degree"
+                                  name="degree"
+                                  placeholder="Enter your degree"
+                                  required
+                                />
+                              </div>
+                              <div class="form-group">
+                                <label for="years">Years</label>
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  id="years"
+                                  name="years"
+                                  placeholder="Enter the years"
+                                  required
+                                />
+                              </div>
+                              <div class="form-group">
+                                <label for="specialization"
+                                  >Specialization</label
+                                >
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  id="specialization"
+                                  name="specialization"
+                                  placeholder="Enter your specialization"
+                                />
+                              </div>
+                              <hr />
+                            </div>
+                          </div>
+                          <button
+                            type="button"
+                            class="btn btn-success mb-4"
+                            id="addMoreeducationSection"
+                          >
+                            Add More Education
+                          </button>
+                          <button
+                            type="button"
+                            class="btn btn-danger mb-4"
+                            id="deleteEducationSection"
+                            style="display: none"
+                          >
+                            <i class="fas fa-trash"></i>
+                          </button>
+                          <hr />
 
                           <!-- Professional Information Section -->
                           <h5>Professional Qualifications</h5>
@@ -504,106 +421,24 @@
                               <hr />
                             </div>
                           </div>
-                          <button type="button" class="btn btn-success mb-4" id="addMoreprofessionalSection">
+                          <button
+                            type="button"
+                            class="btn btn-success mb-4"
+                            id="addMoreprofessionalSection"
+                          >
                             Add More Professional
                           </button>
-                        
                           <button
-      type="button"
-      class="btn btn-danger mb-4"
-      id="deleteProfessionalSection"
-      style="display: none"
-    >
-      <i class="fas fa-trash"></i>
-    </button>
-                          <hr />
-                          
-                          <script>
-                            document.getElementById('addMoreprofessionalSection').addEventListener('click', function () {
-                              const professionalSection = document.getElementById('professionalSection');
-                              const newProfessionalItem = document.createElement('div');
-                              newProfessionalItem.classList.add('professional-item');
-                              newProfessionalItem.innerHTML = `
-                                <div class="form-group">
-                                  <label for="companyName">Company Name</label>
-                                  <input
-                                    type="text"
-                                    class="form-control"
-                                    name="companyName"
-                                    placeholder="Enter the name of the company"
-                                    required
-                                  />
-                                </div>
-                                <div class="form-row">
-                                  <div class="form-group col-md-6">
-                                    <label for="jobFrom">From</label>
-                                    <input
-                                      type="date"
-                                      class="form-control"
-                                      name="duration.from"
-                                      required
-                                    />
-                                  </div>
-                                  <div class="form-group col-md-6">
-                                    <label for="jobTo">To</label>
-                                    <input
-                                      type="date"
-                                      class="form-control"
-                                      name="duration.to"
-                                      required
-                                    />
-                                  </div>
-                                </div>
-                                <div class="form-group">
-                                  <label for="role">Role</label>
-                                  <input
-                                    type="text"
-                                    class="form-control"
-                                    name="role"
-                                    placeholder="Enter your role"
-                                    required
-                                  />
-                                </div>
-                                <div class="form-group">
-                                  <label for="location">Location</label>
-                                  <input
-                                    type="text"
-                                    class="form-control"
-                                    name="location"
-                                    placeholder="Enter your location"
-                                    required
-                                  />
-                                </div>
-                                <div class="form-group">
-                                  <label for="description">Description</label>
-                                  <textarea
-                                    class="form-control"
-                                    name="description"
-                                    rows="3"
-                                    placeholder="Enter your job description"
-                                  ></textarea>
-                                </div>
-                                <hr />
-                              `;
-                              professionalSection.appendChild(newProfessionalItem);
-                          
-                              // Show delete button when a new section is added
-                              document.getElementById('deleteProfessionalSection').style.display = 'inline-block';
-                            });
-                          
-                            document.getElementById('deleteProfessionalSection').addEventListener('click', function () {
-                              const professionalSection = document.getElementById('professionalSection');
-                              const professionalItems = professionalSection.getElementsByClassName('professional-item');
-                              if (professionalItems.length > 1) {
-                                professionalSection.removeChild(professionalItems[professionalItems.length - 1]);
-                              }
-                          
-                              // Hide delete button if only one section is left
-                              if (professionalItems.length === 1) {
-                                document.getElementById('deleteProfessionalSection').style.display = 'none';
-                              }
-                            });
-                          </script>
+                            type="button"
+                            class="btn btn-danger mb-4"
+                            id="deleteProfessionalSection"
+                            style="display: none"
+                          >
+                            <i class="fas fa-trash"></i>
+                          </button>
+
+                        <hr />
+
                           <!-- Projects Information Section -->
                           <h5>Projects</h5>
                           <div id="projectSection">
@@ -620,7 +455,9 @@
                                 />
                               </div>
                               <div class="form-group">
-                                <label for="projectDescription">Project Description</label>
+                                <label for="projectDescription"
+                                  >Project Description</label
+                                >
                                 <textarea
                                   class="form-control"
                                   id="projectDescription"
@@ -652,25 +489,33 @@
                               <hr />
                             </div>
                           </div>
-                          <button type="button" class="btn btn-success mb-4" id="addMoreprojectSection">
+                          <button
+                            type="button"
+                            class="btn btn-success mb-4"
+                            id="addMoreprojectSection"
+                          >
                             Add More Projects
                           </button>
                           <button
-                          type="button"
-                          class="btn btn-danger mb-4"
-                          id="deleteProjectSection"
-                          style="display: none"
-                        >
-                          <i class="fas fa-trash"></i>
-                        </button>
+                            type="button"
+                            class="btn btn-danger mb-4"
+                            id="deleteProjectSection"
+                            style="display: none"
+                          >
+                            <i class="fas fa-trash"></i>
+                          </button>
                           <hr />
-                          
+<!-- 
                           <script>
-                            document.getElementById('addMoreprojectSection').addEventListener('click', function () {
-                              const projectSection = document.getElementById('projectSection');
-                              const newProjectItem = document.createElement('div');
-                              newProjectItem.classList.add('project-item');
-                              newProjectItem.innerHTML = `
+                            document
+                              .getElementById("addMoreprojectSection")
+                              .addEventListener("click", function () {
+                                const projectSection =
+                                  document.getElementById("projectSection");
+                                const newProjectItem =
+                                  document.createElement("div");
+                                newProjectItem.classList.add("project-item");
+                                newProjectItem.innerHTML = `
                                 <div class="form-group">
                                   <label for="projectName">Project Name</label>
                                   <input
@@ -710,25 +555,92 @@
                                 </div>
                                 <hr />
                               `;
-                              projectSection.appendChild(newProjectItem);
-                          
-                              // Show delete button when a new section is added
-                              document.getElementById('deleteProjectSection').style.display = 'inline-block';
-                            });
-                          
-                            document.getElementById('deleteProjectSection').addEventListener('click', function () {
-                              const projectSection = document.getElementById('projectSection');
-                              const projectItems = projectSection.getElementsByClassName('project-item');
-                              if (projectItems.length > 1) {
-                                projectSection.removeChild(projectItems[projectItems.length - 1]);
-                              }
-                          
-                              // Hide delete button if only one section is left
-                              if (projectItems.length === 1) {
-                                document.getElementById('deleteProjectSection').style.display = 'none';
-                              }
-                            });
+                                projectSection.appendChild(newProjectItem);
+
+                                // Show delete button when a new section is added
+                              }); -->
                           </script>
+
+                          <!-- <script>
+                            document
+                              .getElementById("addMoreprojectSection")
+                              .addEventListener("click", function () {
+                                const projectSection =
+                                  document.getElementById("projectSection");
+                                const newProjectItem =
+                                  document.createElement("div");
+                                newProjectItem.classList.add("project-item");
+                                newProjectItem.innerHTML = `
+      <div class="form-group">
+        <label for="projectName">Project Name</label>
+        <input
+          type="text"
+          class="form-control"
+          name="projectName"
+          placeholder="Enter the name of the project"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="projectDescription">Project Description</label>
+        <textarea
+          class="form-control"
+          name="projectDescription"
+          rows="3"
+          placeholder="Enter the project description"
+        ></textarea>
+      </div>
+      <div class="form-group">
+        <label for="skillsUsed">Skills Used</label>
+        <input
+          type="text"
+          class="form-control tagify"
+          name="skillsUsed"
+          placeholder="Enter skills used"
+        />
+      </div>
+      <div class="form-group">
+        <label for="projectLink">Project Link</label>
+        <input
+          type="text"
+          class="form-control"
+          name="projectLink"
+          placeholder="Enter project link (optional)"
+        />
+      </div>
+      <hr />
+    `;
+                                projectSection.appendChild(newProjectItem);
+
+                                // Show delete button when a new section is added
+                                document.getElementById(
+                                  "deleteProjectSection"
+                                ).style.display = "inline-block";
+                              });
+
+                            document
+                              .getElementById("deleteProjectSection")
+                              .addEventListener("click", function () {
+                                const projectSection =
+                                  document.getElementById("projectSection");
+                                const projectItems =
+                                  projectSection.getElementsByClassName(
+                                    "project-item"
+                                  );
+                                if (projectItems.length > 1) {
+                                  projectSection.removeChild(
+                                    projectItems[projectItems.length - 1]
+                                  );
+                                }
+
+                                // Hide delete button if only one section is left
+                                if (projectItems.length === 1) {
+                                  document.getElementById(
+                                    "deleteProjectSection"
+                                  ).style.display = "none";
+                                }
+                              });
+                          </script> -->
 
                           <!-- Certifications and Achievements -->
                           <h5>Certifications</h5>
@@ -757,143 +669,84 @@
                               <hr />
                             </div>
                           </div>
-                          <button type="button" class="btn btn-success mb-4" id="addMorecertificationsSection">
+                          <button
+                            type="button"
+                            class="btn btn-success mb-4"
+                            id="addMorecertificationsSection"
+                          >
                             Add More Certifications
                           </button>
                           <button
-                          type="button"
-                          class="btn btn-danger mb-4"
-                          id="deleteCertificationsSection"
-                          style="display: none"
-                        >
-                          <i class="fas fa-trash"></i>
-                        </button>
+                            type="button"
+                            class="btn btn-danger mb-4"
+                            id="deleteCertificationsSection"
+                            style="display: none"
+                          >
+                            <i class="fas fa-trash"></i>
+                          </button>
                           <hr />
-                          
-                          <script>
-                            document.getElementById('addMorecertificationsSection').addEventListener('click', function () {
-                              const certificationsSection = document.getElementById('certificationsSection');
-                              const newCertificationItem = document.createElement('div');
-                              newCertificationItem.classList.add('certification-item');
-                              newCertificationItem.innerHTML = `
-                                <div class="form-group">
-                                  <label for="certification">Certification</label>
-                                  <input
-                                    type="text"
-                                    class="form-control"
-                                    name="certification"
-                                    placeholder="Enter a certification"
-                                  />
+                          <div class="modal fade" id="loaderModal" tabindex="-1" role="dialog" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                              <div class="modal-content">
+                                <div class="modal-body text-center">
+                                  <div class="spinner-border text-primary" role="status">
+                                    <span class="sr-only">Loading...</span>
+                                  </div>
+                                  <p>Loading, please wait...</p>
                                 </div>
-                                <div class="form-group">
-                                  <label for="certification-issuer">Issuer</label>
-                                  <input
-                                    type="text"
-                                    class="form-control"
-                                    name="certification-issuer"
-                                    placeholder="Enter the Issuer Name"
-                                  />
-                                </div>
-                                <hr />
-                              `;
-                              certificationsSection.appendChild(newCertificationItem);
-                          
-                              // Show delete button when a new section is added
-                              document.getElementById('deleteCertificationsSection').style.display = 'inline-block';
-                            });
-                          
-                            document.getElementById('deleteCertificationsSection').addEventListener('click', function () {
-                              const certificationsSection = document.getElementById('certificationsSection');
-                              const certificationItems = certificationsSection.getElementsByClassName('certification-item');
-                              if (certificationItems.length > 1) {
-                                certificationsSection.removeChild(certificationItems[certificationItems.length - 1]);
-                              }
-                          
-                              // Hide delete button if only one section is left
-                              if (certificationItems.length === 1) {
-                                document.getElementById('deleteCertificationsSection').style.display = 'none';
-                              }
-                            });
-                          </script>
+                              </div>
+                            </div>
+                          </div>
 
-<h5>Special Achievements</h5>
-<div id="achievementsSection">
-  <div class="achievement-item">
-    <div class="form-group">
-      <label for="achievement">Achievement</label>
-      <input
-        type="text"
-        class="form-control"
-        id="achievement"
-        name="achievement"
-        placeholder="Enter an achievement"
-      />
-    </div>
-    <hr />
-  </div>
-</div>
-<button type="button" class="btn btn-success mb-4" id="addMoreachievementsSection">
-  Add More Achievements
-</button>
-<button
-type="button"
-class="btn btn-danger mb-4"
-id="deleteAchievementsSection"
-style="display: none"
->
-<i class="fas fa-trash"></i>
-</button>
-<hr />
+                        <h5>Special Achievements</h5>
+                          <div id="achievementsSection">
+                            <div class="achievement-item">
+                              <div class="form-group">
+                                <label for="achievement">Achievement</label>
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  id="achievement"
+                                  name="achievement"
+                                  placeholder="Enter an achievement"
+                                />
+                              </div>
+                              <hr />
+                            </div>
+                          </div>
+                          <button
+                            type="button"
+                            class="btn btn-success mb-4"
+                            id="addMoreachievementsSection"
+                          >
+                            Add More Achievements
+                          </button>
+                          <button
+                            type="button"
+                            class="btn btn-danger mb-4"
+                            id="deleteAchievementsSection"
+                            style="display: none"
+                          >
+                            <i class="fas fa-trash"></i>
+                          </button>
+                          <hr />
 
-<script>
-  document.getElementById('addMoreachievementsSection').addEventListener('click', function () {
-    const achievementsSection = document.getElementById('achievementsSection');
-    const newAchievementItem = document.createElement('div');
-    newAchievementItem.classList.add('achievement-item');
-    newAchievementItem.innerHTML = `
-      <div class="form-group">
-        <label for="achievement">Achievement</label>
-        <input
-          type="text"
-          class="form-control"
-          name="achievement"
-          placeholder="Enter an achievement"
-        />
-      </div>
-      <hr />
-    `;
-    achievementsSection.appendChild(newAchievementItem);
-
-    // Show delete button when a new section is added
-    document.getElementById('deleteAchievementsSection').style.display = 'inline-block';
-  });
-
-  document.getElementById('deleteAchievementsSection').addEventListener('click', function () {
-    const achievementsSection = document.getElementById('achievementsSection');
-    const achievementItems = achievementsSection.getElementsByClassName('achievement-item');
-    if (achievementItems.length > 1) {
-      achievementsSection.removeChild(achievementItems[achievementItems.length - 1]);
-    }
-
-    // Hide delete button if only one section is left
-    if (achievementItems.length === 1) {
-      document.getElementById('deleteAchievementsSection').style.display = 'none';
-    }
-  });
-</script>
+                         
 
                           <!-- Skills Section -->
                           <h5>Skills</h5>
                           <div class="form-group">
-                            <label for="skills">Skills</label>
+                            
                             <input
                               type="text"
                               class="form-control tagify"
                               id="skills"
                               name="skills"
                               placeholder="Enter skills"
+                              value=""
                             />
                           </div>
+                          <div id="currentSkill"></div>
 
                           <button type="submit" class="btn btn-primary">
                             Submit
@@ -954,11 +807,11 @@ style="display: none"
                       });
                   }
 
-                  // addMore("addMoreeducationSection", "education-item");
-                  // addMore("addMoreprofessionalSection", "professional-item");
-                  // addMore("addMoreprojectSection", "project-item");
-                  // addMore("addMorecertificationsSection", "certification-item");
-                  // addMore("addMoreachievementsSection", "achievement-item");
+                  addMore("addMoreeducationSection", "education-item");
+                  addMore("addMoreprofessionalSection", "professional-item");
+                  addMore("addMoreprojectSection", "project-item");
+                  addMore("addMorecertificationsSection", "certification-item");
+                  addMore("addMoreachievementsSection", "achievement-item");
 
                   // Fetch existing user data
                   let uid = localStorage.getItem("uid");
@@ -1117,12 +970,19 @@ style="display: none"
                     });
 
                     // Populate skills
-                    let skillsInput = document.getElementById("skills");
+                    // let skillsInput = document.getElementById("skills");
+                    // console.log('value: ',skillsInput)
                     const parsedSkills = data.skills
                       .map((skill) => skill.value)
-                      .join(",");
-                    console.log("parsedMainSkill: ", parsedSkills);
-                    // new Tagify(skillsInput).addTags(parsedSkills);
+                      .join(", ");
+                    
+                    const arrayparsedSkills = parsedSkills.split(',').map(item => item.trim());
+                    // console.log("parsedMainSkill: ", arrayparsedSkills);
+                    document.getElementById("skills").value = "parsedSkills"
+                    console.log(document.getElementById("skills"));
+
+                    document.getElementById("currentSkill").innerHTML = parsedSkills
+                    // new Tagify(skillsInput).addTags(arrayparsedSkills);
                   }
 
                   // Submit profile information
