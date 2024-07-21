@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
     <style>
         * {
             margin: 0;
@@ -14,8 +15,9 @@
             font-family: Arial, sans-serif;
         }
         .height {
-            height: 10vh;
+            height: 7vh; /* Reduced header and footer height */
             background-color: rgb(63, 60, 60);
+            position: relative; /* Position relative for strobing dot */
         }
         .header .second {
             display: flex;
@@ -24,29 +26,33 @@
             height: 100%;
         }
         .main {
-            height: 80vh;
-            background-color: black;
+            padding: 20px;
+            height: 86vh; /* Increased main content height */
+            background-color: rgb(0, 0, 0);
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
+            gap: 40px;
             position: relative; /* Added to position captions absolutely */
         }
         .container {
-            width: 100%;
-            height: 100%;
+            width: 350px; /* Set to the original fixed width */
+            height: 85%;
             background-color: rgb(9, 9, 0);
-            margin: 10px;
-            border: 2px solid;
+            border: 1px solid rgba(235, 60, 60, 0);
             border-radius: 10px;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
+            padding: 20px;
+            position: relative; /* Added for strobing dot positioning */
         }
         .footer {
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 10vh;
+            height: 7vh; /* Reduced header and footer height */
             background-color: rgb(63, 60, 60);
         }
         .icon {
@@ -65,7 +71,7 @@
             display: block;
         }
         .icon-red {
-            background-color: red;
+            background-color: rgba(255, 0, 0, 0.865);
         }
         .icon-green {
             background-color: rgb(84, 94, 235);
@@ -73,20 +79,26 @@
         .icon-blue {
             background-color: rgb(84, 94, 235);
         }
-        .user {
+        .user, .AI {
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             width: 100%;
             height: 100%;
         }
-        .user img {
+        .user img, .AI img {
             border: 3px solid;
             border-radius: 50%;
             background-color: black;
         }
+        .user h1, .AI h1 {
+            color: white;
+            margin-top: 10px;
+            text-align: center; /* Center the text below the image */
+        }
         video {
-            width: 100%;
+            width: 100%; /* Set video width to 100% to match container width */
             height: 100%;
             border-radius: 10px;
         }
@@ -95,13 +107,15 @@
             right: -300px;
             top: 0;
             width: 300px;
-            height: 100%;
+            height: 80%;
             background-color: white;
             box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
             transition: right 0.3s;
             z-index: 1000;
             padding: 10px;
+            margin-top: 10vh;
             overflow-y: auto;
+            border-radius: 10px;
         }
         .chat-sidebar.open {
             right: 0;
@@ -109,11 +123,12 @@
         .header {
             display: flex;
             justify-content: flex-end;
+            align-items: center; /* Center items vertically */
+            position: relative; /* For strobing dot positioning */
         }
         .timer {
             color: white;
             margin-right: 50px;
-            margin-top: 30px;
             font-size: 25px;
         }
         .captions {
@@ -123,14 +138,58 @@
             position: absolute;
             bottom: 10px;
             width: 90%;
+            height: 10%;
             left: 5%;
             text-align: center;
             display: none; /* Initially hidden */
+        }
+        .chat-message {
+            margin-bottom: 10px;
+        }
+        .chat-message .timestamp {
+            font-size: 0.8em;
+            color: gray;
+        }
+        .chat-message .sender {
+            font-weight: bold;
+        }
+        .chat-message .message {
+            margin-top: 5px;
+        }
+        @media (min-width: 768px) {
+            .main {
+                flex-direction: row;
+                gap: 40px;
+            }
+            .container {
+                width: 45%;
+            }
+        }
+        .strobing-dot {
+            width: 20px; /* Slightly larger dot */
+            height: 20px;
+            background-color: red;
+            border-radius: 50%;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            animation: strobe 1s infinite;
+            display: block; /* Always show the strobing dot */
+        }
+        @keyframes strobe {
+            0% { opacity: 1; }
+            50% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        .disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
         }
     </style>
 </head>
 <body>
     <div class="header height">
+        <div class="strobing-dot" id="strobingDot"></div> <!-- Strobing dot element -->
         <div class="timer" id="timer">00:00:00</div>
     </div>
 
@@ -138,7 +197,14 @@
         <div class="container">
             <div class="user">
                 <img src="../images/user.png" id="userImage" width="200" height="200" alt="">
+                <h1 id="userText">You</h1> <!-- Added id for JavaScript manipulation -->
                 <video id="video" autoplay style="display:none;"></video>
+            </div>
+        </div>
+        <div class="container">
+            <div class="AI">
+                <img src="../images/user.png" id="aiImage" width="200" height="200" alt="">
+                <h1>AI</h1>
             </div>
         </div>
         <div id="captions" class="captions"></div> <!-- Captions element -->
@@ -146,27 +212,27 @@
 
     <div class="footer height">
         <div class="icon" id="micButton">
-            <img src="../images/mic-off.png" id="micIcon" alt="" width="20" height="20">
+            <i class="fa fa-microphone" aria-hidden="true"></i>
         </div>
         <div class="icon" id="cameraButton">
-            <img src="../images/no-video.png" id="cameraIcon" alt="" width="20" height="20">
+            <i class="fa fa-video-camera" aria-hidden="true"></i>
         </div>
         <div class="icon" id="chatButton">
-            <img src="../images/comment.png" width="20" height="20" alt="">
+            <i class="fa fa-commenting-o" aria-hidden="true"></i>
         </div>
         <div class="icon" id="captionsButton">
-            <img src="../images/closed-caption-logo.png" width="20" height="20" alt="">
+            <i class="fa fa-cc" aria-hidden="true"></i>
         </div>
-        <div class="icon icon-red">
-            <img src="../images/phone.png" alt="" width="20" height="20">
+        <div class="icon icon-red" id="endCallButton">
+            <i class="fa fa-phone" aria-hidden="true"></i>
         </div>
     </div>
 
     <div class="chat-sidebar" id="chatSidebar">
         <h3>Chat</h3>
         <div id="chatMessages"></div>
-        <input type="text" id="chatInput" placeholder="Type a message" style="width: 100%; padding: 10px; margin-top: 10px;">
-        <button id="sendMessageButton" style="width: 100%; padding: 10px; margin-top: 5px;">Send</button>
+        <input type="text" id="chatInput" placeholder="Type a message" style="width: 100%; padding: 10px; margin-top: 10px; border-radius: 20px;">
+        <button id="sendMessageButton" style="width: 30%; padding: 10px; margin-top: 10px; border-radius: 20px; background-color: rgb(60, 60, 243); color: white;">Send</button>
     </div>
 
     <script>
@@ -179,19 +245,18 @@
         let startTime = Date.now();
 
         function formatTime(ms) {
-            const seconds = Math.floor((ms / 1000) % 60);
-            const minutes = Math.floor((ms / (1000 * 60)) % 60);
-            const hours = Math.floor((ms / (1000 * 60 * 60)) % 24);
+            const minutes = Math.floor((ms / 1000) / 60);
+            const hours = Math.floor(minutes / 60);
             return [
                 hours.toString().padStart(2, '0'),
-                minutes.toString().padStart(2, '0'),
-                seconds.toString().padStart(2, '0')
+                (minutes % 60).toString().padStart(2, '0'),
+                Math.floor((ms / 1000) % 60).toString().padStart(2, '0')
             ].join(':');
         }
 
         function updateTimer() {
-            const elapsedTime = Date.now() - startTime;
-            document.getElementById("timer").textContent = formatTime(elapsedTime);
+            const elapsed = Date.now() - startTime;
+            document.getElementById("timer").textContent = formatTime(elapsed);
         }
 
         setInterval(updateTimer, 1000);
@@ -199,7 +264,7 @@
         document.getElementById("cameraButton").addEventListener("click", function () {
             const video = document.getElementById("video");
             const userImage = document.getElementById("userImage");
-            const cameraIcon = document.getElementById("cameraIcon");
+            const userText = document.getElementById("userText");
 
             if (!cameraActive) {
                 navigator.mediaDevices.getUserMedia({ video: true })
@@ -207,35 +272,33 @@
                         video.srcObject = stream;
                         video.style.display = "block";
                         userImage.style.display = "none";
-                        cameraIcon.src = "../images/video-camera-on.png";
-                        cameraButton.classList.add("icon-blue");
+                        userText.style.display = "none";
                         cameraActive = true;
                     })
                     .catch(function (err) {
                         console.error("Error accessing camera: ", err);
-                        alert("Error accessing camera: " + err.message);
                     });
             } else {
-                const tracks = video.srcObject.getTracks();
-                tracks.forEach(track => track.stop());
+                if (video.srcObject) {
+                    video.srcObject.getTracks().forEach(track => track.stop());
+                }
                 video.style.display = "none";
                 userImage.style.display = "block";
-                cameraIcon.src = "../images/video-camera.png";
-                cameraButton.classList.remove("icon-blue");
+                userText.style.display = "block";
                 cameraActive = false;
             }
         });
 
         document.getElementById("micButton").addEventListener("click", function () {
-            const micIcon = document.getElementById("micIcon");
+            const micButton = document.getElementById("micButton");
 
             if (!micActive) {
                 navigator.mediaDevices.getUserMedia({ audio: true })
                     .then(function (stream) {
                         micStream = stream;
                         micActive = true;
-                        micIcon.src = "../images/mic.png";
                         micButton.classList.add("icon-green");
+                        toggleCaptionsButton();
                         alert("Microphone access granted");
                     })
                     .catch(function (err) {
@@ -247,8 +310,8 @@
                     micStream.getTracks().forEach(track => track.stop());
                 }
                 micActive = false;
-                micIcon.src = "../images/mic-off.png";
                 micButton.classList.remove("icon-green");
+                toggleCaptionsButton();
                 alert("Microphone muted");
             }
         });
@@ -264,9 +327,18 @@
 
             if (chatInput.value.trim() !== "") {
                 const message = document.createElement("div");
-                message.textContent = chatInput.value;
+                const timestamp = new Date();
+                const timeString = `${timestamp.getHours().toString().padStart(2, '0')}:${timestamp.getMinutes().toString().padStart(2, '0')}`;
+                
+                message.innerHTML = `<div class="chat-message">
+                    <div class="sender">You</div>
+                    <div class="timestamp">${timeString}</div>
+                    <div class="message">${chatInput.value}</div>
+                </div>`;
+                
                 chatMessages.appendChild(message);
                 chatInput.value = "";
+                chatMessages.scrollTop = chatMessages.scrollHeight; // Scroll to bottom
             }
         });
 
@@ -278,6 +350,8 @@
 
         document.getElementById("captionsButton").addEventListener("click", function () {
             const captions = document.getElementById("captions");
+            if (!micActive) return; // Prevent toggling if mic is not active
+
             captionsActive = !captionsActive;
             captions.style.display = captionsActive ? 'block' : 'none';
 
@@ -314,6 +388,10 @@
 
             recognition.start();
         }
+
+        document.getElementById("endCallButton").addEventListener("click", function () {
+            window.location.href = "dashboard.html";
+        });
     </script>
 </body>
 </html>

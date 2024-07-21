@@ -342,11 +342,12 @@
                           <button
                             type="button"
                             class="btn btn-danger mb-4"
-                            id="deleteEducationSection"
+                            id="deleteeducationSection"
                             style="display: none"
                           >
                             <i class="fas fa-trash"></i>
                           </button>
+                          
                           <hr />
 
                           <!-- Professional Information Section -->
@@ -431,7 +432,7 @@
                           <button
                             type="button"
                             class="btn btn-danger mb-4"
-                            id="deleteProfessionalSection"
+                            id="deleteprofessionalSection"
                             style="display: none"
                           >
                             <i class="fas fa-trash"></i>
@@ -499,7 +500,7 @@
                           <button
                             type="button"
                             class="btn btn-danger mb-4"
-                            id="deleteProjectSection"
+                            id="deleteprojectSection"
                             style="display: none"
                           >
                             <i class="fas fa-trash"></i>
@@ -679,7 +680,7 @@
                           <button
                             type="button"
                             class="btn btn-danger mb-4"
-                            id="deleteCertificationsSection"
+                            id="deletecertificationsSection"
                             style="display: none"
                           >
                             <i class="fas fa-trash"></i>
@@ -724,7 +725,7 @@
                           <button
                             type="button"
                             class="btn btn-danger mb-4"
-                            id="deleteAchievementsSection"
+                            id="deleteachievementsSection"
                             style="display: none"
                           >
                             <i class="fas fa-trash"></i>
@@ -796,6 +797,8 @@
                           if (item.querySelector(".tagify")) {
                             new Tagify(item.querySelector(".tagify"));
                           }
+                          console.log('deleteEl: ', document.getElementById('delete'+container))
+                          document.getElementById('delete'+container).style.display = 'inline-block';
                         } else {
                           console.error(
                             `Container with id "${containerId.replace(
