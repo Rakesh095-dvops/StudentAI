@@ -183,36 +183,64 @@
             </ul>
           </nav>
 
-          <form id="uploadForm" action="http://localhost:3002/api/userDetails/upload" method="post" enctype="multipart/form-data">
-            <div class="picture1"></div>
-        
-            <div style="display: flex; justify-content: center">
-              <div
-                class="picture2"
-                id="dropZone"
-                ondrop="drop(event)"
-                ondragover="allowDrop(event)"
-                style="
-                  margin-top: 60px;
-                  width: 40vw;
-                  height: 20vh;
-                  border: 5px dotted black;
-                  text-align: center;
-                  display: flex;
-                  justify-content: center;
-                  align-items: center;
-                "
-              >
-                <b id="fileName">Drag and drop your CV here</b>
-              </div>
-            </div>
-            <input type="file" id="fileInput" name="file" style="display: none;" onchange="fileSelected(event)">
-            <button type="submit"  style="margin-top: 20px; display: flex; justify-content: center">Upload</button>
-          </form>
+          
+          <div class="container-fluid"  >
+            <div class="row">
+              <div class="container mt-5">
+                <div class="row justify-content-center">
+                  <div class="col-lg-8" style="bottom: 71px;">
+                    <!-- Combined Information Card -->
+                    <div class="card mb-4">
+                      <div class="card-header bg-primary text-white">
+                        <h4>Complete Profile Information</h4>
+                      </div>
+                      <div class="card-body">
+                        <form id="uploadForm" action="http://localhost:3002/api/userDetails/upload" method="post" enctype="multipart/form-data">
+                          <div class="picture1"></div>
+                      
+                          <div style="display: flex; justify-content: center">
+                            <div
+                              class="picture2"
+                              id="dropZone"
+                              ondrop="drop(event)"
+                              ondragover="allowDrop(event)"
+                              style="
+                                margin-top: 10px;
+                                width: 40vw;
+                                height: 20vh;
+                                border: 5px dotted black;
+                                text-align: center;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                              "
+                            >
+                              <b id="fileName">Drag and drop your CV here</b>
+                            </div>
+                          </div>
+                          <input type="file" id="fileInput" name="file" style="display: none;" onchange="fileSelected(event)">
+                          <button type="submit" class="btn btn-primary" style="margin-top: 20px;margin-left: 30px;">
+                            Upload
+                          </button>
+                        </form>
+
+
+
+
+                      </div>
+                      </div>
+                      </div>
+                      </div>
+                      </div>
+                      </div>
+                      </div>
+
+
+          
 
           <!-- <br> -->
-          <h2 style="text-align: center; margin-top: 20px">OR</h2>
-          <div class="container-fluid">
+          <h2 style="text-align: center; ">OR</h2>
+          <div class="container-fluid" style="margin-bottom: 40px;">
             <div class="row">
               <div class="container mt-5">
                 <div class="row justify-content-center">
