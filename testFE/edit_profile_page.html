@@ -30,7 +30,13 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/tagify/4.0.0/tagify.css"
       rel="stylesheet"
     />
-
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/tagify/3.23.0/tagify.css"
+    integrity="sha512-2xnd6gjciWzTcCekRZT7ZVxD7m12i3u83ZT6Rtu3iT8IuAvvpeHUK8TnFdb/2OBDEWm/C7JoFdHvHUugC1xLOA=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
     <link
       href="vendor/fontawesome-free/css/all.min.css"
       rel="stylesheet"
@@ -534,142 +540,10 @@
                             <i class="fas fa-trash"></i>
                           </button>
                           <hr />
-<!-- 
-                          <script>
-                            document
-                              .getElementById("addMoreprojectSection")
-                              .addEventListener("click", function () {
-                                const projectSection =
-                                  document.getElementById("projectSection");
-                                const newProjectItem =
-                                  document.createElement("div");
-                                newProjectItem.classList.add("project-item");
-                                newProjectItem.innerHTML = `
-                                <div class="form-group">
-                                  <label for="projectName">Project Name</label>
-                                  <input
-                                    type="text"
-                                    class="form-control"
-                                    name="projectName"
-                                    placeholder="Enter the name of the project"
-                                    required
-                                  />
-                                </div>
-                                <div class="form-group">
-                                  <label for="projectDescription">Project Description</label>
-                                  <textarea
-                                    class="form-control"
-                                    name="projectDescription"
-                                    rows="3"
-                                    placeholder="Enter the project description"
-                                  ></textarea>
-                                </div>
-                                <div class="form-group">
-                                  <label for="skillsUsed">Skills Used</label>
-                                  <input
-                                    type="text"
-                                    class="form-control tagify"
-                                    name="skillsUsed"
-                                    placeholder="Enter skills used"
-                                  />
-                                </div>
-                                <div class="form-group">
-                                  <label for="projectLink">Project Link</label>
-                                  <input
-                                    type="text"
-                                    class="form-control"
-                                    name="projectLink"
-                                    placeholder="Enter project link (optional)"
-                                  />
-                                </div>
-                                <hr />
-                              `;
-                                projectSection.appendChild(newProjectItem);
 
-                                // Show delete button when a new section is added
-                              }); -->
-                          </script>
+                          
 
-                          <!-- <script>
-                            document
-                              .getElementById("addMoreprojectSection")
-                              .addEventListener("click", function () {
-                                const projectSection =
-                                  document.getElementById("projectSection");
-                                const newProjectItem =
-                                  document.createElement("div");
-                                newProjectItem.classList.add("project-item");
-                                newProjectItem.innerHTML = `
-      <div class="form-group">
-        <label for="projectName">Project Name</label>
-        <input
-          type="text"
-          class="form-control"
-          name="projectName"
-          placeholder="Enter the name of the project"
-          required
-        />
-      </div>
-      <div class="form-group">
-        <label for="projectDescription">Project Description</label>
-        <textarea
-          class="form-control"
-          name="projectDescription"
-          rows="3"
-          placeholder="Enter the project description"
-        ></textarea>
-      </div>
-      <div class="form-group">
-        <label for="skillsUsed">Skills Used</label>
-        <input
-          type="text"
-          class="form-control tagify"
-          name="skillsUsed"
-          placeholder="Enter skills used"
-        />
-      </div>
-      <div class="form-group">
-        <label for="projectLink">Project Link</label>
-        <input
-          type="text"
-          class="form-control"
-          name="projectLink"
-          placeholder="Enter project link (optional)"
-        />
-      </div>
-      <hr />
-    `;
-                                projectSection.appendChild(newProjectItem);
-
-                                // Show delete button when a new section is added
-                                document.getElementById(
-                                  "deleteProjectSection"
-                                ).style.display = "inline-block";
-                              });
-
-                            document
-                              .getElementById("deleteProjectSection")
-                              .addEventListener("click", function () {
-                                const projectSection =
-                                  document.getElementById("projectSection");
-                                const projectItems =
-                                  projectSection.getElementsByClassName(
-                                    "project-item"
-                                  );
-                                if (projectItems.length > 1) {
-                                  projectSection.removeChild(
-                                    projectItems[projectItems.length - 1]
-                                  );
-                                }
-
-                                // Hide delete button if only one section is left
-                                if (projectItems.length === 1) {
-                                  document.getElementById(
-                                    "deleteProjectSection"
-                                  ).style.display = "none";
-                                }
-                              });
-                          </script> -->
+                        
 
                           <!-- Certifications and Achievements -->
                           <h5>Certifications</h5>
@@ -763,23 +637,30 @@
                          
 
                           <!-- Skills Section -->
+                          
                           <h5>Skills</h5>
-                          <div class="form-group">
-                            
-                            <input
+                          <div id="currentSkill">
+
+                            <div class="form-group">
+                              
+                              <input
                               type="text"
                               class="form-control tagify"
                               id="skills"
                               name="skills"
                               placeholder="Enter skills"
                               value=""
-                            />
+                              
+                              />
+                            </div>
+                              <button type="submit" class="btn btn-primary">
+                                Submit
+                              </button>
+                          
+                            
+                              
+                           
                           </div>
-                          <div id="currentSkill"></div>
-
-                          <button type="submit" class="btn btn-primary">
-                            Submit
-                          </button>
                         </form>
                       </div>
                     </div>
@@ -843,6 +724,29 @@
                   addMore("addMoreprojectSection", "project-item");
                   addMore("addMorecertificationsSection", "certification-item");
                   addMore("addMoreachievementsSection", "achievement-item");
+ 
+
+                  function removeSection(element) {
+            let container = element.closest(".container").querySelector("#" + element.closest(".container").querySelector(".form-section").parentElement.id);
+            element.parentElement.remove();
+            updateRemoveButtons(container);
+        }
+
+        function updateRemoveButtons(container) {
+            let items = container.querySelectorAll(".form-section");
+            items.forEach((item, index) => {
+                let button = item.querySelector(".remove-button");
+                button.style.display = items.length > 1 && index !== 0 ? "inline-block" : "none";
+            });
+        }
+
+        addMore("addMoreeducationSection", "education-item");
+        addMore("addMoreprofessionalSection", "professional-item");
+
+        document.addEventListener("DOMContentLoaded", function () {
+            updateRemoveButtons(document.getElementById("educationSection"));
+            updateRemoveButtons(document.getElementById("professionalSection"));
+        });
 
                   // Fetch existing user data
                   let uid = localStorage.getItem("uid");

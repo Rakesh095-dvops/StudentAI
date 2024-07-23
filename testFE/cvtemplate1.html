@@ -181,6 +181,7 @@
                 let superMainJobDiv = document.createElement('div')
                 const superMainAtt = document.createAttribute('class')
                 superMainAtt.value = "job"
+                superMainJobDiv.style.width="100%"
                 superMainJobDiv.setAttributeNode(superMainAtt)
 
 
@@ -205,12 +206,13 @@
                 mainDiv.appendChild(positionId)
 
                 const expResponUlId = document.createElement('ul')
+                expResponUlId.style.marginTop="-30px"
                 exp.responsibilities.map(respon => {
                     let respoLi = document.createElement('li')
                     respoLi.innerHTML=respon
                     expResponUlId.appendChild(respoLi)
                 })
-                mainDiv.appendChild(expResponUlId)
+                // mainDiv.appendChild(expResponUlId)
 
                 superMainJobDiv.appendChild(mainDiv)
                 
@@ -219,6 +221,7 @@
 
                 superMainJobDiv.appendChild(jobDateDiv)
                 experienceId.appendChild(superMainJobDiv);
+                experienceId.appendChild(expResponUlId);
             });
 
             let certiList = generatedCV['certifications']
@@ -237,7 +240,9 @@
                 let mainProjectDiv = document.createElement('div')
                 let mainProjectDivAttr = document.createAttribute('class')
                 mainProjectDivAttr.value = "degree-details"
+                mainProjectDiv.style.width="100%"
                 mainProjectDiv.setAttributeNode(mainProjectDivAttr)
+
                 let projectNameDiv = document.createElement('h4')
                 projectNameDiv.innerHTML = p.title
                 mainProjectDiv.appendChild(projectNameDiv)

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add and Remove Sections</title>
+    <style>
+        .form-section {
+            margin-bottom: 20px;
+            position: relative;
+        }
+        .remove-button {
+            position: absolute;
+            top: 0;
+            right: 0;
+            cursor: pointer;
+            color: red;
+            display: none;
+        }
+    </style>
+    <link rel="stylesheet" href="">
+      <link href="css/sb-admin-2.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container mt-5">
+        <h5>Educational Qualifications</h5>
+        <div id="educationSection">
+            <div class="education-item form-section">
+                <div class="form-group">
+                    <label for="collegeName">College Name</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="collegeName"
+                      name="collegeName"
+                      placeholder="Enter the name of your college"
+                      required
+                    />
+                </div>
+                <div class="form-group">
+                    <label for="degree">Degree</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="degree"
+                      name="degree"
+                      placeholder="Enter your degree"
+                      required
+                    />
+                </div>
+                <div class="form-group">
+                    <label for="years">Years</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="years"
+                      name="years"
+                      placeholder="Enter the years"
+                      required
+                    />
+                </div>
+                <div class="form-group">
+                    <label for="specialization">Specialization</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="specialization"
+                      name="specialization"
+                      placeholder="Enter your specialization"
+                    />
+                </div>
+                <span class="remove-button" onclick="removeSection(this)">&#10006;</span>
+                <hr />
+            </div>
+        </div>
+        <button type="button" class="btn btn-success mb-4" id="addMoreeducationSection">
+            Add More Education
+        </button>
+        <hr />
+        <h5>Professional Qualifications</h5>
+        <div id="professionalSection">
+            <div class="professional-item form-section">
+                <div class="form-group">
+                    <label for="companyName">Company Name</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="companyName"
+                      name="companyName"
+                      placeholder="Enter the name of the company"
+                      required
+                    />
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="jobFrom">From</label>
+                        <input
+                          type="date"
+                          class="form-control"
+                          id="jobFrom"
+                          name="duration.from"
+                          required
+                        />
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="jobTo">To</label>
+                        <input
+                          type="date"
+                          class="form-control"
+                          id="jobTo"
+                          name="duration.to"
+                          required
+                        />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="role">Role</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="role"
+                      name="role"
+                      placeholder="Enter your role"
+                      required
+                    />
+                </div>
+                <div class="form-group">
+                    <label for="location">Location</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="location"
+                      name="location"
+                      placeholder="Enter your location"
+                      required
+                    />
+                </div>
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea
+                      class="form-control"
+                      id="description"
+                      name="description"
+                      rows="3"
+                      placeholder="Enter your job description"
+                    ></textarea>
+                </div>
+                <span class="remove-button" onclick="removeSection(this)">&#10006;</span>
+                <hr />
+            </div>
+        </div>
+        <button type="button" class="btn btn-success mb-4" id="addMoreprofessionalSection">
+            Add More Professional
+        </button>
+    </div>
+    <h5>Projects</h5>
+    <div id="projectSection" class="container">
+        <div class="project-item form-section">
+            <!-- Existing form fields -->
+            <span class="remove-button" onclick="removeSection(this)">&#10006;</span>
+            <hr />
+        </div>
+    </div>
+    <button type="button" class="btn btn-success mb-4" id="addMoreprojectSection">Add More Projects</button>
+    <hr />
+    
+    <h5>Certifications</h5>
+    <div id="certificationsSection" class="container">
+        <div class="certification-item form-section">
+            <!-- Existing form fields -->
+            <span class="remove-button" onclick="removeSection(this)">&#10006;</span>
+            <hr />
+        </div>
+    </div>
+    <button type="button" class="btn btn-success mb-4" id="addMorecertificationsSection">Add More Certifications</button>
+    <hr />
+    
+    <h5>Special Achievements</h5>
+    <div id="achievementsSection" class="container">
+        <div class="achievement-item form-section">
+            <!-- Existing form fields -->
+            <span class="remove-button" onclick="removeSection(this)">&#10006;</span>
+            <hr />
+        </div>
+    </div>
+    <button type="button" class="btn btn-success mb-4" id="addMoreachievementsSection">Add More Achievements</button>
+    <hr />
+    
+
+    <script>
+        function addMore(containerId, itemClass) {
+            document.getElementById(containerId).addEventListener("click", function (event) {
+                event.preventDefault();
+                let container = document.getElementById(containerId.replace("addMore", ""));
+                if (container) {
+                    let item = document.querySelector("." + itemClass).cloneNode(true);
+                    item.querySelectorAll("input, textarea").forEach((input) => (input.value = "")); // clear the inputs
+                    container.appendChild(item);
+                    updateRemoveButtons(container);
+                } else {
+                    console.error(`Container with id "${containerId.replace("addMore", "")}" not found.`);
+                }
+            });
+        }
+
+        function removeSection(element) {
+            let container = element.closest(".container").querySelector("#" + element.closest(".container").querySelector(".form-section").parentElement.id);
+            element.parentElement.remove();
+            updateRemoveButtons(container);
+        }
+
+        function updateRemoveButtons(container) {
+            let items = container.querySelectorAll(".form-section");
+            items.forEach((item, index) => {
+                let button = item.querySelector(".remove-button");
+                button.style.display = items.length > 1 && index !== 0 ? "inline-block" : "none";
+            });
+        }
+
+        addMore("addMoreeducationSection", "education-item");
+        addMore("addMoreprofessionalSection", "professional-item");
+
+        document.addEventListener("DOMContentLoaded", function () {
+            updateRemoveButtons(document.getElementById("educationSection"));
+            updateRemoveButtons(document.getElementById("professionalSection"));
+        });
+    </script>
+</body>
+</html>
