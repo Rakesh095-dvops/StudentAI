@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CV</title>
+    <style>
+      * {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+          sans-serif;
+      }
+
+      .body {
+        margin-left: 20px;
+        margin-right: 20px;
+        width: 100vw;
+      }
+
+      .cv-container {
+        width: 60%;
+        margin: 40px auto;
+        background: #fff;
+        padding: 40px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-bottom: 10px;
+        margin-bottom: 40px;
+        padding: 20px;
+        height: 10px;
+      }
+
+      .header h1 {
+        font-size: 40px;
+        color: #333;
+        margin: 0;
+        margin-left: 220px;
+        text-align: center;
+        flex: 1;
+      }
+
+      .header img {
+        width: 150px;
+        height: 100px;
+        margin-left: 40px;
+        z-index: 2;
+      }
+
+      .contact-info {
+        background: linear-gradient(0.25turn, #cb3e35, #902720, #6e1914);
+        color: white;
+        padding: 10px;
+        text-align: center;
+        margin-top: 10px;
+        width: 100%;
+      }
+
+      .section {
+        margin-top: 20px;
+      }
+
+      .section h2 {
+        font-size: 20px;
+        color: #000;
+        margin: 0;
+        font-weight: bold;
+      }
+
+      .section hr {
+        border: none;
+        height: 1px;
+        background: #000;
+        margin: 10px 0;
+      }
+
+      .professional-experience .job {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .job-description {
+        list-style-type: disc;
+        margin: 10px 0 10px 20px;
+        padding: 0;
+        text-align: justify;
+      }
+
+      @media print {
+        .cv-container {
+          width: 100%;
+          box-shadow: none;
+          padding: 0;
+        }
+
+        .header {
+          margin-left: 0;
+        }
+
+        .contact-info {
+          background: linear-gradient(
+            0.25turn,
+            #cb3e35,
+            #902720,
+            #6e1914
+          ) !important;
+        }
+      }
+    </style>
+  </head>
+
+  <body style="background-color: #ffffff; margin-top: 20px">
+    <div class="cv-container">
+      <div class="header">
+        <h1 id="name">Learner Name</h1>
+        <img src="./img/logo-hv.png" alt="Hero Vired Logo" />
+      </div>
+
+      <div class="contact-info">
+        <p style="margin: 5px 0">
+          <span><b id="email">EmailId</b></span> |
+          <span><b id="phone-number">Phone number</b></span> |
+          <span><b id="lives-in">Location</b></span>
+        </p>
+        <p style="margin: 5px 0">
+          <!-- <b>LinkedIn Profile</b> | <b>GitHub</b> | <b>Kaggle Link</b> -->
+        </p>
+      </div>
+
+      <div class="section">
+        <h2>TECHNICAL SKILLS</h2>
+        <hr />
+        <p style="margin: 5px 0" id="skills">
+          Skill 1 | Skill 2 | Skill 3 | Skill 4
+        </p>
+      </div>
+
+      <div class="section professional-experience">
+        <h2>PROFESSIONAL EXPERIENCE</h2>
+        <hr />
+        <div id="experience">
+          <!-- <div class="job">
+            <div>
+              <b style="font-size: 16px; color: #333">Company Name</b><br />
+              <p style="margin: 5px 0"><i>Designation</i></p>
+            </div>
+            <div style="text-align: right">
+              <p style="margin: 5px 0"><b>Location</b></p>
+              <p style="margin: 5px 0"><i>Duration</i></p>
+            </div>
+          </div>
+          <ul class="job-description">
+            <li>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</li>
+            <li>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</li>
+          </ul> -->
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>PROJECTS</h2>
+        <hr />
+        <div id="projects"></div>
+        <!-- <b style="font-size: 16px; color: #333">Name of the project</b><br />
+        <p style="margin: 5px 0">
+          Name of the Institute/Organisation prepared for
+        </p>
+        <ul class="job-description">
+          <li>Prepared for</li>
+          <li>Key skills/tech used</li>
+        </ul>
+        <b style="font-size: 16px; color: #333">Name of the project</b><br />
+        <p style="margin: 5px 0">
+          Name of the Institute/Organisation prepared for
+        </p>
+        <ul class="job-description">
+          <li>Prepared for</li>
+          <li>Key skills/tech used</li>
+        </ul> -->
+      </div>
+
+      <div class="section">
+        <h2>CERTIFICATIONS</h2>
+        <hr />
+        <div id="certifications"></div>
+        <!--         
+        <b style="font-size: 16px; color: #333"
+          >Replace this text with the name of the institute, e.g., Hero Vired</b
+        ><br />
+        <p style="margin: 5px 0">
+          Replace this text with the name of the course
+        </p> -->
+        <!-- <ul class="job-description">
+          <li>Learnings obtained</li>
+        </ul>
+        <b style="font-size: 16px; color: #333"
+          >Replace this text with the name of the institute, e.g., Hero Vired</b
+        ><br />
+        <p style="margin: 5px 0">
+          Replace this text with the name of the course
+        </p>
+        <ul class="job-description">
+          <li>Learnings obtained</li>
+        </ul> -->
+      </div>
+
+      <div class="section professional-experience">
+        <h2>EDUCATION</h2>
+        <hr />
+        <div id="education"></div>
+        <!-- <div class="job">
+          <div>
+            <b style="font-size: 16px; color: #333">Institute Name</b><br />
+            <p style="margin: 5px 0"><i>Degree</i></p>
+          </div>
+          <div style="text-align: right">
+            <p style="margin: 5px 0"><b>Location</b></p>
+            <p style="margin: 5px 0"><i>Duration</i></p>
+          </div>
+        </div> -->
+        <!-- <ul class="job-description">
+          <li>Percentage Obtained</li>
+        </ul> -->
+        <!-- <div class="job">
+          <div>
+            <b style="font-size: 16px; color: #333">Institute Name</b><br />
+            <p style="margin: 5px 0"><i>Degree</i></p>
+          </div>
+          <div style="text-align: right">
+            <p style="margin: 5px 0"><b>Location</b></p>
+            <p style="margin: 5px 0"><i>Duration</i></p>
+          </div>
+        </div> -->
+        <!-- <ul class="job-description">
+          <li>Percentage Obtained</li>
+        </ul> -->
+      </div>
+    </div>
+
+    <script src="./url.js"></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const params = new URLSearchParams(window.location.search);
+        const cvId = params.get("cvId");
+        const apiUrl = config.baseUrl + `/api/resume/${cvId}`;
+
+        fetch(apiUrl, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            console.log("Data obtained: ", data);
+            console.log(data.generatedCV);
+            populateResume(JSON.parse(data.generatedCV));
+          })
+          .catch((error) => {
+            console.error("Error fetching data:", error);
+            alert("Failed to load resume data.");
+          });
+      });
+
+      let uid = localStorage.getItem("uid");
+      if (uid) {
+          const apiUrl = config.baseUrl + `/api/userDetails/${uid}`
+          fetch(apiUrl, {
+              headers: {
+                  Authorization:
+                      "Bearer " + localStorage.getItem("token"),
+              },
+          })
+              .then((response) => response.json())
+              .then((data) => {
+                  console.log("Received data: ", data[0]);
+                  if (data[0]) {
+                      document.getElementById("lives-in").textContent = data[0].contactDetails.address
+
+                  }
+              })
+              .catch((error) =>
+                  console.error("Error fetching user data:", error)
+              );
+      }
+
+      function populateResume(generatedCV) {
+        console.log(generatedCV);
+        document.getElementById("name").textContent = generatedCV.name;
+
+        document.getElementById("email").textContent = generatedCV.email;
+        document.getElementById("phone-number").textContent =
+          generatedCV.phoneNo;
+        const formattedSkills = generatedCV.skills
+          .map((skill) => skill)
+          .join(" | ");
+        document.getElementById("skills").innerHTML = formattedSkills;
+
+       
+        const profexp = generatedCV["professionalExperience"];
+        console.log("profexp: ", profexp);
+        let i = 0;
+
+        profexp.map((exp) => {
+          console.log("Prof: ", exp);
+          i = i + 1;
+          let experienceId = document.getElementById("experience");
+          let superMainJobDiv = document.createElement("div");
+          let superMainAtt = document.createAttribute("class");
+          superMainAtt.value = "job";
+          superMainJobDiv.style.width = "100%";
+          superMainJobDiv.setAttributeNode(superMainAtt);
+
+          let mainDiv = document.createElement("div");
+
+          let companyNameId = document.createElement("b");
+          let compAttr = document.createAttribute("id");
+          compAttr.value = "companyName-" + i;
+          let compAttr2 = document.createAttribute("style");
+          companyNameId.setAttributeNode(compAttr2);
+          compAttr2.value = "font-size: 16px; color: #333";
+          companyNameId.innerHTML = exp.company;
+          mainDiv.appendChild(companyNameId);
+
+          let positionId = document.createElement("p");
+          let positionIdAttr = document.createAttribute("style");
+          positionIdAttr.value = "margin: 5px 0";
+          positionId.setAttributeNode(positionIdAttr);
+          positionId.innerHTML = exp.position;
+          mainDiv.appendChild(positionId);
+
+          superMainJobDiv.appendChild(mainDiv);
+
+          let jobDateDiv = document.createElement("div");
+          let jobDateDivAttr = document.createAttribute("style");
+          jobDateDivAttr.value = "text-align: right";
+          jobDateDiv.setAttributeNode(jobDateDivAttr);
+          let jobDateP = document.createElement("p");
+          let jobDatePAttr = document.createAttribute("style");
+          jobDatePAttr.value = "text-align: right";
+          jobDateP.setAttributeNode(jobDatePAttr);
+          
+          
+          let jobLoc = document.createElement("p");
+          let jobLocNAttr = document.createAttribute("style");
+          jobLocNAttr.value = "margin: 5px 0"
+          jobLoc.setAttributeNode(jobLocNAttr)
+          jobLoc.innerHTML=exp.location
+          jobDateDiv.appendChild(jobLoc)
+
+
+          let jobLocDate = document.createElement("i")
+          let jobLocDateAttr = document.createAttribute("style")
+          jobLocDateAttr.value = "margin: 5px 0"
+          jobLocDate.setAttributeNode(jobLocDateAttr)
+          jobLocDate.innerHTML=exp.duration
+          jobDateDiv.appendChild(jobLocDate)
+
+
+          superMainJobDiv.appendChild(jobDateDiv);
+          experienceId.appendChild(superMainJobDiv);
+
+          let expResponUlId = document.createElement("ul");
+          let expResponUIdAttr = document.createAttribute("class");
+          expResponUIdAttr.value = "job-description";
+          expResponUlId.setAttributeNode(expResponUIdAttr);
+
+          exp.responsibilities.map((respon) => {
+            let respoLi = document.createElement("li");
+            respoLi.innerHTML = respon;
+            expResponUlId.appendChild(respoLi);
+          });
+
+          experienceId.appendChild(expResponUlId);
+        });
+
+        let certiList = generatedCV["certifications"];
+        const certificationDiv = document.getElementById("certifications");
+        certiList.map((c) => {
+          console.log(c);
+          let certiData = document.createElement("b");
+          let certiDataAttr = document.createAttribute("style");
+          certiDataAttr.value = "font-size: 16px; color: #333";
+          certiData.setAttributeNode(certiDataAttr);
+          certiData.innerText = c.name;
+          certificationDiv.appendChild(certiData);
+          certificationDiv.appendChild(document.createElement("br"));
+
+          let certiDataC = document.createElement("p");
+          let certiDataCAttr = document.createAttribute("style");
+          certiDataCAttr.value = "margin: 5px 0";
+          certiDataC.setAttributeNode(certiDataCAttr);
+          certiDataC.innerText = c.issuer;
+          certificationDiv.appendChild(certiDataC);
+
+          certificationDiv.appendChild(document.createElement("br"));
+        });
+
+        let projectList = generatedCV["projects"];
+        // console.log("projectList: ", projectList);
+        const projectDiv = document.getElementById("projects");
+        projectList.map((p) => {
+          console.log("project: ", p);
+          let mainProjectDiv = document.createElement("div");
+          let mainProjectDivAttr = document.createAttribute("class");
+          mainProjectDivAttr.value = "degree-details";
+          mainProjectDiv.style.width = "100%";
+          mainProjectDiv.setAttributeNode(mainProjectDivAttr);
+
+          let projectNameDiv = document.createElement("h4");
+          projectNameDiv.innerHTML = p.title;
+          mainProjectDiv.appendChild(projectNameDiv);
+          let projectDescriptionDiv = document.createElement("i");
+          projectDescriptionDiv.innerHTML = p.description;
+          mainProjectDiv.appendChild(projectDescriptionDiv);
+          let projectDetailsDiv = document.createElement("p");
+          projectDetailsDiv.innerHTML = p.details;
+          mainProjectDiv.appendChild(projectDetailsDiv);
+          projectDiv.appendChild(mainProjectDiv);
+          // projectDiv.appendChild(projectNameDiv)
+          // projectDiv.appendChild(projectDetailsDiv)
+        });
+
+        const edexp = generatedCV["education"];
+        let j = 0;
+
+        edexp.map((exp) => {
+          console.log("Ed: ", exp);
+          i = i + 1;
+          let experienceId = document.getElementById("education");
+          let superMainJobDiv = document.createElement("div");
+          let superMainAtt = document.createAttribute("class");
+          superMainAtt.value = "job";
+          superMainJobDiv.style.width = "100%";
+          superMainJobDiv.setAttributeNode(superMainAtt);
+
+          let mainDiv = document.createElement("div");
+
+          let companyNameId = document.createElement("b");
+          let compAttr = document.createAttribute("id");
+          compAttr.value = "edName-" + i;
+          let compAttr2 = document.createAttribute("style");
+          companyNameId.setAttributeNode(compAttr2);
+          compAttr2.value = "font-size: 16px; color: #333";
+          companyNameId.innerHTML = exp.institution;
+          mainDiv.appendChild(companyNameId);
+
+          let positionId = document.createElement("p");
+          let positionIdAttr = document.createAttribute("style");
+          positionIdAttr.value = "margin: 5px 0";
+          positionId.setAttributeNode(positionIdAttr);
+          positionId.innerHTML = exp.degree;
+          mainDiv.appendChild(positionId);
+
+          superMainJobDiv.appendChild(mainDiv);
+
+          let jobDateDiv = document.createElement("div");
+          let jobDateDivAttr = document.createAttribute("style");
+          jobDateDivAttr.value = "text-align: right";
+          jobDateDiv.setAttributeNode(jobDateDivAttr);
+          let jobDateP = document.createElement("p");
+          let jobDatePAttr = document.createAttribute("style");
+          jobDatePAttr.value = "text-align: right";
+          jobDateP.setAttributeNode(jobDatePAttr);
+          
+          
+          let jobLoc = document.createElement("p");
+          let jobLocNAttr = document.createAttribute("style");
+          jobLocNAttr.value = "margin: 5px 0"
+          jobLoc.setAttributeNode(jobLocNAttr)
+          jobLoc.innerHTML=exp.year
+          jobDateDiv.appendChild(jobLoc)
+
+          superMainJobDiv.appendChild(jobDateDiv);
+          experienceId.appendChild(superMainJobDiv);
+
+          let expResponUlId = document.createElement("ul");
+          let expResponUIdAttr = document.createAttribute("class");
+          expResponUIdAttr.value = "job-description";
+          expResponUlId.setAttributeNode(expResponUIdAttr);
+          let respoLi = document.createElement("li");
+            respoLi.innerHTML = exp.specialization;
+            expResponUlId.appendChild(respoLi);
+            experienceId.appendChild(expResponUlId);
+
+        });
+      }
+
+      // })
+    </script>
+  </body>
+</html>
