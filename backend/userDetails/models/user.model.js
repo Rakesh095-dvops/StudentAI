@@ -22,6 +22,10 @@ const userSchema = mongoose.Schema({
     minlength: 7,
     maxlength: 18,
   },
+  organization: {
+    type: String,
+    default: "others"
+  },
   userType: {
     type: String,
     required: true,
