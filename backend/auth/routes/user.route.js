@@ -11,5 +11,6 @@ routes.get('/:id', userController.getUserDataById)
 routes.put('/:id',userController.updateUserData)
 routes.delete('/:id',userController.deleteUserById)
 routes.post("/verifyAuth", jwtToken.verifyToken);
+routes.post('/organization', userController.registerUserByBusiness)
 
 module.exports = routes 

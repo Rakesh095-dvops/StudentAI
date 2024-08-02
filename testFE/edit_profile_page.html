@@ -201,7 +201,7 @@
                         <h4>Complete Profile Information</h4>
                       </div>
                       <div class="card-body">
-                        <form id="uploadForm" action="http://localhost:3002/api/userDetails/upload" method="post" enctype="multipart/form-data">
+                        <form id="uploadForm" action="http://studentaiapi.prashantdey.in/api/userDetails/upload" method="post" enctype="multipart/form-data">
                           <div class="picture1"></div>
                       
                           <div style="display: flex; justify-content: center">
@@ -1166,11 +1166,13 @@
       event.preventDefault();
       $('#loaderModal').modal('show');
       const formData = new FormData(this);
+      console.log(formData)
+      // formData.append("file", file);
       const apiUploadUrl = config.userUrl + '/api/userDetails/upload'
       fetch(apiUploadUrl, {
         method: 'POST',
         headers: {
-              // "Content-Type": "application/json",
+              // "Content-Type": "multipart/form-data",
               Authorization: "Bearer " + localStorage.getItem("token"),
             },
         body: formData

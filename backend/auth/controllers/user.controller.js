@@ -147,6 +147,51 @@ const registerUser = async (req, res) => {
   }
 };
 
+const registerUserByBusiness = async (req, res) => {
+  try {
+    const { name, email, phoneNo, organization } = req.body;
+
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      return res.status(400).json({ message: "Email is already registered" });
+    }
+
+    const newUser = new User({
+      name,
+      email,
+      phoneNo,
+      organization
+    });
+
+    await newUser.save();
+
+    const newAuth = new Auth({
+      userId: newUser._id,
+      otp: Math.floor(100000 + Math.random() * 900000),
+      isVerified: false,
+      attempt: 0,
+    });
+
+    await newAuth.save();
+
+    const newAuthlog = new Authlog({
+      userId: newUser._id,
+      ip: req.ip,
+      status: true,
+    });
+
+    await newAuthlog.save();
+    await sendOtpEmail(newUser.email, newAuth.otp);
+
+    res.status(201).json({ message: "User registered successfully" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+};
+
+
+
 /**
  * @openapi
  * /user/verify:
@@ -483,4 +528,5 @@ module.exports = {
   getUserDataById,
   updateUserData,
   deleteUserById,
+  registerUserByBusiness,
 };

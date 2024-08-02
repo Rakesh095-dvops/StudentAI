@@ -33,6 +33,11 @@ const userSchema = mongoose.Schema({
     default: "onhold",
     enum: ["active", "onhold"],
   },
+  organization: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Organization",
+    default: new mongoose.Types.ObjectId('66aa198aecdaa2f5e6ce025d')
+  },
   createdAt: {
     type: Date,
     default: Date.now(),

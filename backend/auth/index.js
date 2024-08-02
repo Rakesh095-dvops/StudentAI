@@ -13,10 +13,12 @@ app.use(metricsMiddleware);
 app.use(express.json())
 const healthRoutes = require('./routes/health.route')
 const userRoutes = require('./routes/user.route')
+const organizationRoutes = require('./routes/organization.route')
 app.use(cookieParser());
 
 app.use("/auth/health", healthRoutes);
 app.use("/auth/user", userRoutes);
+app.use("/auth/organization", organizationRoutes);
 
 const swaggerSpec = require("./utils/swaggerConfig");
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));

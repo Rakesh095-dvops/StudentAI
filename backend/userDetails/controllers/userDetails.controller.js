@@ -48,7 +48,7 @@ async function resumeExtractor(file){
       // The thread now has a vector store in its tool resources.
       console.log(thread.tool_resources?.file_search);
       const run = await openai.beta.threads.runs.createAndPoll(thread.id, {
-        assistant_id: 'asst_m20ntaWN3743xcuUJmYZJWBV',
+        assistant_id: 'asst_Kpx3ldREcSC2Kb6IrI1yBysG',
       });
        
       const messages = await openai.beta.threads.messages.list(thread.id, {

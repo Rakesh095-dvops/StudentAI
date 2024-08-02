@@ -5,11 +5,13 @@ const cors = require('cors');
 
 const app = express();
 app.use(cors());
+app.use(express.urlencoded({ extended: true }));
 
 
 // Import routes
 const userDetailsRoutes = require('./routes/userDetails.route');
 const resumeRoutes = require('./routes/resume.route');
+const basicResumeRoutes = require('./routes/basicresume.route');
 
 
 // Middleware
@@ -19,6 +21,8 @@ const verifyToken = require('./utils/jwt.middleware')
 // Use routes
 app.use('/api/userDetails', verifyToken, userDetailsRoutes);
 app.use('/api/resume', verifyToken, resumeRoutes);
+// app.use('/api/basicresume', verifyToken, basicResumeRoutes);
+app.use('/api/basicresume', basicResumeRoutes);
 
 
 // Set the port number from the environment variable or default to 3000
