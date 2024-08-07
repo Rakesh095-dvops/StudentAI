@@ -640,6 +640,7 @@
                           
                           <h5>Skills</h5>
                           <div id="currentSkill">
+                          </div>
 
                             <div class="form-group">
                               
@@ -657,10 +658,6 @@
                                 Submit
                               </button>
                           
-                            
-                              
-                           
-                          </div>
                         </form>
                       </div>
                     </div>
@@ -693,6 +690,7 @@
                         let container = document.getElementById(
                           containerId.replace("addMore", "")
                         );
+                        console.log('addMore Container: ', container)
 
                         if (container) {
                           let item = document
@@ -706,8 +704,8 @@
                           if (item.querySelector(".tagify")) {
                             new Tagify(item.querySelector(".tagify"));
                           }
-                          console.log('deleteEl: ', document.getElementById('delete'+container))
-                          document.getElementById('delete'+container).style.display = 'inline-block';
+                          console.log('deleteEl: ', document.getElementById('delete'+containerId.replace("addMore", "")))
+                          document.getElementById('delete'+containerId.replace("addMore", "")).style.display = 'inline-block';
                         } else {
                           console.error(
                             `Container with id "${containerId.replace(
@@ -739,10 +737,7 @@
                 button.style.display = items.length > 1 && index !== 0 ? "inline-block" : "none";
             });
         }
-
-        addMore("addMoreeducationSection", "education-item");
-        addMore("addMoreprofessionalSection", "professional-item");
-
+        
         document.addEventListener("DOMContentLoaded", function () {
             updateRemoveButtons(document.getElementById("educationSection"));
             updateRemoveButtons(document.getElementById("professionalSection"));
@@ -807,6 +802,7 @@
                     // Populate professional data
                     data.professionalQualifications.forEach(
                       (professional, index) => {
+                        console.log('professional: ', professional)
                         if (index > 0)
                           document
                             .getElementById("addMoreprofessionalSection")
