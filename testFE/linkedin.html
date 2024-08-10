@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Dashboard - Thrive Together</title>
+
+    <!-- Custom fonts for this template-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: #f3f2ef;
+        }
+
+        .profile-container {
+            max-width: 900px;
+            margin: 20px auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-header {
+            text-align: center;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .profile-header h2 {
+            margin-bottom: 5px;
+            font-size: 26px;
+            color: #333;
+        }
+
+        .profile-header h4 {
+            font-size: 18px;
+            color: #777;
+        }
+
+        .profile-header p {
+            font-size: 14px;
+            color: #555;
+        }
+
+        .profile-section {
+            margin-top: 30px;
+        }
+
+        .profile-section h3 {
+            font-size: 22px;
+            color: #333;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #0073b1;
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        .profile-section p {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        .profile-experience, .profile-education, .profile-skills, .profile-certifications, .profile-languages {
+            margin-top: 20px;
+        }
+
+        .profile-experience div, .profile-education div, .profile-certifications div, .profile-languages div {
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #fafafa;
+            margin-bottom: 15px;
+        }
+
+        .profile-experience h5, .profile-education h5, .profile-certifications h5 {
+            font-size: 18px;
+            margin-bottom: 5px;
+            color: #0073b1;
+        }
+
+        .profile-experience p, .profile-education p, .profile-certifications p {
+            font-size: 14px;
+            color: #555;
+        }
+
+        .profile-contact a {
+            color: #0073b1;
+            text-decoration: none;
+        }
+
+        .profile-contact a:hover {
+            text-decoration: underline;
+        }
+
+        hr {
+            margin-top: 15px;
+            margin-bottom: 15px;
+            border: 0;
+            border-top: 1px solid #ddd;
+        }
+    </style>
+
+</head>
+
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="dashboard.html">
+                <div class="sidebar-brand-icon rotate-n-15">
+                    <i class="fas fa-laugh-wink"></i>
+                </div>
+                <div class="sidebar-brand-text mx-3">Thrive Together</div>
+            </a>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item active">
+                <a class="nav-link" href="dashboard.html">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Dashboard</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Student AI
+            </div>
+            <li class="nav-item">
+                <a class="nav-link" href="cv_generator.html">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Resume AI</span></a>
+            </li>     
+
+            <hr class="sidebar-divider">
+
+            <div class="sidebar-heading">
+                Artifacts
+            </div>
+
+            <li class="nav-item">
+                <a class="nav-link" href="view_cv.html">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>All Resumes</span></a>
+            </li>
+            <!-- Nav Item - Charts -->
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Interviews</span></a>
+            </li>
+            
+            <hr class="sidebar-divider d-none d-md-block">
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
+
+        </ul>        
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <div id="content">
+
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                    
+
+                    <!-- Topbar Navbar -->
+                    <ul class="navbar-nav ml-auto">
+                        <!-- Nav Item - User Information -->
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                
+                                <img class="img-profile rounded-circle"
+                                    src="img/undraw_profile.svg">
+                            </a>
+                            <!-- Dropdown - User Information -->
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href="profile_page.html">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Profile
+                                </a>
+                                <a class="dropdown-item" href="edit_profile_page.html">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Edit Profile
+                                </a>
+                                <!-- <a class="dropdown-item" href="#">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Edit Profile Picture
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Settings -->
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Logout
+                                </a>
+                            </div>
+                        </li>
+
+                    </ul>
+
+                </nav>
+               
+                <div class="container-fluid">
+                    <div class="profile-container">
+                        <div class="profile-header">
+                            <h2 id="profile-name"></h2>
+                            <h4 id="profile-headline"></h4>
+                            <p id="profile-location"></p>
+                        </div>
+                        <div class="profile-section">
+                            <h3>About</h3>
+                            <p id="profile-summary"></p>
+                        </div>
+                        <div class="profile-section profile-contact">
+                            <h3>Contact Information</h3>
+                            <p>Email: <a id="profile-contact-email" href="mailto:"></a></p>
+                            <p>Phone: <span id="profile-contact-phone"></span></p>
+                            <p>LinkedIn: <span id="profile-contact-linkedin"></span></p>
+                        </div>
+                        <div class="profile-section profile-experience">
+                            <h3>Experience</h3>
+                            <div id="profile-experience"></div>
+                        </div>
+                        <div class="profile-section profile-education">
+                            <h3>Education</h3>
+                            <div id="profile-education"></div>
+                        </div>
+                        <div class="profile-section profile-skills">
+                            <h3>Skills</h3>
+                            <p id="profile-skills"></p>
+                        </div>
+                        <div class="profile-section profile-certifications">
+                            <h3>Certifications</h3>
+                            <div id="profile-certifications"></div>
+                        </div>
+                        <div class="profile-section profile-languages">
+                            <h3>Languages</h3>
+                            <div id="profile-languages"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; Thrive Together 2024</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="login.html">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin-2.min.js"></script>
+
+    <!-- Page level plugins -->
+    <!-- <script src="vendor/chart.js/Chart.min.js"></script> -->
+
+    <!-- Page level custom scripts -->
+    <!-- <script src="js/demo/chart-area-demo.js"></script>
+    <script src="js/demo/chart-pie-demo.js"></script> -->
+    <script src="./url.js"></script>
+    <script>
+        // Example API URL, update with your actual endpoint
+        const apiNameUrl = config.userUrl + `/api/linkedin`;
+    
+        fetch(apiNameUrl, {
+            headers: {
+                Authorization: "Bearer " + localStorage.getItem("token"),
+            },
+        })
+        .then((response) => response.json())
+        .then((data) => {
+            console.log('Data about user: ', data); 
+            populateContent(data.profile);
+        })
+        .catch((error) => console.error("Error fetching user data:", error));
+    
+        function populateContent(profile) {
+            // Populate basic profile information
+            const profileName = document.getElementById("profile-name");
+            profileName.innerHTML = `${profile.firstName} ${profile.lastName}`;
+            if (profile.firstName === 'N/A' || profile.lastName === 'N/A') {
+                profileName.style.backgroundColor = "#ffa6a6";
+                profileName.style.color = "white";
+            }
+    
+            const profileHeadline = document.getElementById("profile-headline");
+            profileHeadline.innerHTML = profile.headline;
+            if (profile.headline === 'N/A') {
+                profileHeadline.style.backgroundColor = "#ffa6a6";
+                profileHeadline.style.color = "white";
+            }
+    
+            const profileSummary = document.getElementById("profile-summary");
+            profileSummary.innerHTML = profile.summary;
+            if (profile.summary === 'N/A') {
+                profileSummary.style.backgroundColor = "#ffa6a6";
+                profileSummary.style.color = "white";
+            }
+    
+            // Populate location
+            const profileLocation = document.getElementById("profile-location");
+            profileLocation.innerHTML = `${profile.location.city}, ${profile.location.country}`;
+            if (profile.location.city === 'N/A' || profile.location.country === 'N/A') {
+                profileLocation.style.backgroundColor = "#ffa6a6";
+                profileLocation.style.color = "white";
+            }
+    
+            // Populate contact information
+            const profileEmail = document.getElementById("profile-contact-email");
+            profileEmail.innerHTML = profile.contactInfo.email;
+            if (profile.contactInfo.email === 'N/A') {
+                profileEmail.style.backgroundColor = "#ffa6a6";
+                profileEmail.style.color = "white";
+            }
+    
+            const profilePhone = document.getElementById("profile-contact-phone");
+            profilePhone.innerHTML = profile.contactInfo.phone;
+            if (profile.contactInfo.phone === 'N/A') {
+                profilePhone.style.backgroundColor = "#ffa6a6";
+                profilePhone.style.color = "white";
+            }
+    
+            const profileLinkedIn = document.getElementById("profile-contact-linkedin");
+            profileLinkedIn.innerHTML = `<a href="${profile.contactInfo.linkedin}">${profile.contactInfo.linkedin}</a>`;
+            if (profile.contactInfo.linkedin === 'N/A') {
+                profileLinkedIn.style.backgroundColor = "#ffa6a6";
+                profileLinkedIn.style.color = "white";
+            }
+    
+            // Populate experience
+            let experienceHTML = '';
+            profile.experience.forEach(exp => {
+                const isNA = exp.company === 'N/A' || exp.location === 'N/A';
+                experienceHTML += `
+                    <div style="background-color: ${isNA ? '#ffa6a6' : 'transparent'}; color: ${isNA ? 'white' : 'black'}">
+                        <h5>${exp.title}</h5>
+                        <p>${exp.company} - ${exp.location}</p>
+                        <p>${exp.startDate} to ${exp.endDate}</p>
+                        <p>${exp.description}</p>
+                    </div>
+                    <hr>
+                `;
+            });
+            document.getElementById("profile-experience").innerHTML = experienceHTML;
+    
+            // Populate education
+            let educationHTML = '';
+            profile.education.forEach(edu => {
+                const isNA = edu.school === 'N/A' || edu.degree === 'N/A' || edu.fieldOfStudy === 'N/A';
+                educationHTML += `
+                    <div style="background-color: ${isNA ? '#ffa6a6' : 'transparent'}; color: ${isNA ? 'white' : 'black'}">
+                        <h5>${edu.degree} in ${edu.fieldOfStudy}</h5>
+                        <p>${edu.school}</p>
+                        <p>${edu.startDate} to ${edu.endDate}</p>
+                    </div>
+                    <hr>
+                `;
+            });
+            document.getElementById("profile-education").innerHTML = educationHTML;
+    
+            // Populate skills
+            const profileSkills = document.getElementById("profile-skills");
+            profileSkills.innerHTML = profile.skills.join(', ');
+            if (profile.skills.includes('N/A')) {
+                profileSkills.style.backgroundColor = "#ffa6a6";
+                profileSkills.style.color = "white";
+            }
+    
+            // Populate certifications
+            let certificationsHTML = '';
+            profile.certifications.forEach(cert => {
+                const isNA = cert.name === 'N/A' || cert.issuingOrganization === 'N/A';
+                certificationsHTML += `
+                    <div style="background-color: ${isNA ? '#ffa6a6' : 'transparent'}; color: ${isNA ? 'white' : 'black'}">
+                        <h5>${cert.name}</h5>
+                        <p>${cert.issuingOrganization}</p>
+                        <p>Issued: ${cert.issueDate} | Expiration: ${cert.expirationDate}</p>
+                    </div>
+                    <hr>
+                `;
+            });
+            document.getElementById("profile-certifications").innerHTML = certificationsHTML;
+    
+            // Populate languages
+            let languagesHTML = '';
+            profile.languages.forEach(lang => {
+                const isNA = lang.language === 'N/A' || lang.proficiency === 'N/A';
+                languagesHTML += `<div style="background-color: ${isNA ? '#ffa6a6' : 'transparent'}; color: ${isNA ? 'white' : 'black'}"><p>${lang.language} - ${lang.proficiency}</p></div>`;
+            });
+            document.getElementById("profile-languages").innerHTML = languagesHTML;
+        }
+    </script>
+    
+    
+
+</body>
+
+</html>

@@ -14,8 +14,8 @@ const professionalSchema = new mongoose.Schema({
     companyName: String,
     location: String,
     duration: {
-        from: Date,
-        to: Date
+        from: String,
+        to: String
     },
     role: String,
     description: String
@@ -26,7 +26,7 @@ const projectSchema = new mongoose.Schema({
     projectName: String,
     projectDescription: String,
     skillsUsed: [{
-        value: {type: String}
+        value: String
     }],
     projectLink: String
 });

@@ -1,7 +1,7 @@
 // Import necessary models and tools
 const Resume = require('../models/resume.model');
 const UserDetails = require('../models/userdetails.model');
-const generateCV = require('../utils/chatGPT'); 
+const {generateCV} = require('../utils/chatGPT'); 
 
 // Function to create a CV based on a JD and user details
 const createCV = async (req, res) => {

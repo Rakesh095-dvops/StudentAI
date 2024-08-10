@@ -18,6 +18,57 @@
 
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet" />
+  <style>
+    body {
+        font-family: 'Nunito', sans-serif;
+        background-color: #f3f2ef;
+    }
+
+    .container {
+        max-width: 900px;
+        margin: 20px auto;
+        background-color: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .card {
+        margin-bottom: 20px;
+    }
+
+    .card-header {
+        font-size: 18px;
+        font-weight: 600;
+        color: #0073b1;
+        border-bottom: 2px solid #0073b1;
+    }
+
+    .card-body p {
+        font-size: 16px;
+        color: #555;
+        margin-bottom: 10px;
+    }
+
+    .red-background {
+        background-color: red;
+        color: white;
+    }
+
+    .rounded-circle {
+        border-radius: 50%;
+    }
+
+    .btn-danger {
+        background-color: #d9534f;
+        border-color: #d43f3a;
+    }
+
+    .btn-primary {
+        background-color: #0073b1;
+        border-color: #005f8d;
+    }
+</style>
 </head>
 
 <body id="page-top">
@@ -143,371 +194,108 @@
         </nav>
         <!-- End of Topbar -->
 
-        <!-- Begin Page Content -->
-        <div class="container-fluid">
-          <!-- Page Heading -->
+        
+          <!-- Main Content -->
+          <div id="content">
+              <!-- Topbar -->
+              
+              <!-- End of Topbar -->
 
-          <div class="container mt-5">
-            <h2>User Profile</h2>
+              <!-- Begin Page Content -->
+              <div class="container">
+                  <!-- Page Heading -->
+                  <h2>User Profile</h2>
 
-            <!-- Personal Information Section -->
-            <div class="card mb-4">
-              <div class="card-header">Personal Information</div>
-              <div class="card-body">
-                <div id="userInfo">
-                  <p><strong> Name: </strong> <span id="name"></span></p>
-                  <p>Email: <span id="email"></span></p>
-                  <p>Phone: <span id="phone"></span></p>
-                  <p>Address: <span id="address"></span></p>
-                  <p>About: <span id="about"></span></p>
-                </div>
+                  <!-- Personal Information Section -->
+                  <div class="card mb-4">
+                      <div class="card-header">Personal Information</div>
+                      <div class="card-body" id="userInfo">
+                          <p><strong>Name: </strong> <span id="name"></span></p>
+                          <p>Email: <span id="email"></span></p>
+                          <p>Phone: <span id="phone"></span></p>
+                          <p>Address: <span id="address"></span></p>
+                          <p>About: <span id="about"></span></p>
+                      </div>
+                  </div>
+
+                  <!-- Educational Qualifications Section -->
+                  <div class="card mb-4">
+                      <div class="card-header">Educational Qualifications</div>
+                      <div class="card-body" id="educationSection">
+                          <!-- Education items will be populated here -->
+                      </div>
+                  </div>
+
+                  <!-- Professional Qualifications Section -->
+                  <div class="card mb-4">
+                      <div class="card-header">Professional Qualifications</div>
+                      <div class="card-body" id="viewProfessionalSection">
+                          <!-- Professional items will be populated here -->
+                      </div>
+                  </div>
+
+                  <!-- Projects Section -->
+                  <div class="card mb-4">
+                      <div class="card-header">Projects</div>
+                      <div class="card-body" id="viewProjectSection">
+                          <!-- Project items will be populated here -->
+                      </div>
+                  </div>
+
+                  <!-- Certifications Section -->
+                  <div class="card mb-4">
+                      <div class="card-header">Certifications</div>
+                      <div class="card-body" id="viewCertificationsSection">
+                          <!-- Certification items will be populated here -->
+                      </div>
+                  </div>
+
+                  <!-- Special Achievements Section -->
+                  <div class="card mb-4">
+                      <div class="card-header">Special Achievements</div>
+                      <div class="card-body" id="viewAchievementsSection">
+                          <ul id="special-achievement"></ul>
+                      </div>
+                  </div>
+
+                  <!-- Skills Section -->
+                  <div class="card mb-4">
+                      <div class="card-header">Skills</div>
+                      <div class="card-body">
+                          <p><strong>Skills:</strong> <span id="skills"></span></p>
+                      </div>
+                  </div>
+
+                  <!-- Button to Delete Profile Data -->
+                  <button type="button" class="btn btn-danger" id="deleteProfileData">
+                      Delete Profile Data
+                  </button>
               </div>
-            </div>
-
-            <!-- Educational Qualifications Section -->
-            <div class="card mb-4">
-              <div class="card-header">Educational Qualifications</div>
-              <div class="card-body" id="educationSection">
-                <div class="education-item">
-                  <p>College Name:<span name="collegeName" id="collegeName"></span></p>
-                  <p>Degree:<span name="degree" id="degree"></span></p>
-                  <p>Years:<span name="years" id="years"></span></p>
-                  <p>Specialization:<span name="specialization" id="specialization"></span></p>
-                </div>
-              </div>
-            </div>
-
-            <!-- Professional Qualifications Section -->
-            <div class="card mb-4">
-              <div class="card-header">Professional Qualifications</div>
-              <div class="card-body" id="viewProfessionalSection">
-                <p>Comapany Name:<span id="company-name"></span></p>
-                <p>From:<span id="from"></span></p>
-                <p>To:<span id="to"></span></p>
-                <p>Role:<span id="role"></span></p>
-                <p>Description<span id="description"></span></p>
-              </div>
-            </div>
-
-            <div class="card mb-4">
-              <div class="card-header">Projects</div>
-              <div class="card-body" id="viewProjectSection">
-                <p>Project Name:<span id="project-name"></span></p>
-                <p>
-                  Project Description:<span id="project-description"></span>
-                </p>
-                <p>Skills Used:<span id="skills-used"></span></p>
-                <p>Project link:<span id="project-link"></span></p>
-              </div>
-            </div>
-
-            <!-- Certifications Section -->
-           <div>
-
-             <div class="card mb-4">
-               <div class="card-header">Projects</div>
-               <div class="card-body" id="viewProjectSection">
-                 <p>Certification of: <span id="certificationName"></span></p>
-                 <p>
-                   issued by: <span id="certificationIssuer" ></span>
-                  </p>
-                </div>
-              </div>
-            </div>
-                      
-
-            <!-- Special Achievements Section -->
-            <div class="card mb-4">
-              <div class="card-header">Special Achievements</div>
-              <div class="card-body" id="viewAchievementsSection">
-                <p>
-                  <ul id="special-achievement">
-                    
-                  </ul>
-                </p>
-              </div>
-            </div>
-
-            <!-- Skills Section -->
-            <div class="card mb-4">
-              <div class="card-header">Skills</div>
-              <div class="card-body">
-                <p><strong>Skills:</strong> <span id="skills"></span></p>
-              </div>
-            </div>
-            <script src="./url.js"></script>
-            <script>
-              document.addEventListener("DOMContentLoaded", function () {
-                let uid = localStorage.getItem("uid");
-
-                if (uid) {
-                  const apiUrl = config.userUrl + `/api/userDetails/${uid}`
-                  fetch(apiUrl, {
-                    headers: {
-                      Authorization:
-                        "Bearer " + localStorage.getItem("token"),
-                    },
-                  })
-                    .then((response) => response.json())
-                    .then((data) => {
-                      console.log("Received data: ", data[0]);
-                      if (data && data.length > 0) {
-                        populateContent(data[0]);
-                      }
-                    })
-                    .catch((error) =>
-                      console.error("Error fetching user data:", error)
-                    );
-                } else {
-                  console.error("No user ID found in local storage.");
-                }
-              });
-
-              function populateContent(data) {
-                // Populate user information
-                if (data.name) {
-                  document.getElementById("name").textContent = data.name;
-                }
-                if (data.email) {
-                  document.getElementById("email").textContent = data.email;
-                }
-                if (data.contactDetails && data.contactDetails.phone) {
-                  document.getElementById("phone").textContent =
-                    data.contactDetails.phone;
-                }
-                if (data.contactDetails && data.contactDetails.address) {
-                  document.getElementById("address").textContent =
-                    data.contactDetails.address;
-                }
-                if (data.about) {
-                  document.getElementById("about").textContent = data.about;
-                }
-
-                // Populate educational qualifications
-
-                if (
-                  data.educationQualifications &&
-                  data.educationQualifications.length > 0
-                ) {
-                  let educationalSection = document.getElementById(
-                    "educationSection"
-                  );
-                  educationalSection.innerHTML = ""; // Clear existing content
-                  data.educationQualifications.forEach((education) => {
-                    console.log('Education: ', education)
-                    let educationalItem = document.createElement("div");
-                    educationalItem.classList.add("education-item");
-                    educationalItem.innerHTML = `
-        <p>College Name: <span name="collegeName">${education.collegeName
-                      }</span></p>
-        <p>Degree: <span name="degree">${education.degree
-                      }</span></p>
-        <p>Years: <span name="years">${education.years
-                      }</span></p>
-        <p>Specialization: <span name="specialization">${education.specialization}</span></p>
-     
-      `;
-                    educationalSection.appendChild(educationalItem);
-                  });
-                }
-
-
-
-
-
-                // Populate professional qualifications
-                if (
-                  data.professionalQualifications &&
-                  data.professionalQualifications.length > 0
-                ) {
-                  let professionalSection = document.getElementById(
-                    "viewProfessionalSection"
-                  );
-                  professionalSection.innerHTML = ""; // Clear existing content
-                  data.professionalQualifications.forEach((professional) => {
-                    let professionalItem = document.createElement("div");
-                    console.log(professional)
-                    professionalItem.classList.add("professional-item");
-                    professionalItem.innerHTML = `
-        <p>Company Name: <span name="companyName">${professional.companyName
-                      }</span></p>
-        <p>From: <span name="duration.from">${professional.duration.from.split("T")[0]
-                      }</span></p>
-        <p>To: <span name="duration.to">${professional.duration.to.split("T")[0]
-                      }</span></p>
-        <p>Role: <span name="role">${professional.role}</span></p>
-        <p>Description: <span name="description">${professional.description
-                      }</span></p>
-        <p>Location: <span name="Location">${professional.location
-                      }</span></p>
-      `;
-                    professionalSection.appendChild(professionalItem);
-                  });
-                }
-
-                // Populate projects
-                if (data.projects && data.projects.length > 0) {
-                  let projectSection =
-                    document.getElementById("viewProjectSection");
-                  projectSection.innerHTML = ""; // Clear existing content
-                  data.projects.forEach((project) => {
-                    let projectItem = document.createElement("div");
-                    console.log(project)
-                    projectItem.classList.add("project-item");
-                    projectItem.innerHTML = `
-                      <p>Project Name: <span name="projectName">${project.projectName
-                      }</span></p>
-                        <p>Project Description: <span name="projectDescription">${project.projectDescription
-                      }</span></p>
-                     
-                          <p>Project Link: <span name="projectLink">${project.projectLink
-                      }</span></p>
-                            `;
-                    projectSection.appendChild(projectItem);
-
-
-
-      //               if (
-      //                 data.certifications &&
-      //                 data.certifications.length > 0
-      //               ) {
-      //                 let certificationSection = document.getElementById(
-      //                   "viewCertificationsSection"
-      //                 );
-      //                 certificationSection.innerHTML = ""; // Clear existing content
-      //                 data.professionalQualifications.forEach((professional) => {
-      //                   let professionalItem = document.createElement("div");
-      //                   console.log(professional)
-      //                   professionalItem.classList.add("professional-item");
-      //                   professionalItem.innerHTML = `
-      //   <p>Company Name: <span name="companyName">${professional.companyName
-      //                     }</span></p>
-      //   <p>From: <span name="duration.from">${professional.duration.from.split("T")[0]
-      //                     }</span></p>
-      //   <p>To: <span name="duration.to">${professional.duration.to.split("T")[0]
-      //                     }</span></p>
-      //   <p>Role: <span name="role">${professional.role}</span></p>
-      //   <p>Description: <span name="description">${professional.description
-      //                     }</span></p>
-      //   <p>Location: <span name="Location">${professional.location
-      //                     }</span></p>
-      // `;
-      //                   // professionalSection.appendChild(professionalItem);
-      //                 });
-      //               }
-
-
-
-
-
-                    // console.log(project.skillsUsed[])
-                    // 0console.log(project.skillsUsed.length)
-                    // for(let i=0;i<project.skillsUsed.length;i++){
-                    //   // console.log(project.skillsUsed[i].value)
-                    //   let str=[]
-                    //   str.push(project.skillsUsed[i].value)
-                    //   console.log(str.toString())
-                    // }
-                    // console.log(str)
-                    // document.getElementById("skills-used").textContent=str.toString()
-
-
-
-
-                    // let skillsUsedSpan = document.getElementById(
-                    //   `skillsUsed${index}`
-                    // );
-                    // if (project.skillsUsed && project.skillsUsed.length > 0) {
-                    //   let skills = project.skillsUsed.map(
-                    //     (skill) => JSON.parse(skill).value
-                    //   );
-                    //   new Tagify(skillsUsedSpan).addTags(skills);
-                    // }
-                  });
-                }
-
-                // Populate certifications
-                data.certifications.map(certi => {
-                  console.log('Certi: ', certi)
-                  //Write js dom code to display
-                  document.getElementById("certificationName").textContent=certi.certificationName
-                  console.log(certi.certificationName)
-                })
-
-
-
-                data.certifications.forEach((certification, index) => {
-                      if (index > 0)
-                        document
-                          .getElementById("addMorecertificationsSection")
-                          .click();
-                      let certificationItems = document.querySelectorAll( 
-                        ".certification-item"
-                      );
-                      let certificationItem = certificationItems[index];
-                      console.log('certificationItem: ',certification)
-                      document.getElementById("certificationName")
-                      .textContent = certification.certificationName;
-                      document.getElementById("certificationIssuer").textContent = certification.certificationIssuer;
-                    });
-
-
-
-
-
-                // Populate special achievements
-                let spel=document.getElementById("special-achievement")
-                if (
-                  data.specialAchievements 
-                ) {
-                  data.specialAchievements.forEach((achievement, index) => {
-                   
-                      let liel=document.createElement('li')
-                      liel.innerHTML=achievement
-                      spel.appendChild(liel)
-                
-                    
-                  });
-                }
-
-                // Populate skills
-                if (data.skills && data.skills.length > 0) {
-                  let skillsSpan = document.getElementById("skills");
-                  let skillStr = ""
-                  let skills = data.skills.map(
-                    (skill) => {
-                      skillStr = skillStr +skill.value + " | "}
-                  );
-                  console.log('Skill: ', skillStr)
-                  skillsSpan.innerHTML = skillStr;
-                }
-              }
-
-            </script>
-            <!-- Projects Section -->
-            <!-- Button to Delete Profile Data -->
-            <button type="button" class="btn btn-danger" id="deleteProfileData">
-              Delete Profile Data
-            </button>
+              <!-- /.container-fluid -->
           </div>
-        </div>
+          <!-- End of Main Content -->
+
         <!-- /.container-fluid -->
       </div>
       <div></div>
       <!-- End of Main Content -->
 
       <!-- Footer -->
+     
+     
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
-          <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Your Website 2020</span>
-          </div>
+            <div class="copyright text-center my-auto">
+                <span>Copyright &copy; Thrive Together 2024</span>
+            </div>
         </div>
-      </footer>
-      <!-- End of Footer -->
+    </footer>
+     <!-- End of Footer -->
     </div>
     <!-- End of Content Wrapper -->
+    
   </div>
+  
   <!-- End of Page Wrapper -->
 
   <!-- Scroll to Top Button-->
@@ -548,6 +336,222 @@
 
   <!-- Custom scripts for all pages-->
   <script src="js/sb-admin-2.min.js"></script>
+  <script src="./url.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        let uid = localStorage.getItem("uid");
+
+        if (uid) {
+            const apiUrl = config.userUrl + `/api/userDetails/${uid}`;
+            fetch(apiUrl, {
+                headers: {
+                    Authorization: "Bearer " + localStorage.getItem("token"),
+                },
+            })
+                .then((response) => response.json())
+                .then((data) => {
+                    console.log("Received data: ", data[0]);
+                    if (data && data.length > 0) {
+                        populateContent(data[0]);
+                    }
+                })
+                .catch((error) =>
+                    console.error("Error fetching user data:", error)
+                );
+        } else {
+            console.error("No user ID found in local storage.");
+        }
+    });
+
+    function applyRedBackgroundIfNA(element, value) {
+    if (element && value === 'N/A') {
+        element.classList.add('red-background');
+    }
+}
+
+function populateContent(data) {
+    // Populate user information
+    const nameElement = document.getElementById("name");
+    const emailElement = document.getElementById("email");
+    const phoneElement = document.getElementById("phone");
+    const addressElement = document.getElementById("address");
+    const aboutElement = document.getElementById("about");
+
+    nameElement.textContent = data.name || 'N/A';
+    applyRedBackgroundIfNA(nameElement, data.name);
+
+    emailElement.textContent = data.email || 'N/A';
+    applyRedBackgroundIfNA(emailElement, data.email);
+
+    phoneElement.textContent = data.contactDetails?.phone || 'N/A';
+    applyRedBackgroundIfNA(phoneElement, data.contactDetails?.phone);
+
+    addressElement.textContent = data.contactDetails?.address || 'N/A';
+    applyRedBackgroundIfNA(addressElement, data.contactDetails?.address);
+
+    aboutElement.textContent = data.about || 'N/A';
+    applyRedBackgroundIfNA(aboutElement, data.about);
+
+    // Populate educational qualifications
+    const educationalSection = document.getElementById("educationSection");
+    educationalSection.innerHTML = ""; // Clear existing content
+    data.educationQualifications?.forEach((education) => {
+        let educationalItem = document.createElement("div");
+        educationalItem.classList.add("education-item");
+
+        const collegeNameSpan = document.createElement("span");
+        const degreeSpan = document.createElement("span");
+        const yearsSpan = document.createElement("span");
+        const specializationSpan = document.createElement("span");
+
+        collegeNameSpan.textContent = education.collegeName || 'N/A';
+        degreeSpan.textContent = education.degree || 'N/A';
+        yearsSpan.textContent = education.years || 'N/A';
+        specializationSpan.textContent = education.specialization || 'N/A';
+
+        educationalItem.innerHTML = `
+            <p>College Name: </p>
+            <p>Degree: </p>
+            <p>Years: </p>
+            <p>Specialization: </p>
+        `;
+
+        educationalItem.querySelector("p:nth-child(1)").appendChild(collegeNameSpan);
+        educationalItem.querySelector("p:nth-child(2)").appendChild(degreeSpan);
+        educationalItem.querySelector("p:nth-child(3)").appendChild(yearsSpan);
+        educationalItem.querySelector("p:nth-child(4)").appendChild(specializationSpan);
+
+        applyRedBackgroundIfNA(collegeNameSpan, collegeNameSpan.textContent);
+        applyRedBackgroundIfNA(degreeSpan, degreeSpan.textContent);
+        applyRedBackgroundIfNA(yearsSpan, yearsSpan.textContent);
+        applyRedBackgroundIfNA(specializationSpan, specializationSpan.textContent);
+
+        educationalSection.appendChild(educationalItem);
+    });
+
+    // Populate professional qualifications
+    const professionalSection = document.getElementById("viewProfessionalSection");
+    professionalSection.innerHTML = ""; // Clear existing content
+    data.professionalQualifications?.forEach((professional) => {
+        let professionalItem = document.createElement("div");
+        professionalItem.classList.add("professional-item");
+
+        const companyNameSpan = document.createElement("span");
+        const fromSpan = document.createElement("span");
+        const toSpan = document.createElement("span");
+        const roleSpan = document.createElement("span");
+        const descriptionSpan = document.createElement("span");
+        const locationSpan = document.createElement("span");
+
+        companyNameSpan.textContent = professional.companyName || 'N/A';
+        fromSpan.textContent = professional.duration?.from?.split("T")[0] || 'N/A';
+        toSpan.textContent = professional.duration?.to?.split("T")[0] || 'N/A';
+        roleSpan.textContent = professional.role || 'N/A';
+        descriptionSpan.textContent = professional.description || 'N/A';
+        locationSpan.textContent = professional.location || 'N/A';
+
+        professionalItem.innerHTML = `
+            <p>Company Name: </p>
+            <p>From: </p>
+            <p>To: </p>
+            <p>Role: </p>
+            <p>Description: </p>
+            <p>Location: </p>
+        `;
+
+        professionalItem.querySelector("p:nth-child(1)").appendChild(companyNameSpan);
+        professionalItem.querySelector("p:nth-child(2)").appendChild(fromSpan);
+        professionalItem.querySelector("p:nth-child(3)").appendChild(toSpan);
+        professionalItem.querySelector("p:nth-child(4)").appendChild(roleSpan);
+        professionalItem.querySelector("p:nth-child(5)").appendChild(descriptionSpan);
+        professionalItem.querySelector("p:nth-child(6)").appendChild(locationSpan);
+
+        applyRedBackgroundIfNA(companyNameSpan, companyNameSpan.textContent);
+        applyRedBackgroundIfNA(fromSpan, fromSpan.textContent);
+        applyRedBackgroundIfNA(toSpan, toSpan.textContent);
+        applyRedBackgroundIfNA(roleSpan, roleSpan.textContent);
+        applyRedBackgroundIfNA(descriptionSpan, descriptionSpan.textContent);
+        applyRedBackgroundIfNA(locationSpan, locationSpan.textContent);
+
+        professionalSection.appendChild(professionalItem);
+    });
+
+    // Populate projects
+    const projectSection = document.getElementById("viewProjectSection");
+    projectSection.innerHTML = ""; // Clear existing content
+    data.projects?.forEach((project) => {
+        let projectItem = document.createElement("div");
+        projectItem.classList.add("project-item");
+
+        const projectNameSpan = document.createElement("span");
+        const projectDescriptionSpan = document.createElement("span");
+        const projectLinkSpan = document.createElement("span");
+
+        projectNameSpan.textContent = project.projectName || 'N/A';
+        projectDescriptionSpan.textContent = project.projectDescription || 'N/A';
+        projectLinkSpan.textContent = project.projectLink || 'N/A';
+
+        projectItem.innerHTML = `
+            <p>Project Name: </p>
+            <p>Project Description: </p>
+            <p>Project Link: </p>
+        `;
+
+        projectItem.querySelector("p:nth-child(1)").appendChild(projectNameSpan);
+        projectItem.querySelector("p:nth-child(2)").appendChild(projectDescriptionSpan);
+        projectItem.querySelector("p:nth-child(3)").appendChild(projectLinkSpan);
+
+        applyRedBackgroundIfNA(projectNameSpan, projectNameSpan.textContent);
+        applyRedBackgroundIfNA(projectDescriptionSpan, projectDescriptionSpan.textContent);
+        applyRedBackgroundIfNA(projectLinkSpan, projectLinkSpan.textContent);
+
+        projectSection.appendChild(projectItem);
+    });
+
+    // Populate certifications
+    const certificationSection = document.getElementById("viewCertificationsSection");
+    certificationSection.innerHTML = ""; // Clear existing content
+    data.certifications?.forEach((certification) => {
+        let certificationItem = document.createElement("div");
+        certificationItem.classList.add("certification-item");
+
+        const certificationNameSpan = document.createElement("span");
+        const certificationIssuerSpan = document.createElement("span");
+
+        certificationNameSpan.textContent = certification.certificationName || 'N/A';
+        certificationIssuerSpan.textContent = certification.certificationIssuer || 'N/A';
+
+        certificationItem.innerHTML = `
+            <p>Certification of: </p>
+            <p>Issued by: </p>
+        `;
+
+        certificationItem.querySelector("p:nth-child(1)").appendChild(certificationNameSpan);
+        certificationItem.querySelector("p:nth-child(2)").appendChild(certificationIssuerSpan);
+
+        applyRedBackgroundIfNA(certificationNameSpan, certificationNameSpan.textContent);
+        applyRedBackgroundIfNA(certificationIssuerSpan, certificationIssuerSpan.textContent);
+
+        certificationSection.appendChild(certificationItem);
+    });
+
+    // Populate special achievements
+    const specialAchievementsSection = document.getElementById("special-achievement");
+    specialAchievementsSection.innerHTML = ""; // Clear existing content
+    data.specialAchievements?.forEach((achievement) => {
+        let achievementItem = document.createElement("li");
+        achievementItem.textContent = achievement;
+        specialAchievementsSection.appendChild(achievementItem);
+    });
+
+    // Populate skills
+    const skillsElement = document.getElementById("skills");
+    const skills = data.skills?.map(skill => skill.value).join(" | ") || 'N/A';
+    skillsElement.textContent = skills;
+    applyRedBackgroundIfNA(skillsElement, skills);
+}
+
+</script>
 </body>
 
 </html>

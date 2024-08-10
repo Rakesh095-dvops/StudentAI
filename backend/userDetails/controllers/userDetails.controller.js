@@ -225,18 +225,18 @@ const addUserDetails = async (req, res) => {
     const filter = { userId: req.user.userId };
     console.log("User Details Data: ", req.body);
 
-    // Check if the user details already exist
-    const existingUserDetails = await UserDetails.findOne(filter);
-
+    // Prepare the update object
     let update = { $set: otherUpdates };
-    let options = { new: true, runValidators: true };
+    let options = { new: true, runValidators: true, upsert: true }; // Enable upsert to insert if not found
 
-    if (!existingUserDetails) {
-      // If no existing details, prepare to set email and userId on insert
+    // If email is provided, include it in the update (only set on insert)
+    if (email) {
       update.$setOnInsert = { email: email, userId: req.user.userId };
-      options.upsert = true; // Enable upsert only if no document exists
+    } else {
+      update.$setOnInsert = { userId: req.user.userId }; // Always set userId on insert
     }
 
+    // Perform the update or insert operation
     const userDetails = await UserDetails.findOneAndUpdate(
       filter,
       update,
@@ -248,6 +248,7 @@ const addUserDetails = async (req, res) => {
     res.status(400).send(error);
   }
 };
+
 
 // Get all users' details
 const getAllUserDetails = async (req, res) => {

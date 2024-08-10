@@ -1,3 +1,6 @@
+#uploads
+backend/userDetails/uploads/*
+
 # Logs
 logs
 *.log
