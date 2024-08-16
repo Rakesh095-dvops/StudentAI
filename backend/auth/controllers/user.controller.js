@@ -181,7 +181,8 @@ const registerUserByBusiness = async (req, res) => {
     });
 
     await newAuthlog.save();
-    await sendOtpEmail(newUser.email, newAuth.otp);
+    // No need to send any otp to the user registered by business
+    // await sendOtpEmail(newUser.email, newAuth.otp);
 
     res.status(201).json({ message: "User registered successfully" });
   } catch (error) {
