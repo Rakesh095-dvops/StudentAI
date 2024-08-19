@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Complete Profile Information - Thrive Together</title>
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tagify/4.0.0/tagify.css" rel="stylesheet" />
+    <style>
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: #f8f9fc;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .card {
+            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+        }
+        .card-header {
+            background-color: #4e73df;
+            color: white;
+        }
+        .form-group label {
+            font-weight: bold;
+        }
+        #dropZone {
+            margin-top: 10px;
+            width: 100%;
+            height: 20vh;
+            border: 5px dotted black;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+        #dropZone b {
+            font-size: 16px;
+        }
+        .btn-primary {
+            background-color: #4e73df;
+            border-color: #4e73df;
+        }
+        .btn-success {
+            background-color: #1cc88a;
+            border-color: #1cc88a;
+        }
+        .btn-danger {
+            background-color: #e74a3b;
+            border-color: #e74a3b;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <!-- CV Upload Section -->
+                <div class="card mb-4">
+                    <div class="card-header">Upload Your CV</div>
+                    <div class="card-body">
+                        <form id="uploadForm" action="http://studentaiapi.prashantdey.in/api/userDetails/upload" method="post" enctype="multipart/form-data">
+                            <div id="dropZone" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                <b id="fileName">Drag and drop your CV here</b>
+                            </div>
+                            <input type="file" id="fileInput" name="file" style="display: none;" onchange="fileSelected(event)">
+                            <button type="submit" class="btn btn-primary mt-3">Upload</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Profile Information Form -->
+                <div class="card mb-4">
+                    <div class="card-header">Complete Profile Information</div>
+                    <div class="card-body">
+                        <form id="profileForm">
+                            <!-- Personal Information Section -->
+                            <h5>Personal Information</h5>
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" class="form-control" id="phone" name="phone" placeholder="Enter your phone number" />
+                            </div>
+                            <div class="form-group">
+                                <label for="address">Address</label>
+                                <input type="text" class="form-control" id="address" name="address" placeholder="Enter your address" />
+                            </div>
+                            <div class="form-group">
+                                <label for="about">About</label>
+                                <textarea class="form-control" id="about" name="about" rows="3" placeholder="Tell us about yourself"></textarea>
+                            </div>
+                            <hr />
+
+                            <!-- Educational Information Section -->
+                            <h5>Educational Qualifications</h5>
+                            <div id="educationSection">
+                                <div class="education-item">
+                                    <div class="form-group">
+                                        <label for="collegeName">College Name</label>
+                                        <input type="text" class="form-control" id="collegeName" name="collegeName" placeholder="Enter the name of your college" required />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="degree">Degree</label>
+                                        <input type="text" class="form-control" id="degree" name="degree" placeholder="Enter your degree" required />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="years">Years</label>
+                                        <input type="text" class="form-control" id="years" name="years" placeholder="Enter the years" required />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="specialization">Specialization</label>
+                                        <input type="text" class="form-control" id="specialization" name="specialization" placeholder="Enter your specialization" />
+                                    </div>
+                                    <hr />
+                                </div>
+                            </div>
+                            <button type="button" class="btn btn-success mb-4" id="addMoreeducationSection">Add More Education</button>
+                            <button type="button" class="btn btn-danger mb-4" id="deleteeducationSection" style="display: none"><i class="fas fa-trash"></i></button>
+                            <hr />
+
+                            <!-- Professional Information Section -->
+                            <h5>Professional Qualifications</h5>
+                            <div id="professionalSection">
+                                <div class="professional-item">
+                                    <div class="form-group">
+                                        <label for="companyName">Company Name</label>
+                                        <input type="text" class="form-control" id="companyName" name="companyName" placeholder="Enter the name of the company" required />
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label for="jobFrom">From</label>
+                                            <input type="date" class="form-control" id="jobFrom" name="duration.from" required />
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="jobTo">To</label>
+                                            <input type="date" class="form-control" id="jobTo" name="duration.to" required />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="role">Role</label>
+                                        <input type="text" class="form-control" id="role" name="role" placeholder="Enter your role" required />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="location">Location</label>
+                                        <input type="text" class="form-control" id="location" name="location" placeholder="Enter your location" required />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="description">Description</label>
+                                        <textarea class="form-control" id="description" name="description" rows="3" placeholder="Enter your job description"></textarea>
+                                    </div>
+                                    <hr />
+                                </div>
+                            </div>
+                            <button type="button" class="btn btn-success mb-4" id="addMoreprofessionalSection">Add More Professional</button>
+                            <button type="button" class="btn btn-danger mb-4" id="deleteprofessionalSection" style="display: none"><i class="fas fa-trash"></i></button>
+                            <hr />
+
+                            <!-- Projects Information Section -->
+                            <h5>Projects</h5>
+                            <div id="projectSection">
+                                <div class="project-item">
+                                    <div class="form-group">
+                                        <label for="projectName">Project Name</label>
+                                        <input type="text" class="form-control" id="projectName" name="projectName" placeholder="Enter the name of the project" required />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="projectDescription">Project Description</label>
+                                        <textarea class="form-control" id="projectDescription" name="projectDescription" rows="3" placeholder="Enter the project description"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="skillsUsed">Skills Used</label>
+                                        <input type="text" class="form-control tagify" id="skillsUsed" name="skillsUsed" placeholder="Enter skills used" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="projectLink">Project Link</label>
+                                        <input type="text" class="form-control" id="projectLink" name="projectLink" placeholder="Enter project link (optional)" />
+                                    </div>
+                                    <hr />
+                                </div>
+                            </div>
+                            <button type="button" class="btn btn-success mb-4" id="addMoreprojectSection">Add More Projects</button>
+                            <button type="button" class="btn btn-danger mb-4" id="deleteprojectSection" style="display: none"><i class="fas fa-trash"></i></button>
+                            <hr />
+
+                            <!-- Certifications and Achievements -->
+                            <h5>Certifications</h5>
+                            <div id="certificationsSection">
+                                <div class="certification-item">
+                                    <div class="form-group">
+                                        <label for="certification">Certification</label>
+                                        <input type="text" class="form-control" id="certification" name="certification" placeholder="Enter a certification" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="certification-issuer">Issuer</label>
+                                        <input type="text" class="form-control" id="certification-issuer" name="certification-issuer" placeholder="Enter the Issuer Name" />
+                                    </div>
+                                    <hr />
+                                </div>
+                            </div>
+                            <button type="button" class="btn btn-success mb-4" id="addMorecertificationsSection">Add More Certifications</button>
+                            <button type="button" class="btn btn-danger mb-4" id="deletecertificationsSection" style="display: none"><i class="fas fa-trash"></i></button>
+                            <hr />
+
+                            <h5>Special Achievements</h5>
+                            <div id="achievementsSection">
+                                <div class="achievement-item">
+                                    <div class="form-group">
+                                        <label for="achievement">Achievement</label>
+                                        <input type="text" class="form-control" id="achievement" name="achievement" placeholder="Enter an achievement" />
+                                    </div>
+                                    <hr />
+                                </div>
+                            </div>
+                            <button type="button" class="btn btn-success mb-4" id="addMoreachievementsSection">Add More Achievements</button>
+                            <button type="button" class="btn btn-danger mb-4" id="deleteachievementsSection" style="display: none"><i class="fas fa-trash"></i></button>
+                            <hr />
+
+                            <!-- Skills Section -->
+                            <h5>Skills</h5>
+                            <div id="currentSkill"></div>
+                            <div class="form-group">
+                                <input type="text" class="form-control tagify" id="skills" name="skills" placeholder="Enter skills" />
+                            </div>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for loading -->
+    <div class="modal fade" id="loaderModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body text-center">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                    <p>Loading, please wait...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tagify/4.0.0/tagify.min.js"></script>
+    <script src="./url.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.querySelectorAll(".tagify").forEach((input) => new Tagify(input));
+
+            function addMore(containerId, itemClass) {
+                document.getElementById(containerId).addEventListener("click", function (event) {
+                    event.preventDefault();
+                    let container = document.getElementById(containerId.replace("addMore", ""));
+                    if (container) {
+                        let item = document.querySelector("." + itemClass).cloneNode(true);
+                        item.querySelectorAll("input, textarea").forEach((input) => (input.value = ""));
+                        container.appendChild(item);
+                        if (item.querySelector(".tagify")) {
+                            new Tagify(item.querySelector(".tagify"));
+                        }
+                        document.getElementById('delete' + containerId.replace("addMore", "")).style.display = 'inline-block';
+                    } else {
+                        console.error(`Container with id "${containerId.replace("addMore", "")}" not found.`);
+                    }
+                });
+            }
+
+            addMore("addMoreeducationSection", "education-item");
+            addMore("addMoreprofessionalSection", "professional-item");
+            addMore("addMoreprojectSection", "project-item");
+            addMore("addMorecertificationsSection", "certification-item");
+            addMore("addMoreachievementsSection", "achievement-item");
+
+            const params = new URLSearchParams(window.location.search);
+            let uId = params.get("userid");
+            if (uId) {
+                const apiUrl = config.userUrl + `/api/org/userDetails/${uId}`;
+                fetch(apiUrl, {
+                    headers: {
+                        Authorization: "Bearer " + localStorage.getItem("token"),
+                    },
+                })
+                    .then((response) => response.json())
+                    .then((data) => {
+                        $('#loaderModal').modal('hide');
+                        if (data) {
+                            populateForm(data[0]);
+                        }
+                    })
+                    .catch((error) => {
+                        $('#loaderModal').modal('hide');
+                        console.error("Error fetching user data:", error);
+                    });
+            }
+
+            function populateForm(data) {
+                document.getElementById("name").value = data.name;
+                document.getElementById("email").value = data.email;
+                document.getElementById("phone").value = data.contactDetails.phone;
+                document.getElementById("address").value = data.contactDetails.address;
+                document.getElementById("about").value = data.about;
+
+                data.educationQualifications.forEach((education, index) => {
+                    if (index > 0) document.getElementById("addMoreeducationSection").click();
+                    let educationItems = document.querySelectorAll(".education-item");
+                    let educationItem = educationItems[index];
+                    educationItem.querySelector('[name="collegeName"]').value = education.collegeName;
+                    educationItem.querySelector('[name="degree"]').value = education.degree;
+                    educationItem.querySelector('[name="years"]').value = education.years;
+                    educationItem.querySelector('[name="specialization"]').value = education.specialization;
+                });
+
+                data.professionalQualifications.forEach((professional, index) => {
+                    if (index > 0) document.getElementById("addMoreprofessionalSection").click();
+                    let professionalItems = document.querySelectorAll(".professional-item");
+                    let professionalItem = professionalItems[index];
+                    professionalItem.querySelector('[name="companyName"]').value = professional.companyName;
+                    professionalItem.querySelector('[name="location"]').value = professional.location;
+                    professionalItem.querySelector('[name="duration.from"]').value = professional.duration.from.split("T")[0];
+                    professionalItem.querySelector('[name="duration.to"]').value = professional.duration.to.split("T")[0];
+                    professionalItem.querySelector('[name="role"]').value = professional.role;
+                    professionalItem.querySelector('[name="description"]').value = professional.description;
+                });
+
+                data.projects.forEach((project, index) => {
+                    if (index > 0) document.getElementById("addMoreprojectSection").click();
+                    let projectItems = document.querySelectorAll(".project-item");
+                    let projectItem = projectItems[index];
+                    projectItem.querySelector('[name="projectName"]').value = project.projectName;
+                    projectItem.querySelector('[name="projectDescription"]').value = project.projectDescription;
+                    const parsedSkills = project.skillsUsed.map((sk) => sk.value).join(", ");
+                    projectItem.querySelector('[name="skillsUsed"]').value = parsedSkills;
+                    projectItem.querySelector('[name="projectLink"]').value = project.projectLink;
+                });
+
+                data.certifications.forEach((certification, index) => {
+                    if (index > 0) document.getElementById("addMorecertificationsSection").click();
+                    let certificationItems = document.querySelectorAll(".certification-item");
+                    let certificationItem = certificationItems[index];
+                    certificationItem.querySelector('[name="certification"]').value = certification.certificationName;
+                    certificationItem.querySelector('[name="certification-issuer"]').value = certification.certificationIssuer;
+                });
+
+                data.specialAchievements.forEach((achievement, index) => {
+                    if (index > 0) document.getElementById("addMoreachievementsSection").click();
+                    let achievementItems = document.querySelectorAll(".achievement-item");
+                    let achievementItem = achievementItems[index];
+                    achievementItem.querySelector('[name="achievement"]').value = achievement;
+                });
+
+                const parsedSkills = data.skills.map((skill) => skill.value).join(", ");
+                document.getElementById("skills").value = parsedSkills;
+                document.getElementById("currentSkill").innerHTML = parsedSkills;
+            }
+
+            document.getElementById("profileForm").addEventListener("submit", function (event) {
+                event.preventDefault();
+                $('#loaderModal').modal('show');
+                let formData = {
+                    name: document.getElementById("name").value,
+                    email: document.getElementById("email").value,
+                    contactDetails: {
+                        phone: document.getElementById("phone").value,
+                        address: document.getElementById("address").value,
+                    },
+                    about: document.getElementById("about").value,
+                    educationQualifications: [],
+                    professionalQualifications: [],
+                    projects: [],
+                    certifications: [],
+                    specialAchievements: [],
+                    skills: [],
+                };
+
+                document.querySelectorAll(".education-item").forEach((item) => {
+                    let education = {
+                        collegeName: item.querySelector('[name="collegeName"]').value,
+                        degree: item.querySelector('[name="degree"]').value,
+                        years: item.querySelector('[name="years"]').value,
+                        specialization: item.querySelector('[name="specialization"]').value,
+                    };
+                    formData.educationQualifications.push(education);
+                });
+
+                document.querySelectorAll(".professional-item").forEach((item) => {
+                    let professional = {
+                        companyName: item.querySelector('[name="companyName"]').value,
+                        location: item.querySelector('[name="location"]').value,
+                        duration: {
+                            from: item.querySelector('[name="duration.from"]').value,
+                            to: item.querySelector('[name="duration.to"]').value,
+                        },
+                        role: item.querySelector('[name="role"]').value,
+                        description: item.querySelector('[name="description"]').value,
+                    };
+                    formData.professionalQualifications.push(professional);
+                });
+
+                document.querySelectorAll(".project-item").forEach((item) => {
+                    let project = {
+                        projectName: item.querySelector('[name="projectName"]').value,
+                        projectDescription: item.querySelector('[name="projectDescription"]').value,
+                        skillsUsed: item.querySelector('[name="skillsUsed"]').value.split(",").map(skill => ({ value: skill.trim() })),
+                        projectLink: item.querySelector('[name="projectLink"]').value,
+                    };
+                    formData.projects.push(project);
+                });
+
+                document.querySelectorAll(".certification-item").forEach((item) => {
+                    let certificationData = {
+                        certificationName: item.querySelector('[name="certification"]').value,
+                        certificationIssuer: item.querySelector('[name="certification-issuer"]').value,
+                    };
+                    formData.certifications.push(certificationData);
+                });
+
+                document.querySelectorAll(".achievement-item").forEach((item) => {
+                    formData.specialAchievements.push(item.querySelector('[name="achievement"]').value);
+                });
+
+                formData.skills = document.getElementById("skills").value.split(",").map(skill => ({ value: skill.trim() }));
+
+                const apiUrl = config.userUrl + `/api/org/userDetails/${uId}`;
+
+                fetch(apiUrl, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: "Bearer " + localStorage.getItem("token"),
+                    },
+                    body: JSON.stringify(formData),
+                })
+                    .then((response) => response.json())
+                    .then((result) => {
+                        $('#loaderModal').modal('hide');
+                        alert("Profile updated successfully!");
+                    })
+                    .catch((error) => {
+                        $('#loaderModal').modal('hide');
+                        console.error("Error updating profile:", error);
+                    });
+            });
+        });
+
+        function allowDrop(event) {
+            event.preventDefault();
+        }
+
+        function drop(event) {
+            event.preventDefault();
+            const files = event.dataTransfer.files;
+            if (files.length > 0) {
+                document.getElementById('fileInput').files = files;
+                document.getElementById('fileName').innerHTML = `File: ${files[0].name}`;
+            }
+        }
+
+        function fileSelected(event) {
+            const files = event.target.files;
+            if (files.length > 0) {
+                document.getElementById('fileName').innerHTML = `File: ${files[0].name}`;
+            }
+        }
+
+        document.getElementById('uploadForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+            $('#loaderModal').modal('show');
+            const formData = new FormData(this);
+            const apiUploadUrl = config.userUrl + `/api/basicresume/upload/${uId}`;
+            fetch(apiUploadUrl, {
+                method: 'POST',
+                headers: {
+                    Authorization: "Bearer " + localStorage.getItem("token"),
+                },
+                body: formData
+            })
+                .then(response => response.json())
+                .then(data => {
+                    $('#loaderModal').modal('hide');
+                })
+                .catch(error => {
+                    $('#loaderModal').modal('hide');
+                    console.error('Error:', error);
+                });
+        });
+
+        document.getElementById('dropZone').addEventListener('click', function () {
+            document.getElementById('fileInput').click();
+        });
+    </script>
+</body>
+</html>

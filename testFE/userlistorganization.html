@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 18px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            color: #333;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .isUserDetailsPresent-yes {
+            background-color: #d4edda;
+            color: #155724;
+            font-weight: bold;
+        }
+
+        .id-link {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .id-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>HeroVired</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone No</th>
+                <th>Details Present?</th>
+            </tr>
+        </thead>
+        <tbody id="user-table-body">
+            <!-- Data will be inserted here by JavaScript -->
+        </tbody>
+    </table>
+
+    <script>
+        // Fetch the data from the API
+        fetch('http://localhost:3002/api/organization/66aa1a915502e3cceb4403b5')
+            .then(response => response.json())
+            .then(data => {
+                const tbody = document.getElementById('user-table-body');
+
+                data.forEach(user => {
+                    const tr = document.createElement('tr');
+
+                    const idCell = document.createElement('td');
+                    const nameCell = document.createElement('td');
+                    const emailCell = document.createElement('td');
+                    const phoneNoCell = document.createElement('td');
+                    const isUserDetailsPresentCell = document.createElement('td');
+
+                    // ID cell with link
+                    const idLink = document.createElement('a');
+                    idLink.href = `./userdetailsorg.html?userid=${user._id}`;
+                    idLink.textContent = user._id;
+                    idLink.classList.add('id-link');
+                    idCell.appendChild(idLink);
+
+                    nameCell.textContent = user.name;
+                    emailCell.textContent = user.email;
+                    phoneNoCell.textContent = user.phoneNo;
+
+                    isUserDetailsPresentCell.textContent = user.isUserDetailsPresent;
+                    if (user.isUserDetailsPresent === 'yes') {
+                        isUserDetailsPresentCell.classList.add('isUserDetailsPresent-yes');
+                    }
+
+                    tr.appendChild(idCell);
+                    tr.appendChild(nameCell);
+                    tr.appendChild(emailCell);
+                    tr.appendChild(phoneNoCell);
+                    tr.appendChild(isUserDetailsPresentCell);
+
+                    tbody.appendChild(tr);
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching user data:', error);
+            });
+    </script>
+
+</body>
+</html>

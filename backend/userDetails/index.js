@@ -13,6 +13,7 @@ const userDetailsRoutes = require('./routes/userDetails.route');
 const resumeRoutes = require('./routes/resume.route');
 const basicResumeRoutes = require('./routes/basicresume.route');
 const linkedinRoutes = require('./routes/linkedin.route')
+const organizationRoutes = require('./routes/organization.route')
 
 // Middleware
 app.use(express.json()); // for parsing application/json
@@ -24,6 +25,8 @@ app.use('/api/resume', verifyToken, resumeRoutes);
 // app.use('/api/basicresume', verifyToken, basicResumeRoutes);
 app.use('/api/basicresume', basicResumeRoutes);
 app.use('/api/linkedin', verifyToken, linkedinRoutes);
+app.use('/api/organization', organizationRoutes);
+app.use('/api/org/userDetails', userDetailsRoutes);
 
 
 // Set the port number from the environment variable or default to 3000

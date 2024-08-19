@@ -22,10 +22,6 @@ const userSchema = mongoose.Schema({
     minlength: 7,
     maxlength: 18,
   },
-  organization: {
-    type: String,
-    default: "others"
-  },
   userType: {
     type: String,
     required: true,
@@ -36,6 +32,11 @@ const userSchema = mongoose.Schema({
     type: String,
     default: "onhold",
     enum: ["active", "onhold"],
+  },
+  organization: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Organization",
+    default: new mongoose.Types.ObjectId('66aa198aecdaa2f5e6ce025d')
   },
   createdAt: {
     type: Date,
