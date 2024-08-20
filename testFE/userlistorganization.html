@@ -72,10 +72,10 @@
                 <th>Email</th>
                 <th>Phone No</th>
                 <th>Details Present?</th>
+                <!-- <th>Review</th> -->
             </tr>
         </thead>
         <tbody id="user-table-body">
-            <!-- Data will be inserted here by JavaScript -->
         </tbody>
     </table>
     <script src="./url.js"></script>
@@ -99,6 +99,7 @@
                     const emailCell = document.createElement('td');
                     const phoneNoCell = document.createElement('td');
                     const isUserDetailsPresentCell = document.createElement('td');
+                    // const reviewCV = document.createElement('td')
 
                     // ID cell with link
                     const idLink = document.createElement('a');
@@ -107,13 +108,26 @@
                     idLink.classList.add('id-link');
                     idCell.appendChild(idLink);
 
+                    // const idReview = document.createElement('a');
+                    // idReview.href = `./reviewcv.html?userid=${user._id}`;
+                    // idReview.textContent = 'Review';
+                    // idReview.classList.add('id-link');
+                    // reviewCV.appendChild(idReview);
+
                     nameCell.textContent = user.name;
                     emailCell.textContent = user.email;
                     phoneNoCell.textContent = user.phoneNo;
 
-                    isUserDetailsPresentCell.textContent = user.isUserDetailsPresent;
+                    const idReview = document.createElement('a');
+                    idReview.href = `./reviewcv.html?userid=${user._id}`;
+                    idReview.textContent = user.isUserDetailsPresent;
+                    idReview.classList.add('id-link');
+                    isUserDetailsPresentCell.appendChild(idReview);
+
+                    // isUserDetailsPresentCell.textContent = user.isUserDetailsPresent;
                     if (user.isUserDetailsPresent === 'yes') {
                         isUserDetailsPresentCell.classList.add('isUserDetailsPresent-yes');
+                        
                     }
 
                     tr.appendChild(idCell);
@@ -121,6 +135,7 @@
                     tr.appendChild(emailCell);
                     tr.appendChild(phoneNoCell);
                     tr.appendChild(isUserDetailsPresentCell);
+                    // tr.appendChild(reviewCV);
 
                     tbody.appendChild(tr);
                 });
