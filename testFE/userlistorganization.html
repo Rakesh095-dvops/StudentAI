@@ -78,10 +78,15 @@
             <!-- Data will be inserted here by JavaScript -->
         </tbody>
     </table>
+    <script src="./url.js"></script>
 
     <script>
         // Fetch the data from the API
-        fetch('http://localhost:3002/api/organization/66aa1a915502e3cceb4403b5')
+        const params = new URLSearchParams(window.location.search);
+        let orgid = params.get("orgid");
+        const apiUrl = config.userUrl + `/api/organization/${orgid}`;
+        // http://localhost:3002/api/organization/66aa1a915502e3cceb4403b5
+        fetch(apiUrl)
             .then(response => response.json())
             .then(data => {
                 const tbody = document.getElementById('user-table-body');
