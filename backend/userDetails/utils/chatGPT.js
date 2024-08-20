@@ -378,4 +378,82 @@ console.log('Prompts: ', prompt)
 
 }
 
-module.exports = {generateCV, generateBasicCV, generateLinkedin};
+async function cvReview (userDetails){
+  try {
+    console.log('details received for review: ',userDetails)
+    userDetails = userDetails[0]; // Safely accessing user details properties
+    const name = userDetails.name || 'N/A';
+    const email = userDetails.email || 'N/A';
+    const phoneNo = userDetails.contactDetails?.phone || 'N/A';
+    const currentJobTitle = userDetails.currentJobTitle || 'N/A';
+    const education = Array.isArray(userDetails.educationQualifications) ? userDetails.educationQualifications.map(edu => ({
+      degree: edu.degree,
+      institution: edu.collegeName,
+      year: edu.years,
+      specialization: edu.specialization
+    })) : [];
+    const professionalExperience = Array.isArray(userDetails.professionalQualifications) ? userDetails.professionalQualifications.map(pro => ({
+      position: pro.role,
+      company: pro.companyName,
+      location: pro.location || 'N/A',
+      duration: `${pro.duration.from}-${pro.duration.to}`,
+      responsibilities: pro.description ? pro.description.split('\n') : []
+    })) : [];
+    const skills = Array.isArray(userDetails.skills) ? userDetails.skills.map(skill => skill.value) : [];
+    const certifications = Array.isArray(userDetails.certifications) ? userDetails.certifications.map(cert => ({
+      name: cert.certificationName,
+      issuer: cert.certificationIssuer
+    })) : [];
+    const projects = Array.isArray(userDetails.projects) ? userDetails.projects.map(proj => ({
+      title: proj.projectName,
+      description: proj.projectDescription,
+      details: 'Provide a detailed description of the project, including your role, technologies used, and outcomes.'
+    })) : [];
+
+    const prompt = `
+    You are an expert CV reviewer. You will be provided with the resume and you have to give review on what are the things needs to be improved to be ATS compliant resume.
+    Here is the userdetails:\n\nUser Details:\nName: ${name}\nEmail: ${email}\nPhone No: ${phoneNo}\nCurrent Job Title: ${currentJobTitle}\nEducation: ${JSON.stringify(education, null, 2)}\nProfessional Experience: ${JSON.stringify(professionalExperience, null, 2)}\nSkills: ${JSON.stringify(skills, null, 2)}\nProjects: ${JSON.stringify(projects, null, 2)}\n   Certifications: ${JSON.stringify(certifications, null, 2)}\n\n 
+  A good CV needs to must have personal details, key skills, bio, professional qualification detailing on what he or she is working on, projects with details of the project along with skills used in the project, educational qualification.
+  The improvements provided should be in the format given below. The improvements should be very personalized which should include exact changes he has to make with examples from his CV.
+  You will also have to rate the CV between the rating of 1 to 10 where 1 id bad and 10 is good. At least give pointers to improve in the current CV.
+  Also analyse the CV and identify the roles suitable for him/her.
+  The cv output needs to be strictly in the json format in the below format:
+  {
+    cvRating: '',
+    improvements: [
+        {
+          imp: ""
+        }
+    ]
+    suitableJobRoles: [
+        {
+          role: ""
+        }
+    ]
+  }
+    `;
+
+console.log('Prompts: ', prompt)
+
+    const response = await openai.chat.completions.create({
+      model: "gpt-4o",
+      messages: [{ role: "system", content: prompt }],
+      max_tokens: 4000,
+      temperature: 0.5
+    });
+
+    const cvReviewContent = response.choices[0].message.content;
+    console.log('CV Review:', cvReviewContent);
+    const parsedData = extractAndParseJSON(cvReviewContent);
+    console.log('parsedData: ', parsedData)
+
+    return { parsedData };
+  } catch (error) {
+    console.error('Error communicating with OpenAI API:', error);
+    throw new Error('Failed to generate CV from OpenAI API.');
+  }
+
+}
+
+
+module.exports = {generateCV, generateBasicCV, generateLinkedin, cvReview};
