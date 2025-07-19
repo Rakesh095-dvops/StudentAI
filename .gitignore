@@ -131,3 +131,9 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# node_modules directory created by pnpm
+node_modules/.pnpm
+backend/auth/node_modules/.pnpm
+backend/userDetails/node_modules/.pnpm
+test/node_modules/.pnpm

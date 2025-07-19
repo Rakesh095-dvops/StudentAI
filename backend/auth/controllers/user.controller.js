@@ -21,13 +21,13 @@
  *         email:
  *           type: string
  *           description: The email of the user
- *        phoneNo:
+ *         phoneNo:
  *           type: string
  *           description: The phoneNo of the user
- *        userType:
+ *         userType:
  *           type: string
  *           description: The userType of the user 
- *        accountStatus:
+ *         accountStatus:
  *           type: string
  *           description: The accountStatus to be selected from active/onhold
  *         createdAt:
@@ -39,19 +39,21 @@
 const User = require("../models/user.model").User;
 const Auth = require("../models/authentication.model").Auth;
 const Authlog = require("../models/authlog.model").Authlog;
-const AWS = require("aws-sdk");
+const { SESClient, SendEmailCommand } = require("@aws-sdk/client-ses");
 const jwt = require("jsonwebtoken");
 
 const JWT = require("../utils/jwtToken");
 
-AWS.config.update({
-  accessKeyId: process.env.AWS_KEY_ID,
-  secretAccessKey: process.env.AWS_SECRET_KEY,
+// Configure AWS SES v3 client
+const sesClient = new SESClient({
   region: process.env.AWS_REGION,
+  credentials: {
+    accessKeyId: process.env.AWS_KEY_ID,
+    secretAccessKey: process.env.AWS_SECRET_KEY,
+  },
 });
 
 const sendingEmailThrough = process.env.SENDING_EMAIL_THROUGH;
-const ses = new AWS.SES({ region: process.env.AWS_REGION });
 
 const sendOtpEmail = async (to, otp) => {
   const params = {
@@ -72,7 +74,8 @@ const sendOtpEmail = async (to, otp) => {
   };
 
   try {
-    await ses.sendEmail(params).promise();
+    const command = new SendEmailCommand(params);
+    await sesClient.send(command);
     console.log(`OTP email sent successfully to ${to}`);
   } catch (error) {
     console.error("Error sending OTP email:", error);
