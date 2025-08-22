@@ -144,4 +144,4 @@ terraform.tfstate
 terraform.tfstate.backup
 .terraform/
 example/
-.terraform.lock.hcl
+.terraform.lock.*
