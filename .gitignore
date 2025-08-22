@@ -124,6 +124,7 @@ dist
 
 # Stores VSCode versions used for testing VSCode extensions
 .vscode-test
+.vscode/
 
 # yarn v2
 .yarn/cache
@@ -137,3 +138,10 @@ node_modules/.pnpm
 backend/auth/node_modules/.pnpm
 backend/userDetails/node_modules/.pnpm
 test/node_modules/.pnpm
+
+#add exclusions for terraform
+terraform.tfstate
+terraform.tfstate.backup
+.terraform/
+example/
+.terraform.lock.hcl

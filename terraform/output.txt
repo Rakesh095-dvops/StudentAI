@@ -1,0 +1,40 @@
+Outputs:
+
+cluster_arn = "arn:aws:eks:ap-south-1:975050024946:cluster/studentai-eks-dev"
+cluster_autoscaler_role_arn = "arn:aws:iam::975050024946:role/studentai-eks-dev-cluster-autoscaler"
+cluster_certificate_authority_data = "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURCVENDQWUyZ0F3SUJBZ0lJUkFyd3FkTDZwR0l3RFFZSktvWklodmNOQVFFTEJRQXdGVEVUTUJFR0ExVUUKQXhNS2EzVmlaWEp1WlhSbGN6QWVGdzB5TlRBNE1qSXhNakE0TURSYUZ3MHpOVEE0TWpBeE1qRXpNRFJhTUJVeApFekFSQmdOVkJBTVRDbXQxWW1WeWJtVjBaWE13Z2dFaU1BMEdDU3FHU0liM0RRRUJBUVVBQTRJQkR3QXdnZ0VLCkFvSUJBUURxSmZsWGJKRlhUMm9KSEt6cVF2VCtTV3pMVjNPUDg3c0U3cDhnSTdtUml4enZrc2JRemRERGhTbDQKR3JyOGowRTRSTUIrUEhvVW5rWjBXc0cyUzRLazVEaDJ3Y0lSSWtnS0VOcUw2b1hyRU5mN3hmYzhoalI3VDBaQQpwMkVWVnJxa09Icnd3SUx6blhaOGRhUm9BRVNaSk5kZW51L0Jobkt1bDBHNWI0SE9DSFhjMTdNN3lUWHFSZ0RXCi9TQnJFT1lTT0VkWVdDTFZLNXRSWTNkMk1ib2RFckhaTjJ2MVFqbzJDZDVoblYySitveGwvL2tkZWk0cllXUDYKUFRvUi9IOU8vL1lRTFdvVTVuc3A1SlZtSU9VZjhuNmdMVVhmNzNySjJlWlVmQUUxWG84T2pycmFYQ24xd1hsbgpqck5kWHFkSU11L0J2TlFKc2QzRXFZd2J5V0dYQWdNQkFBR2pXVEJYTUE0R0ExVWREd0VCL3dRRUF3SUNwREFQCkJnTlZIUk1CQWY4RUJUQURBUUgvTUIwR0ExVWREZ1FXQkJSVG9jRS9DT0xFQkNBU21EUUpHb2haS21oZXlUQVYKQmdOVkhSRUVEakFNZ2dwcmRXSmxjbTVsZEdWek1BMEdDU3FHU0liM0RRRUJDd1VBQTRJQkFRQ2dxaGxCS204WQp5Tmx1bnpoaGh2VnNGemgxaURxL0RuZmdUWk5KZWFJUnVkN2lERzdFajRXM1d6T0E3bS93R2xodzRnUmxORW5WCmZBVTh0MmRjV1Y0WFBJL1VDc1NjQmlPR08vWmN1akVxeEtZNzVIMTBuQjJpM1ZtSzl5RHBNZTNQZU53ZjlnN0MKSkI0YWhPMWViOG9HRzRTNHY3Y0FXZnNXbjR1VWErR0FCSVYwZ0FSaE1MSlM0dE1rZENBV0FtRE4rWEIyTjMzVwpKQklvcVptS3hyc3BIVExzdkhlV1E4QnNQQldyMUQ3R2VGWTdrbnFsMXBBdC9XcHJCbHNCalBwamF0bnRudHhpCnJuTmdra0VKK0w4aUR1Z252R2lVVmVMTjRkRDA1aThvVGJ5cTdQQVR6MGZBYlFUeGVhRW4wWnV6N1FONnBtNmUKVWp6Z1NyOW55RjNtCi0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K"
+cluster_endpoint = "https://0DB4E3E553A281A46FDF137AA933A185.gr7.ap-south-1.eks.amazonaws.com"
+cluster_iam_role_arn = "arn:aws:iam::975050024946:role/studentai-eks-dev-cluster-role"
+cluster_iam_role_name = "studentai-eks-dev-cluster-role"
+cluster_id = "studentai-eks-dev"
+cluster_platform_version = "eks.41"
+cluster_primary_security_group_id = "sg-07fd0c6c635cb0e35"
+cluster_security_group_id = "sg-07fd0c6c635cb0e35"
+cluster_status = "ACTIVE"
+cluster_version = "1.30"
+get_ingress_endpoints_commands = {
+  "grafana" = "kubectl port-forward -n monitoring svc/grafana 3000:80"
+  "nginx_ingress" = "kubectl get svc -n ingress-nginx ingress-nginx-controller"
+  "prometheus" = "kubectl port-forward -n monitoring svc/prometheus-kube-prometheus-prometheus 9090:9090"
+}
+grafana_ingress_hostname = "Use kubectl get ingress -n monitoring to get the load balancer hostname"
+grafana_port_forward_command = "kubectl port-forward -n monitoring svc/grafana 3000:80"
+ingress_nginx_namespace = "ingress-nginx"
+kubectl_config_command = "aws eks update-kubeconfig --region ap-south-1 --name studentai-eks-dev"
+monitoring_namespace = "monitoring"
+nginx_ingress_external_ip_command = "kubectl get svc -n ingress-nginx ingress-nginx-controller -o jsonpath='{.status.loadBalancer.ingress[0].hostname}'"
+node_group_iam_role_arn = "arn:aws:iam::975050024946:role/studentai-eks-dev-node-role"
+node_group_iam_role_name = "studentai-eks-dev-node-role"
+node_group_status = "ACTIVE"
+node_groups = "arn:aws:eks:ap-south-1:975050024946:nodegroup/studentai-eks-dev/studentai-eks-dev-nodes/bacc68da-ce9e-4022-089f-e0a9072164e4"
+oidc_provider_arn = "arn:aws:iam::975050024946:oidc-provider/oidc.eks.ap-south-1.amazonaws.com/id/0DB4E3E553A281A46FDF137AA933A185"
+private_subnets = tolist([])
+prometheus_ingress_hostname = "Use kubectl get ingress -n monitoring to get the load balancer hostname"
+prometheus_port_forward_command = "kubectl port-forward -n monitoring svc/prometheus-kube-prometheus-prometheus 9090:9090"
+public_subnets = tolist([
+  "subnet-066ec2d046612e19b",
+  "subnet-0a08b704a1b1af340",
+  "subnet-0c1842aca7dc1b6b0",
+])
+studentai_namespace = "studentai"
+vpc_id = "vpc-0056d809452f9f8ea"
