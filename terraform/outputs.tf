@@ -138,7 +138,7 @@ output "kubectl_config_command" {
 
 output "grafana_port_forward_command" {
   description = "Command to access Grafana via port forwarding"
-  value       = "kubectl port-forward -n monitoring svc/grafana 3000:80"
+  value       = "kubectl port-forward -n monitoring svc/grafana 3000:8080"
 }
 
 output "prometheus_port_forward_command" {
@@ -156,7 +156,7 @@ output "get_ingress_endpoints_commands" {
   description = "Commands to get ingress endpoints"
   value = {
     nginx_ingress = "kubectl get svc -n ingress-nginx ingress-nginx-controller"
-    grafana       = var.domain_name != "" ? "kubectl get ingress -n monitoring grafana-ingress -o jsonpath='{.status.loadBalancer.ingress[0].hostname}'" : "kubectl port-forward -n monitoring svc/grafana 3000:80"
+    grafana       = var.domain_name != "" ? "kubectl get ingress -n monitoring grafana-ingress -o jsonpath='{.status.loadBalancer.ingress[0].hostname}'" : "kubectl port-forward -n monitoring svc/grafana 3000:8080"
     prometheus    = var.domain_name != "" ? "kubectl get ingress -n monitoring prometheus-ingress -o jsonpath='{.status.loadBalancer.ingress[0].hostname}'" : "kubectl port-forward -n monitoring svc/prometheus-kube-prometheus-prometheus 9090:9090"
   }
 }
