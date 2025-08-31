@@ -83,3 +83,14 @@ kubectl run memory-stress --image=progrium/stress --namespace=studentai -- --vm 
 # Check alert status
 curl -s "http://ae6cc362b0c0f490989212fceb5eeee3-62917191.ap-south-1.elb.amazonaws.com:9090/api/v1/alerts" | jq '.data[] | select(.state=="firing")'
 ```
+
+Successfully Imported Dashboards:
+✅ Kubernetes / Views / Pods (15757)
+✅ Kubernetes / Views / Namespaces (15758)
+✅ Kubernetes / Views / Nodes (15759)
+✅ Kubernetes / Views / Global (15760)
+✅ Kubernetes Deployment Statefulset (8588)
+✅ Kubernetes / Networking / Cluster (15172)
+✅ Kubernetes cluster monitoring (via Prometheus) (12006) - Great cluster overview
+✅ Kubernetes Cluster Monitoring (10000) - Alternative cluster monitoring
+✅ Node Exporter Dashboard (11462) - Working node metrics alternative

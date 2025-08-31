@@ -23,6 +23,6 @@ terraform {
   #   key            = "eks/terraform.tfstate"
   #   region         = "ap-south-1"
   #   encrypt        = true
-  #   dynamodb_table = "terraform-state-locks"
+  #   use_lockfile = true
   # }
 }

@@ -36,7 +36,7 @@ module "eks" {
 }
 
 # Generate output files with deployment information
-resource "local_file" "deployment_output_json" {
+/* resource "local_file" "deployment_output_json" {
   content = jsonencode({
     cluster_info = {
       cluster_name     = module.eks.cluster_id
@@ -76,7 +76,7 @@ resource "local_file" "deployment_output_json" {
   
   filename = "${path.module}/output.json"
 }
-
+ */
 resource "local_file" "deployment_output_txt" {
   content = <<-EOT
 # EKS Cluster Deployment Summary
