@@ -63,13 +63,35 @@ Duration: 5m
    - Info alerts: Send to Email daily digest
 
 ## Quick Setup Commands
+
+### Linux/Mac (bash)
 ```bash
 # Import alert rules via API
-curl -X POST \\
-  http://a6957f908d66943138ea88806f0be28d-486608417.ap-south-1.elb.amazonaws.com:8080/api/ruler/grafana/api/v1/rules/namespace \\
-  -H "Authorization: Basic YWRtaW46YWRtaW4xMjM=" \\
-  -H "Content-Type: application/json" \\
+curl -X POST \
+  http://a6957f908d66943138ea88806f0be28d-486608417.ap-south-1.elb.amazonaws.com:8080/api/ruler/grafana/api/v1/rules/namespace \
+  -H "Authorization: Basic YWRtaW46YWRtaW4xMjM=" \
+  -H "Content-Type: application/json" \
   -d @alert-rules.json
+```
+
+### PowerShell (Windows)
+```powershell
+# Import alert rules via API using PowerShell
+$grafanaUrl = "http://a6957f908d66943138ea88806f0be28d-486608417.ap-south-1.elb.amazonaws.com:8080"
+$headers = @{
+    "Authorization" = "Basic YWRtaW46YWRtaW4xMjM="
+    "Content-Type" = "application/json"
+}
+
+# Read alert rules from file
+$alertRulesJson = Get-Content -Path "alert-rules.json" -Raw
+
+try {
+    $response = Invoke-RestMethod -Uri "$grafanaUrl/api/ruler/grafana/api/v1/rules/namespace" -Method POST -Headers $headers -Body $alertRulesJson
+    Write-Host "✅ Alert rules imported successfully" -ForegroundColor Green
+} catch {
+    Write-Host "❌ Failed to import alert rules: $($_.Exception.Message)" -ForegroundColor Red
+}
 ```
 
 ## Testing Alerts
@@ -80,8 +102,44 @@ kubectl run cpu-stress --image=progrium/stress --namespace=studentai -- --cpu 2 
 # Simulate memory pressure  
 kubectl run memory-stress --image=progrium/stress --namespace=studentai -- --vm 1 --vm-bytes 512M --timeout 300s
 
-# Check alert status
-curl -s "http://ae6cc362b0c0f490989212fceb5eeee3-62917191.ap-south-1.elb.amazonaws.com:9090/api/v1/alerts" | jq '.data[] | select(.state=="firing")'
+# Check alert status (Linux/Mac with jq)
+curl -s "http://a5f01fc24551d492aaa4216c20588f34-1429811828.ap-south-1.elb.amazonaws.com:9090/api/v1/alerts" | jq '.data[] | select(.state=="firing")'
+```
+
+### PowerShell Alternative (Windows)
+```powershell
+# Check Prometheus alerts using PowerShell
+$prometheusUrl = "http://a5f01fc24551d492aaa4216c20588f34-1429811828.ap-south-1.elb.amazonaws.com:9090/api/v1/alerts"
+
+try {
+    Write-Host "🔍 Checking Prometheus alerts..." -ForegroundColor Cyan
+    $response = Invoke-RestMethod -Uri $prometheusUrl -Method GET -TimeoutSec 15
+    
+    if ($response.status -eq "success") {
+        $firingAlerts = $response.data | Where-Object { $_.state -eq "firing" }
+        
+        if ($firingAlerts.Count -gt 0) {
+            Write-Host "🚨 Found $($firingAlerts.Count) firing alerts:" -ForegroundColor Red
+            foreach ($alert in $firingAlerts) {
+                Write-Host "   Alert: $($alert.labels.alertname)" -ForegroundColor Yellow
+                Write-Host "   State: $($alert.state)" -ForegroundColor Red
+                Write-Host "   Value: $($alert.value)" -ForegroundColor Gray
+                Write-Host "   ---"
+            }
+        } else {
+            Write-Host "✅ No firing alerts found" -ForegroundColor Green
+        }
+        
+        # Show pending alerts too
+        $pendingAlerts = $response.data | Where-Object { $_.state -eq "pending" }
+        if ($pendingAlerts.Count -gt 0) {
+            Write-Host "⏳ Found $($pendingAlerts.Count) pending alerts:" -ForegroundColor Yellow
+            $pendingAlerts | ForEach-Object { Write-Host "   - $($_.labels.alertname)" }
+        }
+    }
+} catch {
+    Write-Host "❌ Failed to connect to Prometheus: $($_.Exception.Message)" -ForegroundColor Red
+}
 ```
 
 Successfully Imported Dashboards:
