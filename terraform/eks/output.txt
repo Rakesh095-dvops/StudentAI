@@ -1,0 +1,40 @@
+# EKS Cluster Deployment Summary
+Generated at: 2025-08-31 13:30:06 UTC
+
+## Cluster Information
+- Cluster Name: studentai-eks-dev
+- Cluster Endpoint: https://587159D9EC43628AB18812CDB34C1C06.gr7.ap-south-1.eks.amazonaws.com
+- Cluster Status: ACTIVE
+- Kubernetes Version: 1.30
+
+## Configure kubectl Access
+aws eks update-kubeconfig --region ap-south-1 --name studentai-eks-dev
+
+## Monitoring Services
+
+### Grafana
+- LoadBalancer URL: http://a8037e0ac96214464bbbfb3c86b72e48-254703910.ap-south-1.elb.amazonaws.com:8080
+- Port Forward Command: kubectl port-forward -n monitoring svc/grafana 3000:8080
+- Admin Username: admin
+- Admin Password: admin123
+- Access via browser: Open the LoadBalancer URL or use port forwarding and go to http://localhost:3000
+
+### Prometheus
+- LoadBalancer URL: http://af1d24e94e7cd4e9aa618abeaf031084-1569768169.ap-south-1.elb.amazonaws.com:9090
+- Port Forward Command: kubectl port-forward -n monitoring svc/prometheus-kube-prometheus-prometheus 9090:9090
+- Access via browser: Open the LoadBalancer URL or use port forwarding and go to http://localhost:9090
+
+## Useful kubectl Commands
+- Check cluster nodes: kubectl get nodes
+- Check monitoring services: kubectl get svc -n monitoring
+- Check all pods in monitoring: kubectl get pods -n monitoring
+- Check LoadBalancer status: kubectl get svc -n monitoring -o wide
+
+## Namespaces
+- Monitoring: monitoring
+- StudentAI: studentai
+- Ingress NGINX: ingress-nginx
+
+## Note
+It may take a few minutes for the LoadBalancer URLs to become available after deployment.
+You can check the status with: kubectl get svc -n monitoring
