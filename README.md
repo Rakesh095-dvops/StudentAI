@@ -1,5 +1,35 @@
 # StudentAI
 
+## 📁 Project Structure
+
+```
+StudentAI/
+├── backend/           # Backend microservices (auth, userDetails, payments)
+├── frontend/          # Next.js frontend application  
+├── testFE/           # Frontend testing environment
+├── terraform/        # Infrastructure as Code (EKS cluster)
+├── monitoring/       # 📊 Complete monitoring setup
+│   ├── configs/      # Grafana dashboards & alert configurations
+│   ├── docs/         # Monitoring documentation & guides
+│   ├── k8s-manifests/ # Kubernetes monitoring resources
+│   └── scripts/      # Automation scripts for dashboard import
+├── compose.yml       # Docker Compose for local development
+└── README.md         # This file
+```
+
+## 🚀 Quick Links
+
+### 🌐 Live Infrastructure
+- **Grafana Dashboard**: [Access Monitoring](http://a6957f908d66943138ea88806f0be28d-486608417.ap-south-1.elb.amazonaws.com:8080) (admin/admin123)
+- **Prometheus Metrics**: [View Metrics](http://ae6cc362b0c0f490989212fceb5eeee3-62917191.ap-south-1.elb.amazonaws.com:9090)
+- **EKS Cluster**: `studentai-eks-dev` (Kubernetes v1.30, ap-south-1)
+
+### 📊 Monitoring Resources
+- **Complete Setup Guide**: [`monitoring/docs/monitoring-setup-complete.md`](monitoring/docs/monitoring-setup-complete.md)
+- **Dashboard Import Script**: [`monitoring/scripts/import-grafana-dashboards.ps1`](monitoring/scripts/import-grafana-dashboards.ps1)
+- **Custom Dashboards**: [`monitoring/configs/`](monitoring/configs/)
+- **Alert Configuration**: [`monitoring/configs/grafana-alerts-guide.md`](monitoring/configs/grafana-alerts-guide.md)
+
 ## Helpful Docker Compose Commands
 ### docker build command
 ```sh
