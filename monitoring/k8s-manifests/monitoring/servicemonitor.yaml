@@ -1,0 +1,57 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: studentai-monitoring
+  namespace: monitoring
+  labels:
+    release: prometheus
+spec:
+  selector:
+    matchLabels:
+      app: studentai
+  namespaceSelector:
+    matchNames:
+    - studentai
+  endpoints:
+  - port: metrics
+    path: /metrics
+    interval: 30s
+    scrapeTimeout: 10s
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: studentai-auth-metrics
+  namespace: studentai
+  labels:
+    app: studentai
+    component: auth
+spec:
+  selector:
+    app: studentai-auth
+  ports:
+  - name: metrics
+    port: 3001
+    targetPort: 3001
+  - name: http
+    port: 80
+    targetPort: 3001
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: studentai-userdetails-metrics
+  namespace: studentai
+  labels:
+    app: studentai
+    component: userdetails
+spec:
+  selector:
+    app: studentai-userdetails
+  ports:
+  - name: metrics
+    port: 3002
+    targetPort: 3002
+  - name: http
+    port: 80
+    targetPort: 3002
