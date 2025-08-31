@@ -125,10 +125,16 @@ resource "aws_iam_role" "cluster_autoscaler" {
   }
 }
 
-# IAM policy for Cluster Autoscaler
-resource "aws_iam_policy" "cluster_autoscaler" {
+# IAM policy for Cluster Autoscaler - Look for an existing policy first
+data "aws_iam_policy" "cluster_autoscaler_policy" {
   name = "${var.cluster_name}-cluster-autoscaler"
+}
 
+# Create the policy only if it doesn't exist
+resource "aws_iam_policy" "cluster_autoscaler" {
+  count = data.aws_iam_policy.cluster_autoscaler_policy.arn == "" ? 1 : 0
+
+  name   = "${var.cluster_name}-cluster-autoscaler"
   policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
@@ -149,8 +155,9 @@ resource "aws_iam_policy" "cluster_autoscaler" {
   })
 }
 
+# Attach the policy to the role
 resource "aws_iam_role_policy_attachment" "cluster_autoscaler" {
-  policy_arn = aws_iam_policy.cluster_autoscaler.arn
+  policy_arn = data.aws_iam_policy.cluster_autoscaler_policy.arn != "" ? data.aws_iam_policy.cluster_autoscaler_policy.arn : aws_iam_policy.cluster_autoscaler[0].arn
   role       = aws_iam_role.cluster_autoscaler.name
 }
 

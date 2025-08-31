@@ -34,7 +34,7 @@ resource "helm_release" "prometheus" {
           }
         }
         service = {
-          type = "ClusterIP"
+          type = "LoadBalancer"
         }
       }
 
@@ -58,7 +58,8 @@ resource "helm_release" "prometheus" {
 
   depends_on = [
     aws_eks_node_group.studentai_nodes,
-    kubernetes_namespace.monitoring
+    kubernetes_namespace.monitoring,
+    aws_eks_cluster.studentai_cluster
   ]
 }
 
@@ -81,14 +82,18 @@ resource "helm_release" "grafana" {
       }
 
       service = {
-        type = "ClusterIP"
+        type = "LoadBalancer"
         port = var.grafana_port
+        targetPort = var.grafana_port
       }
 
       # Configure Grafana to run on port 8080 to avoid conflicts with StudentAI
       env = {
         GF_SERVER_HTTP_PORT = tostring(var.grafana_port)
       }
+
+      # Configure the container port to match the server port
+      containerPort = var.grafana_port
 
       # Fix probes to use the correct port
       livenessProbe = {
@@ -183,6 +188,7 @@ resource "helm_release" "grafana" {
   ]
 
   depends_on = [
+    aws_eks_cluster.studentai_cluster,
     helm_release.prometheus,
     kubernetes_namespace.monitoring
   ]
@@ -282,4 +288,23 @@ resource "kubernetes_ingress_v1" "prometheus_ingress" {
     helm_release.prometheus,
     helm_release.nginx_ingress
   ]
+}
+
+# Data sources to get LoadBalancer information
+data "kubernetes_service" "grafana" {
+  metadata {
+    name      = "grafana"
+    namespace = kubernetes_namespace.monitoring.metadata[0].name
+  }
+  
+  depends_on = [helm_release.grafana]
+}
+
+data "kubernetes_service" "prometheus" {
+  metadata {
+    name      = "prometheus-kube-prometheus-prometheus"
+    namespace = kubernetes_namespace.monitoring.metadata[0].name
+  }
+  
+  depends_on = [helm_release.prometheus]
 }

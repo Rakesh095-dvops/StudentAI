@@ -1,4 +1,7 @@
-# Main Terraform configuration for EKS module
+# Main module configuration
+# This file can be used to configure providers, backends, etc.
+# For this modular setup, provider configuration is handled in the root module.
+
 terraform {
   required_version = ">= 1.0"
   required_providers {

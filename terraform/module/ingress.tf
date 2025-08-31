@@ -52,7 +52,7 @@ resource "helm_release" "nginx_ingress" {
         metrics = {
           enabled = true
           serviceMonitor = {
-            enabled   = true
+            enabled   = false
             namespace = "monitoring"
           }
         }
@@ -96,7 +96,9 @@ resource "helm_release" "nginx_ingress" {
 
   depends_on = [
     aws_eks_node_group.studentai_nodes,
-    kubernetes_namespace.ingress_nginx
+    kubernetes_namespace.ingress_nginx,
+    aws_eks_cluster.studentai_cluster,
+    helm_release.prometheus
   ]
 }
 

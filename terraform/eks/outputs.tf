@@ -133,3 +133,47 @@ output "nginx_ingress_external_ip_command" {
   description = "Command to get NGINX Ingress Controller external IP"
   value       = "kubectl get svc -n ingress-nginx ingress-nginx-controller -o jsonpath='{.status.loadBalancer.ingress[0].hostname}'"
 }
+
+# LoadBalancer URLs for Direct Access
+output "grafana_loadbalancer_url" {
+  description = "Direct LoadBalancer URL for Grafana"
+  value       = module.eks.grafana_loadbalancer_url
+}
+
+output "prometheus_loadbalancer_url" {
+  description = "Direct LoadBalancer URL for Prometheus"
+  value       = module.eks.prometheus_loadbalancer_url
+}
+
+# Port Forward Commands
+output "kubectl_port_forward_commands" {
+  description = "kubectl port forwarding commands for local access"
+  value       = module.eks.kubectl_port_forward_commands
+}
+
+# Service Details
+output "monitoring_services" {
+  description = "Details of monitoring services"
+  value       = module.eks.monitoring_services
+}
+
+# Quick Access Summary
+output "access_summary" {
+  description = "Summary of how to access deployed services"
+  value = {
+    grafana = {
+      loadbalancer_url = module.eks.grafana_loadbalancer_url
+      port_forward     = module.eks.kubectl_port_forward_commands.grafana
+      credentials      = "admin / admin123"
+    }
+    prometheus = {
+      loadbalancer_url = module.eks.prometheus_loadbalancer_url
+      port_forward     = module.eks.kubectl_port_forward_commands.prometheus
+    }
+    kubectl_setup = "aws eks update-kubeconfig --region ${var.aws_region} --name ${module.eks.cluster_id}"
+    output_files  = {
+      json = "output.json"
+      txt  = "output.txt"
+    }
+  }
+}
