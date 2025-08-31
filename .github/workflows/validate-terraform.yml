@@ -1,33 +1,48 @@
-name: 'EKS-Terraform-Plan'
+name: 'EKS-Terraform-Validate'
 
 on:
   push:
     branches: 
       - 'feature/terraform'
-
+    paths:
+      - 'terraform/eks/**'
+      - 'terraform/module/**'
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'terraform/eks/**'
+      - 'terraform/module/**'
 
 env: 
   AWS_REGION: ap-south-1
-  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  TF_VERSION: 1.9.3
 
 permissions:
   contents: read
+  pull-requests: write
 
 jobs:
   terraform:
-    name: Terraform Plan
+    name: Terraform Validate & Plan
     runs-on: ubuntu-latest
-    environment: production
+    environment: development
 
     defaults:
       run:
         shell: bash
-        working-directory: eks
+        working-directory: terraform/eks
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
@@ -56,7 +71,7 @@ jobs:
         run: terraform validate
         continue-on-error: false
 
-      - name: Terraform plan
+      - name: Terraform Plan
         run: |
-          terraform plan  -input=false
+          terraform plan -input=false -no-color
         continue-on-error: false

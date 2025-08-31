@@ -1,0 +1,267 @@
+name: 'CI-CD-Pipeline-with-ArgoCD'
+
+on:
+  push:
+    branches: 
+      - main
+      - develop
+    paths:
+      - 'frontend/**'
+      - 'backend/**'
+      - 'k8s-manifests/**'
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'frontend/**'
+      - 'backend/**'
+      - 'k8s-manifests/**'
+
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Target Environment'
+        required: true
+        default: 'dev'
+        type: choice
+        options:
+          - dev
+          - staging
+          - production
+      force_deploy:
+        description: 'Force ArgoCD Sync'
+        required: false
+        default: false
+        type: boolean
+
+env:
+  AWS_REGION: ap-south-1
+  ECR_REGISTRY: public.ecr.aws/f8g8h5d4
+  IMAGE_TAG: ${{ github.sha }}
+
+permissions:
+  contents: read
+  id-token: write
+  packages: write
+
+jobs:
+  build-and-push:
+    name: Build and Push Images
+    runs-on: ubuntu-latest
+    if: github.event_name != 'pull_request'
+    
+    strategy:
+      matrix:
+        service:
+          - name: frontend
+            dockerfile: frontend/Dockerfile
+            context: frontend
+          - name: backend-auth
+            dockerfile: backend/auth/Dockerfile
+            context: backend/auth
+          - name: backend-userdetails
+            dockerfile: backend/userDetails/Dockerfile
+            context: backend/userDetails
+    
+    outputs:
+      image-tags: ${{ steps.image-tags.outputs.tags }}
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Login to Amazon ECR Public
+        id: login-ecr-public
+        uses: aws-actions/amazon-ecr-login@v2
+        with:
+          registry-type: public
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build and push Docker image
+        id: build
+        uses: docker/build-push-action@v5
+        with:
+          context: ${{ matrix.service.context }}
+          file: ${{ matrix.service.dockerfile }}
+          push: true
+          tags: |
+            ${{ env.ECR_REGISTRY }}/studentai/${{ matrix.service.name }}:${{ env.IMAGE_TAG }}
+            ${{ env.ECR_REGISTRY }}/studentai/${{ matrix.service.name }}:latest
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          platforms: linux/amd64
+
+      - name: Set image tags output
+        id: image-tags
+        run: |
+          echo "tags=${{ env.ECR_REGISTRY }}/studentai/${{ matrix.service.name }}:${{ env.IMAGE_TAG }}" >> $GITHUB_OUTPUT
+
+  update-manifests:
+    name: Update Kubernetes Manifests
+    needs: build-and-push
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - name: Setup Git
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+
+      - name: Update Frontend Image Tag
+        run: |
+          sed -i "s|image: public.ecr.aws/f8g8h5d4/studentai/frontend:.*|image: ${{ env.ECR_REGISTRY }}/studentai/frontend:${{ env.IMAGE_TAG }}|g" k8s-manifests/frontend/deployment.yaml
+
+      - name: Update Backend Auth Image Tag
+        run: |
+          sed -i "s|image: public.ecr.aws/f8g8h5d4/studentai/backend-auth:.*|image: ${{ env.ECR_REGISTRY }}/studentai/backend-auth:${{ env.IMAGE_TAG }}|g" k8s-manifests/backend/auth/deployment.yaml
+
+      - name: Update Backend UserDetails Image Tag
+        run: |
+          sed -i "s|image: public.ecr.aws/f8g8h5d4/studentai/backend-userdetails:.*|image: ${{ env.ECR_REGISTRY }}/studentai/backend-userdetails:${{ env.IMAGE_TAG }}|g" k8s-manifests/backend/userdetails/deployment.yaml
+
+      - name: Commit and push changes
+        run: |
+          git add k8s-manifests/
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Update image tags to ${{ env.IMAGE_TAG }}"
+            git push origin main
+          fi
+
+  trigger-argocd-sync:
+    name: Trigger ArgoCD Sync
+    needs: [build-and-push, update-manifests]
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' || github.event.inputs.force_deploy == 'true'
+    
+    steps:
+      - name: Install ArgoCD CLI
+        run: |
+          curl -sSL -o argocd-linux-amd64 https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-amd64
+          chmod +x argocd-linux-amd64
+          sudo mv argocd-linux-amd64 /usr/local/bin/argocd
+
+      - name: Login to ArgoCD
+        run: |
+          argocd login ${{ secrets.ARGOCD_SERVER }} \
+            --username admin \
+            --password ${{ secrets.ARGOCD_PASSWORD }} \
+            --insecure
+
+      - name: Sync StudentAI Frontend Application
+        run: |
+          argocd app sync studentai-frontend --force
+          argocd app wait studentai-frontend --timeout 300
+
+      - name: Sync StudentAI Backend Auth Application
+        run: |
+          argocd app sync studentai-backend-auth --force
+          argocd app wait studentai-backend-auth --timeout 300
+
+      - name: Sync StudentAI Backend UserDetails Application
+        run: |
+          argocd app sync studentai-backend-userdetails --force
+          argocd app wait studentai-backend-userdetails --timeout 300
+
+      - name: Get Application Status
+        run: |
+          echo "Frontend Status:"
+          argocd app get studentai-frontend
+          echo "Backend Auth Status:"
+          argocd app get studentai-backend-auth
+          echo "Backend UserDetails Status:"
+          argocd app get studentai-backend-userdetails
+
+  security-scan:
+    name: Security Scan
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: 'fs'
+          scan-ref: '.'
+          format: 'sarif'
+          output: 'trivy-results.sarif'
+
+      - name: Upload Trivy scan results to GitHub Security tab
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: 'trivy-results.sarif'
+
+  notify:
+    name: Notify Deployment Status
+    needs: [build-and-push, update-manifests, trigger-argocd-sync]
+    runs-on: ubuntu-latest
+    if: always() && github.ref == 'refs/heads/main'
+    
+    steps:
+      - name: Deployment Success Notification
+        if: needs.trigger-argocd-sync.result == 'success'
+        run: |
+          echo "✅ StudentAI deployment successful!"
+          echo "Image Tag: ${{ env.IMAGE_TAG }}"
+          echo "Environment: ${{ github.event.inputs.environment || 'production' }}"
+          # Add Slack/Teams notification here if needed
+
+      - name: Deployment Failure Notification
+        if: needs.trigger-argocd-sync.result == 'failure'
+        run: |
+          echo "❌ StudentAI deployment failed!"
+          echo "Please check ArgoCD dashboard and application logs"
+          # Add Slack/Teams notification here if needed
+          exit 1
+
+  rollback:
+    name: Rollback on Failure
+    needs: [trigger-argocd-sync]
+    runs-on: ubuntu-latest
+    if: failure() && github.ref == 'refs/heads/main'
+    
+    steps:
+      - name: Install ArgoCD CLI
+        run: |
+          curl -sSL -o argocd-linux-amd64 https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-amd64
+          chmod +x argocd-linux-amd64
+          sudo mv argocd-linux-amd64 /usr/local/bin/argocd
+
+      - name: Login to ArgoCD
+        run: |
+          argocd login ${{ secrets.ARGOCD_SERVER }} \
+            --username admin \
+            --password ${{ secrets.ARGOCD_PASSWORD }} \
+            --insecure
+
+      - name: Rollback Applications
+        run: |
+          echo "Rolling back applications to previous version..."
+          argocd app rollback studentai-frontend
+          argocd app rollback studentai-backend-auth
+          argocd app rollback studentai-backend-userdetails
+          
+          echo "Waiting for rollback to complete..."
+          argocd app wait studentai-frontend --timeout 300
+          argocd app wait studentai-backend-auth --timeout 300
+          argocd app wait studentai-backend-userdetails --timeout 300
