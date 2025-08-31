@@ -18,11 +18,11 @@ terraform {
   }
 
   # Uncomment and configure this block to store state in S3
-  # backend "s3" {
-  #   bucket         = "your-terraform-state-bucket"
-  #   key            = "eks/terraform.tfstate"
-  #   region         = "ap-south-1"
-  #   encrypt        = true
-  #   use_lockfile = true
-  # }
+   backend "s3" {
+     bucket         = "studentai-tfstate-eks"
+     key            = "eks/terraform.tfstate"
+     region         = "ap-south-1"
+     encrypt        = true
+     use_lockfile   = true
+   }
 }
