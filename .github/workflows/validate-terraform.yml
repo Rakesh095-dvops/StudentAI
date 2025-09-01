@@ -9,7 +9,7 @@ on:
       - 'terraform/module/**'
   pull_request:
     branches:
-      - main
+      - feature/terraform
     paths:
       - 'terraform/eks/**'
       - 'terraform/module/**'
