@@ -4,7 +4,6 @@ on:
   push:
     branches: 
       - main
-      - feature/terraform
     paths:
       - 'terraform/eks/**'
       - 'terraform/module/**'

@@ -38,7 +38,12 @@ Your AWS credentials need permissions for:
 - VPC and subnet management
 - Load balancer creation
 
-### 3. Existing VPC
+### 3. IAM Policy for S3 Backend
+To allow Terraform to manage its state in an S3 bucket, you need to create an IAM policy that grants the necessary permissions. The required permissions are defined in the `iam-policy.json` file located in the `terraform/eks` directory.
+
+Create an IAM policy using the contents of `iam-policy.json` and attach it to the IAM user or role that will be executing the Terraform commands. This policy allows Terraform to securely store and manage the state of your EKS cluster.
+
+### 4. Existing VPC
 Ensure you have a VPC with public and private subnets. Update `terraform.tfvars`:
 ```hcl
 vpc_id = "vpc-xxxxxxxxx"
