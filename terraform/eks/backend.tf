@@ -1,7 +1,7 @@
 # Backend configuration for Terraform state
 terraform {
   required_version = ">= 1.0"
-  
+
   required_providers {
     aws = {
       source  = "hashicorp/aws"
@@ -18,11 +18,11 @@ terraform {
   }
 
   # Uncomment and configure this block to store state in S3
-   backend "s3" {
-     bucket  = "studentai-tfstate-eks"
-     key     = "eks/terraform.tfstate"
-     region  = "ap-south-1"
-     encrypt = true
-     #use_lockfile = true
-   }
+  backend "s3" {
+    bucket  = "studentai-tfstate-eks"
+    key     = "eks/terraform.tfstate"
+    region  = "ap-south-1"
+    encrypt = true
+    #use_lockfile = true
+  }
 }

@@ -27,8 +27,8 @@ module "eks" {
   # Monitoring and Ingress Configuration
   nginx_ingress_chart_version = var.nginx_ingress_chart_version
   prometheus_chart_version    = var.prometheus_chart_version
-  grafana_chart_version      = var.grafana_chart_version
-  
+  grafana_chart_version       = var.grafana_chart_version
+
   # Domain and SSL Configuration (optional)
   domain_name     = var.domain_name
   certificate_arn = var.certificate_arn
@@ -120,6 +120,6 @@ aws eks update-kubeconfig --region ${var.aws_region} --name ${module.eks.cluster
 It may take a few minutes for the LoadBalancer URLs to become available after deployment.
 You can check the status with: kubectl get svc -n monitoring
 EOT
-  
+
   filename = "${path.module}/output.txt"
 }

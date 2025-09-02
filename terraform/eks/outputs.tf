@@ -171,7 +171,7 @@ output "access_summary" {
       port_forward     = module.eks.kubectl_port_forward_commands.prometheus
     }
     kubectl_setup = "aws eks update-kubeconfig --region ${var.aws_region} --name ${module.eks.cluster_id}"
-    output_files  = {
+    output_files = {
       json = "output.json"
       txt  = "output.txt"
     }
