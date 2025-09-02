@@ -4,22 +4,7 @@
     {
       "Effect": "Allow",
       "Action": "s3:ListBucket",
-      "Resource": "arn:aws:s3:::studentai-tfstate-eks",
-      "Condition": {
-        "StringEquals": {
-          "s3:prefix": "eks/"
-        }
-      }
-    },
-    {
-      "Effect": "Allow",
-      "Action": [
-        "s3:GetObject",
-        "s3:PutObject"
-      ],
-      "Resource": [
-        "arn:aws:s3:::studentai-tfstate-eks/eks/terraform.tfstate"
-      ]
+      "Resource": "arn:aws:s3:::studentai-tfstate-eks"
     },
     {
       "Effect": "Allow",
@@ -28,9 +13,7 @@
         "s3:PutObject",
         "s3:DeleteObject"
       ],
-      "Resource": [
-        "arn:aws:s3:::studentai-tfstate-eks/eks/terraform.tfstate.tflock"
-      ]
+      "Resource": "arn:aws:s3:::studentai-tfstate-eks/*"
     }
   ]
 }
